@@ -110,7 +110,6 @@ export type TransferPanelMainInputProps =
 
 export function TransferPanelMainInput(props: TransferPanelMainInputProps) {
   const { errorMessage, maxButtonProps, value, ...rest } = props
-  const { ...restMaxButtonProps } = maxButtonProps
 
   return (
     <>
@@ -131,7 +130,7 @@ export function TransferPanelMainInput(props: TransferPanelMainInputProps) {
             value={value}
             {...rest}
           />
-          <MaxButton {...restMaxButtonProps} />
+          <MaxButton {...maxButtonProps} />
         </div>
       </div>
 
