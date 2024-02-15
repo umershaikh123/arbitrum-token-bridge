@@ -67,6 +67,10 @@ import {
   useTransferDisabledDialogStore
 } from './TransferDisabledDialog'
 import { getBridgeUiConfigForChain } from '../../util/bridgeUiConfig'
+import {
+  Balances,
+  useSelectedTokenBalances
+} from '../../hooks/TransferPanel/useSelectedTokenBalances'
 
 enum NetworkType {
   l1 = 'l1',
@@ -81,25 +85,35 @@ export function SwitchNetworksButton(
     isSmartContractWallet,
     isLoading: isLoadingAccountType
   } = useAccountType()
+  const [networks, setNetworks] = useNetworks()
 
   return (
-    <button
-      type="button"
-      disabled={isSmartContractWallet || isLoadingAccountType}
-      className={twMerge(
-        'arb-hover flex h-12 w-12 items-center justify-center rounded-full bg-white p-2 shadow-[0_0_4px_0_rgba(0,0,0,0.25)] transition duration-200',
-        isEOA
-          ? 'hover:animate-rotate-180 focus-visible:animate-rotate-180 hover:bg-[#F4F4F4] focus-visible:ring-2 focus-visible:ring-gray-4 active:bg-gray-2'
-          : ''
-      )}
-      {...props}
-    >
-      {isSmartContractWallet ? (
-        <ChevronDownIcon className="h-6 w-6 stroke-2 text-dark" />
-      ) : (
-        <ArrowsUpDownIcon className="h-6 w-6 stroke-2 text-dark" />
-      )}
-    </button>
+    <div className="z-[1] flex h-10 w-full items-center justify-center lg:h-12">
+      <button
+        type="button"
+        disabled={isSmartContractWallet || isLoadingAccountType}
+        className={twMerge(
+          'arb-hover flex h-12 w-12 items-center justify-center rounded-full bg-white p-2 shadow-[0_0_4px_0_rgba(0,0,0,0.25)] transition duration-200',
+          isEOA
+            ? 'hover:animate-rotate-180 focus-visible:animate-rotate-180 hover:bg-[#F4F4F4] focus-visible:ring-2 focus-visible:ring-gray-4 active:bg-gray-2'
+            : ''
+        )}
+        onClick={() => {
+          setNetworks({
+            sourceChainId: networks.destinationChain.id,
+            destinationChainId: networks.sourceChain.id
+          })
+        }}
+        aria-label="Switch Networks"
+        {...props}
+      >
+        {isSmartContractWallet ? (
+          <ChevronDownIcon className="h-6 w-6 stroke-2 text-dark" />
+        ) : (
+          <ArrowsUpDownIcon className="h-6 w-6 stroke-2 text-dark" />
+        )}
+      </button>
+    </div>
   )
 }
 
@@ -392,11 +406,6 @@ export function TransferPanelMain({
     updateUSDCBalances
   ])
 
-  type Balances = {
-    l1: BigNumber | null
-    l2: BigNumber | null
-  }
-
   const customFeeTokenBalances: Balances = useMemo(() => {
     if (!nativeCurrency.isCustom) {
       return { l1: ethL1Balance, l2: ethL2Balance }
@@ -408,57 +417,6 @@ export function TransferPanelMain({
     }
   }, [nativeCurrency, ethL1Balance, ethL2Balance, erc20L1Balances])
 
-  const selectedTokenBalances: Balances = useMemo(() => {
-    const result: Balances = {
-      l1: null,
-      l2: null
-    }
-
-    if (!selectedToken) {
-      return result
-    }
-
-    if (erc20L1Balances) {
-      result.l1 = erc20L1Balances[selectedToken.address] ?? null
-    }
-
-    if (
-      erc20L2Balances &&
-      selectedToken.l2Address &&
-      selectedToken.l2Address in erc20L2Balances
-    ) {
-      result.l2 = erc20L2Balances[selectedToken.l2Address] ?? constants.Zero
-    }
-
-    // token not bridged to the child chain, show zero
-    if (!selectedToken.l2Address) {
-      result.l2 = constants.Zero
-    }
-
-    if (
-      isTokenArbitrumOneNativeUSDC(selectedToken.address) &&
-      erc20L1Balances &&
-      erc20L2Balances
-    ) {
-      return {
-        l1: erc20L1Balances[CommonAddress.Ethereum.USDC] ?? null,
-        l2: erc20L2Balances[selectedToken.address] ?? null
-      }
-    }
-    if (
-      isTokenArbitrumSepoliaNativeUSDC(selectedToken.address) &&
-      erc20L1Balances &&
-      erc20L2Balances
-    ) {
-      return {
-        l1: erc20L1Balances[CommonAddress.Sepolia.USDC] ?? null,
-        l2: erc20L2Balances[selectedToken.address] ?? null
-      }
-    }
-
-    return result
-  }, [erc20L1Balances, erc20L2Balances, selectedToken])
-
   const [loadingMaxAmount, setLoadingMaxAmount] = useState(false)
   const { openDialog: openTransferDisabledDialog } =
     useTransferDisabledDialogStore()
@@ -467,6 +425,7 @@ export function TransferPanelMain({
     oneNovaTransferDestinationNetworkId,
     setOneNovaTransferDestinationNetworkId
   ] = useState<number | null>(null)
+  const selectedTokenBalances = useSelectedTokenBalances()
   const isMaxAmount = amount === AmountQueryParamEnum.MAX
 
   const showUSDCSpecificInfo =
@@ -612,33 +571,6 @@ export function TransferPanelMain({
     }
   }, [selectedToken, setDestinationAddress])
 
-  const maxButtonVisible = useMemo(() => {
-    const ethBalance = isDepositMode ? ethL1Balance : ethL2Balance
-    const tokenBalance = isDepositMode
-      ? selectedTokenBalances.l1
-      : selectedTokenBalances.l2
-
-    if (selectedToken) {
-      if (!tokenBalance) {
-        return false
-      }
-
-      return !tokenBalance.isZero()
-    }
-
-    if (!ethBalance) {
-      return false
-    }
-
-    return !ethBalance.isZero()
-  }, [
-    ethL1Balance,
-    ethL2Balance,
-    selectedTokenBalances,
-    selectedToken,
-    isDepositMode
-  ])
-
   const errorMessageElement = useMemo(() => {
     if (typeof errorMessage === 'undefined') {
       return undefined
@@ -678,13 +610,6 @@ export function TransferPanelMain({
         )
     }
   }, [errorMessage, openTransferDisabledDialog])
-
-  const switchNetworksOnTransferPanel = useCallback(() => {
-    setNetworks({
-      sourceChainId: networks.destinationChain.id,
-      destinationChainId: networks.sourceChain.id
-    })
-  }, [networks.destinationChain.id, networks.sourceChain.id, setNetworks])
 
   useEffect(() => {
     const isArbOneUSDC = isTokenArbitrumOneNativeUSDC(selectedToken?.address)
@@ -767,7 +692,10 @@ export function TransferPanelMain({
       from: {
         onChange: async network => {
           if (networks.destinationChain.id === network.id) {
-            switchNetworksOnTransferPanel()
+            setNetworks({
+              sourceChainId: networks.destinationChain.id,
+              destinationChainId: networks.sourceChain.id
+            })
             return
           }
 
@@ -803,7 +731,6 @@ export function TransferPanelMain({
     networks.sourceChain,
     networks.destinationChain,
     setNetworks,
-    switchNetworksOnTransferPanel,
     openOneNovaTransferDialog
   ])
 
@@ -868,7 +795,6 @@ export function TransferPanelMain({
         <div className="flex flex-col space-y-1">
           <TransferPanelMainInput
             maxButtonProps={{
-              visible: maxButtonVisible,
               loading: isMaxAmount || loadingMaxAmount,
               onClick: setMaxAmount
             }}
@@ -911,12 +837,7 @@ export function TransferPanelMain({
         <EstimatedGas chainType="source" />
       </NetworkContainer>
 
-      <div className="z-[1] flex h-10 w-full items-center justify-center lg:h-12">
-        <SwitchNetworksButton
-          onClick={switchNetworksOnTransferPanel}
-          aria-label="Switch Networks" // useful for accessibility, and catching the element in automation
-        />
-      </div>
+      <SwitchNetworksButton />
 
       <NetworkContainer
         network={networks.destinationChain}
