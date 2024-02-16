@@ -1033,11 +1033,7 @@ export function TransferPanel() {
           'lg:rounded lg:border lg:border-white/30'
         )}
       >
-        <TransferPanelMain
-          amount={amount}
-          setAmount={setAmount}
-          errorMessage={errorMessage}
-        />
+        <TransferPanelMain amount={amount} setAmount={setAmount} />
         <AdvancedSettings />
         <TransferPanelSummary
           amount={parseFloat(amount)}
