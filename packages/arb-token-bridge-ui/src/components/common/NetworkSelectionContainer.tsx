@@ -338,7 +338,9 @@ export const NetworkSelectionContainer = ({
             className={buttonClassName}
             onClick={onPopoverButtonClick}
           >
-            {children}
+            <span className="max-w-[220px] truncate md:max-w-[250px]">
+              {children}
+            </span>
             <ChevronDownIcon
               className={twMerge(
                 'h-3 w-3 transition-transform duration-200',
