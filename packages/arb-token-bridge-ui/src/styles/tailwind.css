@@ -21,7 +21,7 @@
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--secondary) var(--primary);
+  scrollbar-color: #1366C1 rgb(212, 212, 212);
   /* color:white */
 }
 
