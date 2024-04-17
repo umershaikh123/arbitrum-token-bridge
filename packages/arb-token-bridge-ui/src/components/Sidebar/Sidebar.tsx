@@ -61,12 +61,12 @@ export const Sidebar = () => {
         {/* Sidebar toggle button */}
         <button
           className={twMerge(
-            'absolute right-[-16px] top-[60px] flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-full border border-gray-6 bg-gray-1 transition duration-200',
+            'absolute right-[-16px] top-[60px] flex h-[32px] w-[32px] cursor-pointer items-center justify-center rounded-full border border-gray-6 bg-gray-200 transition duration-200',
             !sidebarOpened && 'rotate-180'
           )}
           onClick={sidebarToggleClick}
         >
-          <ChevronLeftIcon className="h-[12px] w-[12px] text-white" />
+          <ChevronLeftIcon className="h-[12px] w-[12px]   font-bold text-black" />
         </button>
 
         {/* Sidebar - Top Arbitrum Logo */}
