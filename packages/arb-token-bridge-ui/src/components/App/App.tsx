@@ -42,7 +42,7 @@ import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { HeaderConnectWalletButton } from '../common/HeaderConnectWalletButton'
 import { AppConnectionFallbackContainer } from './AppConnectionFallbackContainer'
 import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
-import { useTheme } from '../../hooks/useTheme'
+
 declare global {
   interface Window {
     Cypress?: any
@@ -58,7 +58,7 @@ const rainbowkitTheme = merge(lightTheme(), {
   }
 } as Theme)
 
-const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
+export const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
   const actions = useActions()
   const {
     app: { selectedToken }
@@ -166,7 +166,7 @@ const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
 }
 
 // connector names: https://github.com/wagmi-dev/wagmi/blob/b17c07443e407a695dfe9beced2148923b159315/docs/pages/core/connectors/_meta.en-US.json#L4
-function getWalletName(connectorName: string): ProviderName {
+export function getWalletName(connectorName: string): ProviderName {
   switch (connectorName) {
     case 'MetaMask':
     case 'Coinbase Wallet':
@@ -186,7 +186,7 @@ function getWalletName(connectorName: string): ProviderName {
 }
 
 /** given our RPC url, sanitize it before logging to Sentry, to only pass the url and not the keys */
-function getBaseUrl(url: string) {
+export function getBaseUrl(url: string) {
   try {
     const urlObject = new URL(url)
     return `${urlObject.protocol}//${urlObject.hostname}`
@@ -237,7 +237,7 @@ function AppContent() {
     return (
       <>
         <Header />
-        <WelcomeDialog />
+        {/* <WelcomeDialog /> */}
       </>
     )
   }
@@ -250,10 +250,7 @@ function AppContent() {
         </Header>
 
         <AppConnectionFallbackContainer>
-          <p className="text-5xl">No wallet connected</p>
-          <p className="text-xl">
-            Please connect your wallet to use the bridge.
-          </p>
+          <></>
         </AppConnectionFallbackContainer>
       </>
     )
@@ -279,6 +276,7 @@ function AppContent() {
       <Header>
         <HeaderAccountPopover />
       </Header>
+
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />

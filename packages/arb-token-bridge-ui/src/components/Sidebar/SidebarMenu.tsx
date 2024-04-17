@@ -14,6 +14,7 @@ import IconHome from '@/images/sidebar/home.svg'
 import IconProjects from '@/images/sidebar/projects.svg'
 
 import IconBridge from '@/icons/bridge.svg'
+import IconWithdraw from '@/icons/withdraw.svg'
 import IconRollup from '@/icons/rollupIcon.svg'
 import IconLearn from '@/images/sidebar/learn.svg'
 import IconCommunity from '@/images/sidebar/community.svg'
@@ -34,6 +35,7 @@ import { ExternalLink } from '../common/ExternalLink'
 import {
   CAREERS_ARBITRUM_LINK,
   GET_HELP_LINK,
+  WITHDRAW_LINK,
   ROLLUP_DASHBOARD_LINK,
   PORTAL_DOMAIN
 } from '../../constants'
@@ -219,6 +221,18 @@ export const SidebarMenu = ({
     //   )
     // },
     {
+      id: 'bridge',
+      title: 'deposit',
+      iconSrc: IconBridge,
+      link: '/',
+      isExternalLink: true,
+      onClick: () => {
+        menuItemClickCallback?.()
+        sendClickEventForLink('Bridge')
+        toggleActiveMenu('bridge')
+      }
+    },
+    {
       id: 'rollup',
       title: 'Rollup Dashboard',
       iconSrc: IconRollup,
@@ -233,17 +247,19 @@ export const SidebarMenu = ({
     },
 
     {
-      id: 'bridge',
-      title: 'Bridge',
-      iconSrc: IconBridge,
-      link: '/',
+      id: 'withdraw',
+      title: 'Withdraw',
+      iconSrc: IconWithdraw,
+      link: WITHDRAW_LINK,
       isExternalLink: true,
+
       onClick: () => {
         menuItemClickCallback?.()
-        sendClickEventForLink('Bridge')
-        toggleActiveMenu('bridge')
+        sendClickEventForLink('Withdraw')
+        toggleActiveMenu('withdraw')
       }
     }
+
     // {
     //   id: 'learn',
     //   title: 'Learn',
