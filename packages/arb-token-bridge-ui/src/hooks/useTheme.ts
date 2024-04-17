@@ -22,7 +22,7 @@ export const THEME_CONFIG = [
 
 export const useTheme = () => {
   const [theme, setTheme] = useLocalStorage<string>(themeLocalStorageKey)
-
+ 
   useEffect(() => {
     if (!theme) return
     document.body.className = theme

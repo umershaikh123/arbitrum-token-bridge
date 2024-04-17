@@ -12,7 +12,10 @@ import {
 
 import IconHome from '@/images/sidebar/home.svg'
 import IconProjects from '@/images/sidebar/projects.svg'
-import IconBridge from '@/images/sidebar/bridge.svg'
+
+import IconBridge from '@/icons/bridge.svg'
+import IconWithdraw from '@/icons/withdraw.svg'
+import IconRollup from '@/icons/rollupIcon.svg'
 import IconLearn from '@/images/sidebar/learn.svg'
 import IconCommunity from '@/images/sidebar/community.svg'
 import IconOrbit from '@/images/sidebar/orbit.svg'
@@ -32,6 +35,7 @@ import { ExternalLink } from '../common/ExternalLink'
 import {
   CAREERS_ARBITRUM_LINK,
   GET_HELP_LINK,
+  WITHDRAW_LINK,
   ROLLUP_DASHBOARD_LINK,
   PORTAL_DOMAIN
 } from '../../constants'
@@ -65,7 +69,9 @@ const MenuItem = ({
   const menuClasses = twMerge(
     'group flex items-center sm:rounded px-[12px] py-[8px] text-base hover:bg-white/20 cursor-pointer hover:opacity-100 hover:text-white',
     sidebarOpened ? 'gap-x-[16px] min-w-[200px]' : 'flex-col px-[8px]',
+    `/${pathname}` === `${menu.link}` && 'text-white bg-white/20',
     pathname === menu.link && 'text-white bg-white/20',
+
     className
   )
 
@@ -215,31 +221,45 @@ export const SidebarMenu = ({
     //   )
     // },
     {
-      id: 'Rollup Dashboard',
-      title: 'Rollup Dashboard',
-      iconSrc: IconBridge,
-
-      isExternalLink: true,
-      link: ROLLUP_DASHBOARD_LINK,
-      onClick: () => {
-        menuItemClickCallback?.()
-        sendClickEventForLink('Dashboard')
-        toggleActiveMenu('dashbaord')
-      }
-    },
-
-    {
       id: 'bridge',
-      title: 'Bridge',
+      title: 'deposit',
       iconSrc: IconBridge,
-      link: '',
-      isExternalLink: false,
+      link: '/',
+      isExternalLink: true,
       onClick: () => {
         menuItemClickCallback?.()
         sendClickEventForLink('Bridge')
         toggleActiveMenu('bridge')
       }
+    },
+    {
+      id: 'rollup',
+      title: 'Rollup Dashboard',
+      iconSrc: IconRollup,
+      link: ROLLUP_DASHBOARD_LINK,
+      isExternalLink: true,
+
+      onClick: () => {
+        menuItemClickCallback?.()
+        sendClickEventForLink('Rollup')
+        toggleActiveMenu('rollup')
+      }
+    },
+
+    {
+      id: 'withdraw',
+      title: 'Withdraw',
+      iconSrc: IconWithdraw,
+      link: WITHDRAW_LINK,
+      isExternalLink: true,
+
+      onClick: () => {
+        menuItemClickCallback?.()
+        sendClickEventForLink('Withdraw')
+        toggleActiveMenu('withdraw')
+      }
     }
+
     // {
     //   id: 'learn',
     //   title: 'Learn',
@@ -342,7 +362,7 @@ export const SidebarMenu = ({
   return (
     <div
       className={twMerge(
-        'mt-0 flex w-full flex-col gap-[4px] text-white',
+        'mt-0 flex w-full flex-col gap-[2px] text-white',
         'sm:mt-[20px] sm:shrink sm:grow sm:gap-[8px] sm:overflow-auto',
         sidebarOpened ? 'px-[16px]' : 'px-[4px]',
         className
@@ -352,16 +372,16 @@ export const SidebarMenu = ({
         <Fragment key={`menu-${index}`}>
           <MenuItem menu={menu}>
             {/* Menu icon */}
-            {/* <Image
+            <Image
               src={menu.iconSrc}
               alt={menu.title}
-              className={twMerge('h-[24px] w-[24px]')}
-            /> */}
+              className={twMerge('h-[24px] w-[24px] ')}
+            />
 
             {/* Menu title */}
             <span
               className={twMerge(
-                'grow origin-center  px-2 text-left  text-base duration-200',
+                '  -ml-2 grow origin-center  px-2 text-left  text-base duration-200',
                 !sidebarOpened && 'sm:hidden',
                 menu.className
               )}

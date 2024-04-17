@@ -38,7 +38,7 @@ export type LayoutProps = {
 
 export function Layout(props: LayoutProps) {
   return (
-    <div className={twMerge('relative flex-col bg-gray-500')}>
+    <div className={twMerge('relative flex-col bg-white ')}>
       {/* <Image
         src={EclipseBottom}
         alt="grains"

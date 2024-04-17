@@ -1,48 +1,29 @@
 import { twMerge } from 'tailwind-merge'
 
 import { ExternalLink } from '../common/ExternalLink'
+import Link from 'next/link'
+import TwitterIcon from '@mui/icons-material/Twitter'
+import LanguageIcon from '@mui/icons-material/Language'
 
 export const SidebarFooter = ({ className }: { className?: string }) => {
   return (
     <div
       className={twMerge(
-        'mt-[20px] flex w-full flex-col gap-[12px] px-[16px] pb-[16px]',
+        'mt-[20px] flex w-full items-center justify-center gap-[12px]   px-[16px] pb-[16px] text-white',
         className
       )}
     >
-      {/* <div className="border-b border-white/30 py-[16px] text-base text-white/70">
-        The Most Decentralized <br />
-        L2 Technology
+      <div className="duration-300  ease-in-out hover:scale-125">
+        <Link href={'https://twitter.com/_Nexus_Network'} target="_blank">
+          <TwitterIcon sx={{ fontSize: 35 }} />
+        </Link>
       </div>
 
-      <div className="flex flex-nowrap items-center gap-[8px] text-white/60">
-        <ExternalLink
-          className="cursor-pointer text-xs text-white/60"
-          href="https://arbitrum.io/tos"
-        >
-          ToS
-        </ExternalLink>
-        &bull;
-        <ExternalLink
-          className="cursor-pointer text-xs text-white/60"
-          href="https://arbitrum.io/privacy"
-        >
-          Privacy Policy
-        </ExternalLink>
+      <div className="scal duration-300 ease-in-out hover:scale-125">
+        <Link href={'https://nexusnetwork.co.in/'} target="_blank">
+          <LanguageIcon sx={{ fontSize: 35 }} />
+        </Link>
       </div>
-      <div className="text-xs text-white/60">
-        Built with love by{' '}
-        <ExternalLink
-          className="hover:underline"
-          href="https://offchainlabs.com/"
-        >
-          Offchain Labs
-        </ExternalLink>
-        , builders of{' '}
-        <ExternalLink className="hover:underline" href="https://arbitrum.io/">
-          Arbitrum technology.
-        </ExternalLink>
-      </div> */}
     </div>
   )
 }

@@ -55,15 +55,15 @@ export function HeaderAccountPopover({
     'arb-hover flex w-full flex-row items-center space-x-2 px-12 py-2 text-sm sm:text-sm text-gray-4 sm:text-white hover:bg-ocl-blue sm:px-4 sm:py-1'
 
   return (
-    <Popover className="relative w-full px-4 sm:w-max sm:p-0">
+    <Popover className="relative w-full rounded-lg bg-black px-6  sm:w-max sm:p-0">
       <Popover.Button
         className={twMerge(
-          'flex w-full flex-row items-center justify-start gap-3 px-[12px] py-[7px] transition-[background] duration-300',
+          'flex w-full flex-row items-center justify-start gap-3 px-[12px] py-[7px] transition-[background] duration-300 ',
           'ui-open:bg-white/20 ui-not-open:bg-transparent ui-not-open:hover:bg-white/20',
-          'sm:w-max sm:rounded sm:border sm:px-2 sm:py-1',
+          '  sm:w-max sm:rounded sm:px-2 sm:py-1',
           isTestnet
-            ? 'sm:border-white sm:ui-not-open:bg-white/20'
-            : 'sm:border-gray-1 sm:ui-not-open:bg-gray-1 sm:ui-not-open:hover:bg-white/10'
+            ? '  sm:ui-not-open:bg-white/20'
+            : '  sm:ui-not-open:bg-gray-1 sm:ui-not-open:hover:bg-white/10'
         )}
         role="button"
         aria-label="Account Header Button"
@@ -106,7 +106,7 @@ export function HeaderAccountPopover({
 
             {/* Actual image and account name */}
             <div className="relative flex flex-row items-center gap-2">
-              <div className="avatar-container box-content rounded-full border-[3px] border-dark">
+              <div className="avatar-container box-content rounded-full  ">
                 <SafeImage
                   src={ensAvatar || undefined}
                   className="h-[54px] w-[54px] rounded-full"
