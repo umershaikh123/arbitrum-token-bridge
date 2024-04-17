@@ -12,6 +12,8 @@ export const PORTAL_DOMAIN = 'https://portal.arbitrum.io'
 
 export const CAREERS_ARBITRUM_LINK = 'https://jobs.arbitrum.io/jobs'
 
+export const ROLLUP_DASHBOARD_LINK = '/rollup'
+
 export const DOCS_DOMAIN = 'https://docs.arbitrum.io'
 
 export const USDC_LEARN_MORE_LINK = `${DOCS_DOMAIN}/bridge-tokens/concepts/usdc-concept`

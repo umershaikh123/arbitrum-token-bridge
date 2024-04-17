@@ -2,8 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-import ArbitrumLogoExpanded from '@/images/HeaderArbitrumLogoMainnet.svg'
-import ArbitrumLogoCollapsed from '@/images/ArbitrumLogo.svg'
+import nexusLogoExpanded from '@/images/nexus/nexusLogoUncompressed.svg'
+import nexusLogoCollapsed from '@/images/nexus/nexusLogoCompressed.svg'
+
 import { useSidebarStore } from './SidebarStore'
 
 export const SidebarHeader = () => {
@@ -26,19 +27,19 @@ export const SidebarHeader = () => {
       >
         <Image
           id="header-image-expanded"
-          src={ArbitrumLogoExpanded}
-          alt="Arbitrum logo"
+          src={nexusLogoExpanded}
+          alt="Nexus logo"
           className={twMerge(
-            'w-[120px] min-w-[120px]',
+            'w-[150px] min-w-[150px]',
             !sidebarOpened && 'hidden'
           )}
         />
         <Image
           id="header-image-collapsed"
-          src={ArbitrumLogoCollapsed}
-          alt="Arbitrum logo"
+          src={nexusLogoCollapsed}
+          alt="Nexus logo"
           className={twMerge(
-            'ml-[10px] h-[30px] w-[30px]',
+            'ml-[10px] h-[42px] w-[42px]',
             sidebarOpened && 'hidden'
           )}
         />

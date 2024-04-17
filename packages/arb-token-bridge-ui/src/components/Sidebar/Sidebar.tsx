@@ -47,14 +47,14 @@ export const Sidebar = () => {
     <div
       className={twMerge(
         'z-20 hidden h-full shrink-0 transition-all duration-200 sm:sticky sm:top-0 sm:flex sm:h-screen', // show the sidebar in md/lg+ resolutions, for sm revert to Header
-        sidebarOpened ? 'w-[256px]' : 'w-[60px]'
+        sidebarOpened ? 'w-[256px]' : 'w-[80px]'
       )}
     >
       <div
         className={twMerge(
-          'relative flex-col justify-between border-r border-gray-6 bg-black pt-[30px] font-normal transition-all duration-200',
+          'border-white-6 relative flex-col justify-between border-r bg-[#0375C9] pt-[30px] font-normal transition-all duration-200',
           'sm:fixed sm:left-0 sm:top-0 sm:flex sm:h-screen', // show the sidebar in md/lg+ resolutions, for sm revert to Header
-          sidebarOpened ? 'w-[256px]' : 'w-[60px] cursor-pointer'
+          sidebarOpened ? 'w-[256px]' : 'w-[80px] cursor-pointer'
         )}
         onClick={clickSidePanel}
       >
@@ -66,7 +66,7 @@ export const Sidebar = () => {
           )}
           onClick={sidebarToggleClick}
         >
-          <ChevronLeftIcon className="h-[12px] w-[12px] text-gray-6" />
+          <ChevronLeftIcon className="h-[12px] w-[12px] text-white" />
         </button>
 
         {/* Sidebar - Top Arbitrum Logo */}

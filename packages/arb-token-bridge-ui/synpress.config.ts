@@ -134,6 +134,12 @@ if (typeof INFURA_KEY === 'undefined') {
 const MAINNET_INFURA_RPC_URL = `https://mainnet.infura.io/v3/${INFURA_KEY}`
 const SEPOLIA_INFURA_RPC_URL = `https://sepolia.infura.io/v3/${INFURA_KEY}`
 
+console.log("MAINNET_INFURA_RPC_URL" , MAINNET_INFURA_RPC_URL);
+console.log("SEPOLIA_INFURA_RPC_URL " , SEPOLIA_INFURA_RPC_URL );
+// console.log("a" , a);
+// console.log("a" , a);
+
+
 const ethRpcUrl = (() => {
   // MetaMask comes with a default http://localhost:8545 network with 'localhost' as network name
   // On CI, the rpc is http://geth:8545 so we cannot reuse the 'localhost' network

@@ -10,7 +10,7 @@ export const SidebarFooter = ({ className }: { className?: string }) => {
         className
       )}
     >
-      <div className="border-b border-white/30 py-[16px] text-base text-white/70">
+      {/* <div className="border-b border-white/30 py-[16px] text-base text-white/70">
         The Most Decentralized <br />
         L2 Technology
       </div>
@@ -42,7 +42,7 @@ export const SidebarFooter = ({ className }: { className?: string }) => {
         <ExternalLink className="hover:underline" href="https://arbitrum.io/">
           Arbitrum technology.
         </ExternalLink>
-      </div>
+      </div> */}
     </div>
   )
 }

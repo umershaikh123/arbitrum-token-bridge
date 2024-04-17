@@ -32,6 +32,7 @@ import { ExternalLink } from '../common/ExternalLink'
 import {
   CAREERS_ARBITRUM_LINK,
   GET_HELP_LINK,
+  ROLLUP_DASHBOARD_LINK,
   PORTAL_DOMAIN
 } from '../../constants'
 
@@ -95,57 +96,6 @@ const MenuItem = ({
   )
 }
 
-const SubMenuItem = ({
-  onClick,
-  children,
-  isActive,
-  link,
-  isExternalLink = false
-}: {
-  onClick?: () => void
-  children?: React.ReactNode
-  isActive?: boolean
-  link?: string
-  isExternalLink?: boolean
-}) => {
-  const subMenuClasses = twMerge(
-    'group ml-[32px] flex min-w-[175px] cursor-pointer items-center justify-between sm:rounded py-[4px] pl-[20px] sm:pl-[16px] text-gray-4 hover:bg-white/20 hover:text-white',
-    isActive && 'text-white'
-  )
-
-  if (isExternalLink) {
-    return (
-      <ExternalLink href={link} className={subMenuClasses} onClick={onClick}>
-        {children}
-
-        <ArrowTopRightOnSquareIcon className="mr-[12px] h-[16px] w-[16px] opacity-50 group-hover:opacity-100" />
-      </ExternalLink>
-    )
-  }
-
-  if (!isExternalLink && link) {
-    return (
-      <Link href={link} className={subMenuClasses} onClick={onClick}>
-        {children}
-      </Link>
-    )
-  }
-
-  return (
-    <button className={subMenuClasses} onClick={onClick}>
-      {children}
-    </button>
-  )
-}
-
-const projectCategories = {
-  DeFi: 'defi',
-  'Bridges and On-ramps': 'bridges-and-on-ramps',
-  Gaming: 'gaming',
-  NFTs: 'nfts',
-  'Infra & Tools': 'infra-and-tools'
-} as const
-
 export const SidebarMenu = ({
   menuItemClickCallback,
   className
@@ -189,81 +139,95 @@ export const SidebarMenu = ({
   }
 
   const menuConfig: MenuConfig[] = [
+    // {
+    //   id: 'home',
+    //   title: 'Home',
+    //   iconSrc: IconHome,
+    //   isExternalLink: false,
+    //   isExpandable: false,
+    //   link: PORTAL_DOMAIN,
+    //   onClick: () => {
+    //     setActiveMenu('home')
+    //     menuItemClickCallback?.()
+    //   }
+    // },
+    // {
+    //   id: 'projects',
+    //   title: 'Projects',
+    //   iconSrc: IconProjects,
+    //   isExternalLink: false,
+    //   isExpandable: true,
+    //   onClick: () => {
+    //     toggleActiveMenu('projects')
+    //   },
+    //   children: (
+    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
+    //       {Object.entries(projectCategories).map(([categoryName, path]) => (
+    //         <SubMenuItem
+    //           link={`${PORTAL_DOMAIN}/projects/${path}`}
+    //           onClick={() => {
+    //             menuItemClickCallback?.()
+    //             sendClickEventForMenuItem(categoryName)
+    //           }}
+    //           key={path}
+    //         >
+    //           {categoryName}
+    //         </SubMenuItem>
+    //       ))}
+    //     </div>
+    //   )
+    // },
+    // {
+    //   id: 'arcade',
+    //   title: 'Arcade',
+    //   iconSrc: IconMissions,
+    //   isExternalLink: false,
+    //   link: `${PORTAL_DOMAIN}/arcade`,
+    //   className:
+    //     'bg-gradient-to-r from-[#E59010] to-[#00ADE3] bg-clip-text text-transparent',
+    //   onClick: () => {
+    //     menuItemClickCallback?.()
+    //     sendClickEventForLink('Arcade')
+    //   }
+    // },
+    // {
+    //   id: 'orbit',
+    //   title: 'Orbit',
+    //   iconSrc: IconOrbit,
+    //   isExpandable: true,
+    //   isExternalLink: false,
+    //   onClick: () => toggleActiveMenu('orbit'),
+    //   children: (
+    //     <div className="mb-4 flex flex-col gap-2 text-sm">
+    //       {orbitMenuItems.map(subMenuItem => (
+    //         <SubMenuItem
+    //           key={stringToKey(subMenuItem.title)}
+    //           link={subMenuItem.link}
+    //           onClick={() => {
+    //             menuItemClickCallback?.()
+    //             sendClickEventForMenuItem(subMenuItem.title)
+    //           }}
+    //         >
+    //           {subMenuItem.title}
+    //         </SubMenuItem>
+    //       ))}
+    //     </div>
+    //   )
+    // },
     {
-      id: 'home',
-      title: 'Home',
-      iconSrc: IconHome,
-      isExternalLink: false,
-      isExpandable: false,
-      link: PORTAL_DOMAIN,
+      id: 'Rollup Dashboard',
+      title: 'Rollup Dashboard',
+      iconSrc: IconBridge,
+
+      isExternalLink: true,
+      link: ROLLUP_DASHBOARD_LINK,
       onClick: () => {
-        setActiveMenu('home')
         menuItemClickCallback?.()
+        sendClickEventForLink('Dashboard')
+        toggleActiveMenu('dashbaord')
       }
     },
-    {
-      id: 'projects',
-      title: 'Projects',
-      iconSrc: IconProjects,
-      isExternalLink: false,
-      isExpandable: true,
-      onClick: () => {
-        toggleActiveMenu('projects')
-      },
-      children: (
-        <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-          {Object.entries(projectCategories).map(([categoryName, path]) => (
-            <SubMenuItem
-              link={`${PORTAL_DOMAIN}/projects/${path}`}
-              onClick={() => {
-                menuItemClickCallback?.()
-                sendClickEventForMenuItem(categoryName)
-              }}
-              key={path}
-            >
-              {categoryName}
-            </SubMenuItem>
-          ))}
-        </div>
-      )
-    },
-    {
-      id: 'arcade',
-      title: 'Arcade',
-      iconSrc: IconMissions,
-      isExternalLink: false,
-      link: `${PORTAL_DOMAIN}/arcade`,
-      className:
-        'bg-gradient-to-r from-[#E59010] to-[#00ADE3] bg-clip-text text-transparent',
-      onClick: () => {
-        menuItemClickCallback?.()
-        sendClickEventForLink('Arcade')
-      }
-    },
-    {
-      id: 'orbit',
-      title: 'Orbit',
-      iconSrc: IconOrbit,
-      isExpandable: true,
-      isExternalLink: false,
-      onClick: () => toggleActiveMenu('orbit'),
-      children: (
-        <div className="mb-4 flex flex-col gap-2 text-sm">
-          {orbitMenuItems.map(subMenuItem => (
-            <SubMenuItem
-              key={stringToKey(subMenuItem.title)}
-              link={subMenuItem.link}
-              onClick={() => {
-                menuItemClickCallback?.()
-                sendClickEventForMenuItem(subMenuItem.title)
-              }}
-            >
-              {subMenuItem.title}
-            </SubMenuItem>
-          ))}
-        </div>
-      )
-    },
+
     {
       id: 'bridge',
       title: 'Bridge',
@@ -275,110 +239,110 @@ export const SidebarMenu = ({
         sendClickEventForLink('Bridge')
         toggleActiveMenu('bridge')
       }
-    },
-    {
-      id: 'learn',
-      title: 'Learn',
-      iconSrc: IconLearn,
-      isExpandable: true,
-      isExternalLink: false,
-      onClick: () => toggleActiveMenu('learn'),
-      children: (
-        <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-          {learnMenuItems.map(subMenuItem => (
-            <SubMenuItem
-              key={stringToKey(subMenuItem.title)}
-              link={subMenuItem.link}
-              onClick={() => {
-                menuItemClickCallback?.()
-                sendClickEventForMenuItem(subMenuItem.title)
-              }}
-              isExternalLink
-            >
-              {subMenuItem.title}
-            </SubMenuItem>
-          ))}
-        </div>
-      )
-    },
-    {
-      id: 'tools',
-      title: 'Tools',
-      iconSrc: IconTools,
-      isExternalLink: false,
-      isExpandable: true,
-      onClick: () => toggleActiveMenu('tools'),
-      children: (
-        <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-          {toolsMenuItems.map(subMenuItem => (
-            <SubMenuItem
-              key={stringToKey(subMenuItem.title)}
-              link={subMenuItem.link}
-              onClick={() => {
-                menuItemClickCallback?.()
-                sendClickEventForMenuItem(subMenuItem.title)
-              }}
-              isExternalLink
-            >
-              {subMenuItem.title}
-            </SubMenuItem>
-          ))}
-        </div>
-      )
-    },
-    {
-      id: 'community',
-      title: 'Community',
-      iconSrc: IconCommunity,
-      isExternalLink: false,
-      isExpandable: true,
-      onClick: () => toggleActiveMenu('community'),
-      children: (
-        <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-          {communityMenuItems.map(subMenuItem => (
-            <SubMenuItem
-              key={stringToKey(subMenuItem.title)}
-              link={subMenuItem.link}
-              onClick={() => {
-                menuItemClickCallback?.()
-                sendClickEventForMenuItem(subMenuItem.title)
-              }}
-              isExternalLink
-            >
-              {subMenuItem.title}
-            </SubMenuItem>
-          ))}
-        </div>
-      )
-    },
-    {
-      id: 'careers',
-      title: 'Ecosystem Jobs',
-      iconSrc: IconCareers,
-      isExternalLink: true,
-      link: CAREERS_ARBITRUM_LINK,
-      onClick: () => {
-        menuItemClickCallback?.()
-        sendClickEventForLink('Careers')
-      }
-    },
-    {
-      id: 'getHelp',
-      title: 'Get Help',
-      iconSrc: IconGetHelp,
-      isExternalLink: true,
-      link: GET_HELP_LINK,
-      onClick: () => {
-        menuItemClickCallback?.()
-        sendClickEventForLink('Get Help')
-      }
     }
+    // {
+    //   id: 'learn',
+    //   title: 'Learn',
+    //   iconSrc: IconLearn,
+    //   isExpandable: true,
+    //   isExternalLink: false,
+    //   onClick: () => toggleActiveMenu('learn'),
+    //   children: (
+    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
+    //       {learnMenuItems.map(subMenuItem => (
+    //         <SubMenuItem
+    //           key={stringToKey(subMenuItem.title)}
+    //           link={subMenuItem.link}
+    //           onClick={() => {
+    //             menuItemClickCallback?.()
+    //             sendClickEventForMenuItem(subMenuItem.title)
+    //           }}
+    //           isExternalLink
+    //         >
+    //           {subMenuItem.title}
+    //         </SubMenuItem>
+    //       ))}
+    //     </div>
+    //   )
+    // },
+    // {
+    //   id: 'tools',
+    //   title: 'Tools',
+    //   iconSrc: IconTools,
+    //   isExternalLink: false,
+    //   isExpandable: true,
+    //   onClick: () => toggleActiveMenu('tools'),
+    //   children: (
+    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
+    //       {toolsMenuItems.map(subMenuItem => (
+    //         <SubMenuItem
+    //           key={stringToKey(subMenuItem.title)}
+    //           link={subMenuItem.link}
+    //           onClick={() => {
+    //             menuItemClickCallback?.()
+    //             sendClickEventForMenuItem(subMenuItem.title)
+    //           }}
+    //           isExternalLink
+    //         >
+    //           {subMenuItem.title}
+    //         </SubMenuItem>
+    //       ))}
+    //     </div>
+    //   )
+    // },
+    // {
+    //   id: 'community',
+    //   title: 'Community',
+    //   iconSrc: IconCommunity,
+    //   isExternalLink: false,
+    //   isExpandable: true,
+    //   onClick: () => toggleActiveMenu('community'),
+    //   children: (
+    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
+    //       {communityMenuItems.map(subMenuItem => (
+    //         <SubMenuItem
+    //           key={stringToKey(subMenuItem.title)}
+    //           link={subMenuItem.link}
+    //           onClick={() => {
+    //             menuItemClickCallback?.()
+    //             sendClickEventForMenuItem(subMenuItem.title)
+    //           }}
+    //           isExternalLink
+    //         >
+    //           {subMenuItem.title}
+    //         </SubMenuItem>
+    //       ))}
+    //     </div>
+    //   )
+    // },
+    // {
+    //   id: 'careers',
+    //   title: 'Ecosystem Jobs',
+    //   iconSrc: IconCareers,
+    //   isExternalLink: true,
+    //   link: CAREERS_ARBITRUM_LINK,
+    //   onClick: () => {
+    //     menuItemClickCallback?.()
+    //     sendClickEventForLink('Careers')
+    //   }
+    // },
+    // {
+    //   id: 'getHelp',
+    //   title: 'Get Help',
+    //   iconSrc: IconGetHelp,
+    //   isExternalLink: true,
+    //   link: GET_HELP_LINK,
+    //   onClick: () => {
+    //     menuItemClickCallback?.()
+    //     sendClickEventForLink('Get Help')
+    //   }
+    // }
   ]
 
   return (
     <div
       className={twMerge(
-        'mt-0 flex w-full flex-col gap-[4px] text-gray-4',
+        'mt-0 flex w-full flex-col gap-[4px] text-white',
         'sm:mt-[20px] sm:shrink sm:grow sm:gap-[8px] sm:overflow-auto',
         sidebarOpened ? 'px-[16px]' : 'px-[4px]',
         className
@@ -388,16 +352,16 @@ export const SidebarMenu = ({
         <Fragment key={`menu-${index}`}>
           <MenuItem menu={menu}>
             {/* Menu icon */}
-            <Image
+            {/* <Image
               src={menu.iconSrc}
               alt={menu.title}
               className={twMerge('h-[24px] w-[24px]')}
-            />
+            /> */}
 
             {/* Menu title */}
             <span
               className={twMerge(
-                'grow origin-left text-left text-base duration-200',
+                'grow origin-center  px-2 text-left  text-base duration-200',
                 !sidebarOpened && 'sm:hidden',
                 menu.className
               )}
@@ -416,14 +380,14 @@ export const SidebarMenu = ({
               />
             )}
 
-            {menu.isExternalLink && (
+            {/* {menu.isExternalLink && (
               <ArrowTopRightOnSquareIcon
                 className={twMerge(
                   'h-[16px] w-[16px] opacity-70 group-hover:opacity-100',
                   !sidebarOpened && 'hidden'
                 )}
               />
-            )}
+            )} */}
           </MenuItem>
 
           <div
