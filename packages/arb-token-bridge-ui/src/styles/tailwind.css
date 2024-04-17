@@ -22,6 +22,7 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--secondary) var(--primary);
+  /* color:white */
 }
 
 /* Chrome, Edge, and Safari */

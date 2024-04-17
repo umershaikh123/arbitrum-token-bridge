@@ -49,7 +49,7 @@ export const SidePanel = ({
       <Dialog
         open={open}
         onClose={handleCloseStart}
-        className="fixed z-40 h-screen max-h-screen"
+        className="bg-red fixed z-40 h-screen max-h-screen"
       >
         <Transition.Child
           as={Fragment}

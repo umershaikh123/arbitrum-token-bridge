@@ -4,6 +4,7 @@ import * as Sentry from '@sentry/react'
 import { useAccount, useNetwork, WagmiConfig } from 'wagmi'
 import {
   darkTheme,
+  lightTheme,
   RainbowKitProvider,
   Theme,
   useConnectModal
@@ -41,14 +42,14 @@ import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { HeaderConnectWalletButton } from '../common/HeaderConnectWalletButton'
 import { AppConnectionFallbackContainer } from './AppConnectionFallbackContainer'
 import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
-
+import { useTheme } from '../../hooks/useTheme'
 declare global {
   interface Window {
     Cypress?: any
   }
 }
 
-const rainbowkitTheme = merge(darkTheme(), {
+const rainbowkitTheme = merge(lightTheme(), {
   colors: {
     accentColor: 'var(--blue-link)'
   },

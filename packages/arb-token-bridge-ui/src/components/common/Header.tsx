@@ -9,7 +9,7 @@ import { isNetwork } from '../../util/networks'
 import { useNetworks } from '../../hooks/useNetworks'
 import { SidebarMenu } from '../Sidebar/SidebarMenu'
 import { SidebarFooter } from '../Sidebar/SidebarFooter'
-
+import warningIcon from '@/icons/Warning.svg'
 function onMobileMenuOpen() {
   document.body.classList.add('overflow-hidden', 'menu-open')
 }
@@ -24,19 +24,23 @@ export function Header({ children }: { children?: React.ReactNode }) {
   return (
     <header
       className={twMerge(
-        'sticky top-0 z-10 flex h-12 w-full justify-center bg-black/70 px-4 backdrop-blur sm:relative sm:h-16 sm:px-6 sm:backdrop-blur-none [body.menu-open_&]:fixed',
-        isTestnet
-          ? 'sm:border-b sm:border-white sm:bg-white/20'
-          : 'sm:bg-transparent'
+        'sticky top-0 z-10 flex h-12 w-full justify-center bg-white px-4 backdrop-blur sm:relative sm:h-16 sm:px-6 sm:backdrop-blur-none [body.menu-open_&]:fixed'
       )}
     >
-      <div className="flex w-full items-center justify-end gap-2 text-white">
+      <div className="flex w-full items-center justify-end gap-2 text-black">
         <Image
           className="mr-auto h-6 w-6 sm:hidden"
           src={ArbitrumLogoSmall}
           alt="Arbitrum"
         />
-        {isTestnet && <span className="grow font-medium">TESTNET MODE</span>}
+        {isTestnet && (
+          <>
+            <div className="flex  grow items-center  space-x-1   font-medium">
+              <Image src={warningIcon} alt="warning Icon" />
+              <h1>TESTNET MODE</h1>
+            </div>
+          </>
+        )}
         <div className="hidden sm:flex">{children}</div>
       </div>
       <Disclosure>
