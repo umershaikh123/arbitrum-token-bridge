@@ -12,3 +12,10 @@ RUN npm install
 RUN npm install cypress@12.14.0
 RUN yarn cypress install --force
 COPY . .
+
+RUN yarn install
+RUN yarn run build
+EXPOSE 3000
+
+
+CMD [ "yarn", "run" ,"start" ]
