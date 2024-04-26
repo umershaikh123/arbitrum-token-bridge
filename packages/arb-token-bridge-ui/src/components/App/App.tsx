@@ -201,14 +201,20 @@ function AppContent() {
   const { parentChain, childChain } = useNetworksRelationship(networks)
   const { address, isConnected, connector } = useAccount()
   const { isBlocked } = useAccountIsBlocked()
-  const [tosAccepted] = useLocalStorage<boolean>(TOS_LOCALSTORAGE_KEY, false)
+  // const [tosAccepted] = useLocalStorage<boolean>(TOS_LOCALSTORAGE_KEY, false)
   const { openConnectModal } = useConnectModal()
 
+  // useEffect(() => {
+  //   if (tosAccepted && !isConnected) {
+  //     openConnectModal?.()
+  //   }
+  // }, [isConnected, tosAccepted, openConnectModal])
+
   useEffect(() => {
-    if (tosAccepted && !isConnected) {
+    if (!isConnected) {
       openConnectModal?.()
     }
-  }, [isConnected, tosAccepted, openConnectModal])
+  }, [isConnected, openConnectModal])
 
   useEffect(() => {
     if (isConnected && connector) {
@@ -232,15 +238,6 @@ function AppContent() {
       getBaseUrl(rpcURLs[childChain.id] ?? '')
     )
   }, [childChain.id, parentChain.id])
-
-  if (!tosAccepted) {
-    return (
-      <>
-        <Header />
-        {/* <WelcomeDialog /> */}
-      </>
-    )
-  }
 
   if (!isConnected) {
     return (

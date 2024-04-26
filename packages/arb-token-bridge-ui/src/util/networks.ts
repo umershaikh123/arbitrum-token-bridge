@@ -13,6 +13,10 @@ import { chainIdToInfuraUrl } from './infura'
 
 export const getChains = () => {
   const chains = Object.values(arbitrumSdkChains)
+   
+
+   
+  
   return chains.filter(chain => {
     // exclude devnet
     if (chain.chainID === 1338) {
