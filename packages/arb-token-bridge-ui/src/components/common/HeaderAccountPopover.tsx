@@ -52,18 +52,18 @@ export function HeaderAccountPopover({
   }
 
   const headerItemsClassName =
-    'arb-hover flex w-full flex-row items-center space-x-2 px-12 py-2 text-sm sm:text-sm text-gray-4 sm:text-white hover:bg-ocl-blue sm:px-4 sm:py-1'
+    'arb-hover flex w-full flex-row items-center space-x-2 px-12 py-2 text-sm sm:text-sm text-white sm:text-white hover:bg-ocl-blue sm:px-4 sm:py-1'
 
   return (
-    <Popover className="relative w-full rounded-lg bg-black px-6  sm:w-max sm:p-0">
+    <Popover className="red relative w-full rounded-lg border-2 border-black bg-white px-6    sm:w-max sm:p-0">
       <Popover.Button
         className={twMerge(
-          'flex w-full flex-row items-center justify-start gap-3 px-[12px] py-[7px] transition-[background] duration-300 ',
+          'flex w-full flex-row items-center justify-start gap-3 px-[12px] py-[7px] text-blue-400 transition-[background] duration-300',
           'ui-open:bg-white/20 ui-not-open:bg-transparent ui-not-open:hover:bg-white/20',
-          '  sm:w-max sm:rounded sm:px-2 sm:py-1',
-          isTestnet
-            ? '  sm:ui-not-open:bg-white/20'
-            : '  sm:ui-not-open:bg-gray-1 sm:ui-not-open:hover:bg-white/10'
+          '  sm:w-max sm:rounded sm:px-2 sm:py-1'
+          // isTestnet
+          //   ? '  sm:ui-not-open:bg-white/20'
+          //   : '  sm:ui-not-open:bg-gray-1 sm:ui-not-open:hover:bg-white/10'
         )}
         role="button"
         aria-label="Account Header Button"
@@ -75,14 +75,14 @@ export function HeaderAccountPopover({
             <CustomBoringAvatar size={isSmallScreen ? 24 : 40} name={address} />
           }
         />
-        <span className="flex flex-col text-justify text-base leading-extra-tight text-gray-4 sm:text-white">
+        <span className="flex flex-col text-justify text-base font-medium leading-extra-tight  text-black sm:text-black">
           {ensName ?? udInfo.name ?? accountShort}
           {isSmartContractWallet && !isLoadingAccountType && (
             <span className="text-[10px]">Smart Contract Wallet</span>
           )}
         </span>
 
-        <ChevronDownIcon className="ml-auto h-[16px] w-[16px] text-gray-4 transition duration-200 sm:text-white" />
+        <ChevronDownIcon className="ml-auto h-[16px] w-[16px] font-medium text-black transition duration-200 sm:text-black" />
       </Popover.Button>
       <Transition className="w-full sm:absolute sm:top-0">
         <Popover.Panel className="flex w-full flex-col overflow-hidden rounded pb-2 sm:absolute sm:top-0 sm:bg-dark">
@@ -149,7 +149,7 @@ export function HeaderAccountPopover({
             )}
 
             {/* Settings */}
-            {isCorrectNetworkConnected && (
+            {/* {isCorrectNetworkConnected && (
               <button
                 className={headerItemsClassName}
                 onClick={() => setQueryParams({ settingsOpen: true })}
@@ -157,7 +157,7 @@ export function HeaderAccountPopover({
                 <Cog6ToothIcon className="h-3 w-3 text-white/60 sm:text-white" />
                 <span>Settings</span>
               </button>
-            )}
+            )} */}
 
             {/* Disconnect button */}
             <button

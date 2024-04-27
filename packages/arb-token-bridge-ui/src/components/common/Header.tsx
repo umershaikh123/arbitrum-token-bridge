@@ -9,18 +9,22 @@ import { isNetwork } from '../../util/networks'
 import { useNetworks } from '../../hooks/useNetworks'
 import { SidebarMenu } from '../Sidebar/SidebarMenu'
 import { SidebarFooter } from '../Sidebar/SidebarFooter'
+import { useIsTestnetMode } from '../../hooks/useIsTestnetMode'
 import warningIcon from '@/icons/Warning.svg'
+import { TestnetToggle } from './TestnetToggle'
+import TestModeSelect from './Select'
 function onMobileMenuOpen() {
   document.body.classList.add('overflow-hidden', 'menu-open')
 }
 function onMobileMenuClose() {
   document.body.classList.remove('overflow-hidden', 'menu-open')
 }
-
+import { Switch } from './atoms/Switch'
 export function Header({ children }: { children?: React.ReactNode }) {
   const [{ sourceChain }] = useNetworks()
   const { isTestnet } = isNetwork(sourceChain.id)
   const { address, isDisconnected, isConnected } = useAccount()
+  const [isTestnetMode, toggleTestnetMode] = useIsTestnetMode()
 
   return (
     <header
@@ -34,11 +38,10 @@ export function Header({ children }: { children?: React.ReactNode }) {
           src={ArbitrumLogoSmall}
           alt="Arbitrum"
         />
-        {isTestnet && isConnected && (
+        {isConnected && (
           <>
-            <div className="flex  grow items-center  space-x-1   font-medium">
-              <Image src={warningIcon} alt="warning Icon" />
-              <h1>TESTNET MODE</h1>
+            <div className="flex  grow items-center  space-x-1  font-medium  text-black">
+              <TestModeSelect />
             </div>
           </>
         )}
