@@ -200,7 +200,7 @@ export const AdvancedSettings = () => {
   }
 
   return (
-    <div className="mb-6 flex flex-col items-end">
+    <div className=" flex flex-col items-end">
       <button
         onClick={handleVisibility}
         className={twMerge(

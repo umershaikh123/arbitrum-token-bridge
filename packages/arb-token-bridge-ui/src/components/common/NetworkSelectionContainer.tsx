@@ -300,10 +300,10 @@ function NetworksPanel({
           )}
         </AutoSizer>
       </SearchPanelTable>
-      <div className="flex justify-between pb-2">
+      {/* <div className="flex justify-between pb-2">
         <TestnetToggle label="Testnet mode" includeToggleStateOnLabel />
         <AddCustomOrbitChainButton />
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -344,7 +344,7 @@ export const NetworkSelectionContainer = ({
           </Popover.Button>
 
           <Transition
-            className="fixed left-0 top-0 z-50 sm:absolute sm:top-[54px]"
+            className="fixed left-0 top-0 z-50 sm:absolute sm:left-[35px] sm:top-[-20px]"
             // we don't unmount on leave here because otherwise transition won't work with virtualized lists
             options={{ unmountOnLeave: false }}
             afterLeave={onPopoverClose}

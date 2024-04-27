@@ -1032,7 +1032,7 @@ export function TransferPanel() {
 
       <div
         className={twMerge(
-          'mb-7 flex flex-col border-y border-white/30 bg-gray-1 p-4 shadow-[0px_4px_20px_rgba(0,0,0,0.2)]',
+          ' -mt-5 flex flex-col border-y border-white/30 bg-gray-1 p-4 shadow-[0px_4px_20px_rgba(0,0,0,0.2)]',
           'sm:rounded sm:border'
         )}
       >
@@ -1073,7 +1073,7 @@ export function TransferPanel() {
               className={twMerge(
                 'w-full border bg-eth-dark py-3 text-lg',
                 'disabled:!border-white/10 disabled:!bg-white/10',
-                'lg:text-2xl'
+                'lg:text-lg'
               )}
             >
               {isSmartContractWallet && isTransferring
@@ -1105,7 +1105,7 @@ export function TransferPanel() {
               className={twMerge(
                 'w-full border py-3 text-lg',
                 'disabled:!border-white/10 disabled:!bg-white/10',
-                'lg:text-2xl'
+                'lg:text-lg'
               )}
             >
               {isSmartContractWallet && isTransferring

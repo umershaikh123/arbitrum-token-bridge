@@ -135,7 +135,7 @@ export function TransferPanelMainInput(props: TransferPanelMainInputProps) {
             type="text"
             inputMode="decimal"
             placeholder="Enter amount"
-            className="h-full w-full bg-transparent px-3 text-xl font-light placeholder:text-gray-dark sm:text-3xl"
+            className="h-full w-full bg-transparent px-3 text-xl font-light placeholder:text-gray-dark sm:text-xl"
             value={value}
             {...rest}
           />

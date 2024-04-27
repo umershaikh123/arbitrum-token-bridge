@@ -87,7 +87,7 @@ export function TokenButton(): JSX.Element {
                     className="h-5 w-5 sm:h-7 sm:w-7"
                   />
                 )} */}
-                <span className="text-xl font-light sm:text-3xl">
+                <span className="sm:text-md text-md font-light">
                   {tokenSymbol}
                 </span>
                 <ChevronDownIcon
@@ -102,7 +102,7 @@ export function TokenButton(): JSX.Element {
             <Transition
               // we don't unmount on leave here because otherwise transition won't work with virtualized lists
               options={{ unmountOnLeave: false }}
-              className="fixed left-0 top-0 z-20 sm:absolute sm:top-[76px] sm:max-w-[466px]"
+              className="fixed left-0 top-0 z-20 sm:absolute sm:top-[-30px] sm:max-w-[466px]"
               afterLeave={onPopoverClose}
             >
               <Popover.Panel

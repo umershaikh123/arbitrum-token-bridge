@@ -354,7 +354,7 @@ export const AddCustomChain = () => {
                         <EllipsisHorizontalIcon width={20} />
                       </Popover.Button>
                       <Transition>
-                        <Popover.Panel className="absolute bottom-6 right-0 flex w-[240px] flex-col rounded border border-gray-dark bg-dark text-sm font-normal text-white">
+                        <Popover.Panel className="absolute right-0 top-0 flex w-[240px] flex-col rounded border border-gray-dark bg-dark text-sm font-normal text-white">
                           <button
                             className="rounded-t p-4 text-left transition duration-300 hover:bg-[#333333]"
                             onClick={() => {
