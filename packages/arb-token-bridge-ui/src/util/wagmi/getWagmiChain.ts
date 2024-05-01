@@ -9,7 +9,8 @@ import {
   arbitrumSepolia,
   stylusTestnet,
   localL1Network,
-  localL2Network
+  localL2Network,
+  nexusOrbit
 } from './wagmiAdditionalNetworks'
 import { ChainId } from '../networks'
 import { getCustomChainFromLocalStorageById } from '../networks'
@@ -58,6 +59,8 @@ export function getWagmiChain(chainId: number): Chain {
     case ChainId.ArbitrumLocal:
       return localL2Network
 
+    case ChainId.NexusOrbit:
+      return  nexusOrbit
     default:
       throw new Error(`[getWagmiChain] Unexpected chain id: ${chainId}`)
   }

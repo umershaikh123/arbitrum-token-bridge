@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 export const siteTitle = 'Nexus Orbit'
 const siteDomain = 'https://bridge.arbitrum.io'
 const siteDescription =
-  'Built to scale Ethereum, Arbitrum brings you 10x lower costs while inheriting Ethereum’s security model. Arbitrum is a Layer 2 Optimistic Rollup.'
+  'Nexus Orbit Rollup , Enabling native yeilds on Arbitrum Rollup'
 
 export default function Document() {
   return (

@@ -104,6 +104,28 @@ export const arbitrumNova: Chain = {
   }
 }
 
+export const nexusOrbit: Chain = {
+  id: ChainId.NexusOrbit,
+  network: "nexus-orbit-chain",
+  name: "Nexus Orbit Chain",
+  nativeCurrency: ether,
+  rpcUrls: {
+    default: {
+      http: [rpcURLs[ChainId.NexusOrbit]!]
+    },
+    public: {
+      http: [rpcURLs[ChainId.NexusOrbit]!]
+    }
+  },
+  blockExplorers: {
+    etherscan: { name: 'NexusOrbScan', url: 'http://54.151.152.20:3000/' },
+    blockscount: { name: 'NexusOrbScan', url: 'http://54.151.152.20:3000/' },
+    default: { name: 'NexusOrbScan', url: 'http://54.151.152.20:3000/' }
+  }
+}
+
+
+
 export const stylusTestnet: Chain = {
   id: ChainId.StylusTestnet,
   name: 'Stylus Testnet',

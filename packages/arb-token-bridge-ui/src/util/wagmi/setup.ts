@@ -10,7 +10,8 @@ import {
   arbitrumSepolia,
   stylusTestnet,
   localL1Network as local,
-  localL2Network as arbitrumLocal
+  localL2Network as arbitrumLocal,
+  nexusOrbit
 } from './wagmiAdditionalNetworks'
 import { isTestingEnvironment } from '../CommonUtils'
 import { getCustomChainsFromLocalStorage, ChainId } from '../networks'
@@ -40,6 +41,7 @@ const chainList = isTestingEnvironment
       // add local environments during testing
       local,
       arbitrumLocal,
+      nexusOrbit,
       // user-added custom chains
       ...customChains
     ]
@@ -70,7 +72,9 @@ enum TargetChainKey {
   ArbitrumOne = 'arbitrum-one',
   ArbitrumNova = 'arbitrum-nova',
   Sepolia = 'sepolia',
-  ArbitrumSepolia = 'arbitrum-sepolia'
+  ArbitrumSepolia = 'arbitrum-sepolia' ,
+  Nexus_Orbit = "nexus-orbit",
+  Holesky = "holesky"
 }
 
 function sanitizeTargetChainKey(targetChainKey: string | null): TargetChainKey {
@@ -88,6 +92,8 @@ function sanitizeTargetChainKey(targetChainKey: string | null): TargetChainKey {
 }
 
 function getChainId(targetChainKey: TargetChainKey): number {
+   console.log("TargetChainKey.Holesky setup" , TargetChainKey.Holesky);
+   console.log("ChainId.Holesky setup" , ChainId.Holesky);
   switch (targetChainKey) {
     case TargetChainKey.Ethereum:
       return ChainId.Ethereum
@@ -103,6 +109,15 @@ function getChainId(targetChainKey: TargetChainKey): number {
 
     case TargetChainKey.ArbitrumSepolia:
       return ChainId.ArbitrumSepolia
+    
+    case TargetChainKey.Nexus_Orbit:
+      return ChainId.NexusOrbit
+    
+    case TargetChainKey.Holesky:
+      return ChainId.Holesky
+
+      default :
+        return undefined
   }
 }
 

@@ -14,6 +14,8 @@ export type NetworkName =
   | 'arbitrum-sepolia'
   | 'mainnet'
   | 'sepolia'
+  | 'holesky'
+  | 'nexus-orbit'
 
 type NetworkConfig = {
   networkName: NetworkName

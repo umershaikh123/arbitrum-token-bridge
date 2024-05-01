@@ -13,10 +13,6 @@ import { chainIdToInfuraUrl } from './infura'
 
 export const getChains = () => {
   const chains = Object.values(arbitrumSdkChains)
-   
-
-   
-  
   return chains.filter(chain => {
     // exclude devnet
     if (chain.chainID === 1338) {
@@ -144,8 +140,10 @@ export enum ChainId {
   // L2 Testnets
   ArbitrumSepolia = 421614,
   ArbitrumLocal = 412346,
+  NexusOrbit = 13331370,
   // Orbit
   StylusTestnet = 23011913
+
 }
 
 export const supportedCustomOrbitParentChains = [
@@ -177,6 +175,10 @@ export const rpcURLs: { [chainId: number]: string } = {
     env: chainIdToInfuraUrl(ChainId.ArbitrumSepolia),
     fallback: 'https://sepolia-rollup.arbitrum.io/rpc'
   }),
+  [ChainId.NexusOrbit]: loadEnvironmentVariableWithFallback({
+    env: process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL,
+    fallback: 'http://54.151.152.20:8449'
+  }),
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet.arbitrum.io/rpc'
 }
@@ -193,7 +195,8 @@ export const explorerUrls: { [chainId: number]: string } = {
   // L2 Testnets
   [ChainId.ArbitrumSepolia]: 'https://sepolia.arbiscan.io',
   // Orbit Testnets
-  [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io'
+  [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io',
+  [ChainId.NexusOrbit]: 'http://54.151.152.20:3000/'
 }
 
 export const getExplorerUrl = (chainId: ChainId) => {
@@ -336,6 +339,7 @@ export function isNetwork(chainId: ChainId) {
   const isSepolia = chainId === ChainId.Sepolia
   const isHolesky = chainId === ChainId.Holesky
   const isLocal = chainId === ChainId.Local
+  const isNexusOrbit = chainId === ChainId.NexusOrbit
 
   const isArbitrumOne = chainId === ChainId.ArbitrumOne
   const isArbitrumNova = chainId === ChainId.ArbitrumNova
@@ -345,15 +349,15 @@ export function isNetwork(chainId: ChainId) {
   const isStylusTestnet = chainId === ChainId.StylusTestnet
 
   const isEthereumMainnetOrTestnet =
-    isEthereumMainnet || isSepolia || isHolesky || isLocal
+    isEthereumMainnet || isSepolia || isHolesky || isLocal 
 
   const isArbitrum =
-    isArbitrumOne || isArbitrumNova || isArbitrumLocal || isArbitrumSepolia
+    isArbitrumOne || isArbitrumNova || isArbitrumLocal || isArbitrumSepolia || isNexusOrbit 
 
   const customChainIds = customChains.map(chain => chain.chainID)
   const isCustomOrbitChain = customChainIds.includes(chainId)
 
-  const isCoreChain = isEthereumMainnetOrTestnet || isArbitrum
+  const isCoreChain = isEthereumMainnetOrTestnet || isArbitrum  
   const isOrbitChain = !isCoreChain
 
   const isTestnet =
@@ -364,7 +368,8 @@ export function isNetwork(chainId: ChainId) {
     isArbitrumSepolia ||
     isCustomOrbitChain ||
     isStylusTestnet ||
-    isTestnetOrbitChain
+    isTestnetOrbitChain ||
+    isNexusOrbit
 
   const isSupported =
     isArbitrumOne ||
@@ -375,7 +380,8 @@ export function isNetwork(chainId: ChainId) {
     isArbitrumSepolia ||
     isCustomOrbitChain ||
     isMainnetOrbitChain ||
-    isTestnetOrbitChain
+    isTestnetOrbitChain ||
+    isNexusOrbit
 
   return {
     // L1
@@ -389,6 +395,7 @@ export function isNetwork(chainId: ChainId) {
     isArbitrumNova,
     // L2 Testnets
     isArbitrumSepolia,
+    isNexusOrbit,
     // Orbit chains
     isOrbitChain,
     isTestnet,

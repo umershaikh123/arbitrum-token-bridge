@@ -106,6 +106,17 @@ export function getBridgeUiConfigForChain(chainId: number): BridgeUiConfig {
             'An experimental playground for Arbitrum Stylus smart contracts.'
         }
       }
+
+      case ChainId.NexusOrbit:
+        return {
+          color: '#E57310',
+          network: {
+            name: 'Nexus Orbit',
+            logo: '/images/ArbitrumNovaLogo.svg',
+            description:
+              'Nexus Network Orbit chain'
+          }
+        }
     default: {
       // added Orbit chains
       const orbitChain = orbitChains[chainId]

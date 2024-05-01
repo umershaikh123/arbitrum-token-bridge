@@ -18,7 +18,9 @@ const chainQueryParams = [
   'arbitrum-sepolia',
   'stylus-testnet',
   'custom-localhost',
-  'arbitrum-localhost'
+  'arbitrum-localhost',
+  'holesky',
+  'nexus-orbit-chain'
 ] as const
 
 export type ChainKeyQueryParam = (typeof chainQueryParams)[number]
@@ -32,6 +34,10 @@ export function isValidChainQueryParam(value: string | number): boolean {
     const isValidOrbitChainSlug = getOrbitChains().some(
       chain => chain.slug === value
     )
+
+    console.log("isValidOrbitChainSlug" , isValidOrbitChainSlug);
+    console.log("isValidCoreChainSlug" , isValidCoreChainSlug);
+    
     return isValidCoreChainSlug || isValidOrbitChainSlug
   }
 
@@ -40,6 +46,9 @@ export function isValidChainQueryParam(value: string | number): boolean {
 }
 
 export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
+  console.log("chainId" , chainId);
+  console.log("ChainId.Holesky" , ChainId.Holesky);
+  
   switch (chainId) {
     case ChainId.Ethereum:
       return 'ethereum'
@@ -64,6 +73,11 @@ export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
 
     case ChainId.ArbitrumLocal:
       return 'arbitrum-localhost'
+    case ChainId.Holesky:
+      return 'holesky'
+
+    case ChainId.NexusOrbit:
+      return 'nexus-orbit-chain' 
 
     default:
       const customChain = getCustomChainFromLocalStorageById(chainId)
@@ -111,6 +125,12 @@ export function getChainForChainKeyQueryParam(
 
     case 'arbitrum-localhost':
       return customChains.localL2Network
+      
+    case 'nexus-orbit-chain':
+      return customChains.nexusOrbit
+
+      case 'holesky':
+        return chains.holesky
 
     default:
       const orbitChain = getOrbitChains().find(
