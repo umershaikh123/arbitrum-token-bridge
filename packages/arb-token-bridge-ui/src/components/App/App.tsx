@@ -210,6 +210,33 @@ function AppContent() {
   //   }
   // }, [isConnected, tosAccepted, openConnectModal])
 
+  async function addNexusNetwork() {
+    try {
+      if (typeof window.ethereum !== 'undefined') {
+        const result = await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [
+            {
+              chainId: '0x13331370',
+              rpcUrls: ['http://54.151.152.20:8449'],
+              chainName: 'Nexus Orbit Chain',
+              nativeCurrency: {
+                name: 'ETHER',
+                symbol: 'ETH',
+                decimals: 18
+              },
+              blockExplorerUrls: ['http://54.151.152.20:3000/']
+            }
+          ]
+        })
+        console.log('Metamask is installed')
+      } else {
+        console.log('Metamask is not installed')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   useEffect(() => {
     if (!isConnected) {
       openConnectModal?.()
@@ -273,7 +300,12 @@ function AppContent() {
       <Header>
         <HeaderAccountPopover />
       </Header>
-
+      <button
+        className=" ml-6 rounded-lg bg-[#ff6600] px-4 py-2 text-sm text-white"
+        onClick={addNexusNetwork}
+      >
+        Add Nexus Network
+      </button>
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />
