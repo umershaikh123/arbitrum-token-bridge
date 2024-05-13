@@ -58,6 +58,7 @@ const subgraphs = {
     theGraphNetworkSubgraphId: 'GF6Ez7sY2gef8EoXrR76X6iFa41wf38zh4TXZkDkL5Z9',
     theGraphHostedServiceSubgraphName: 'fionnachan/arb-bridge-eth-sepolia'
   },
+
   // L2 Mainnet Subgraphs
   'l2-arbitrum-one': {
     theGraphNetworkSubgraphId: '9eFk14Tms68qBN7YwL6kFuk9e2BVRqkX6gXyjzLR3tuj',
@@ -159,6 +160,8 @@ export function getL1SubgraphClient(l2ChainId: number) {
     case ChainId.ArbitrumSepolia:
       return createSubgraphClient('l1-arbitrum-sepolia')
 
+    case ChainId.Holesky:
+      return 'https://api.studio.thegraph.com/proxy/55613/l1_holesky_orbit/version/latest'
     default:
       throw new Error(`[getL1SubgraphClient] unsupported chain: ${l2ChainId}`)
   }
@@ -171,6 +174,9 @@ export function getL2SubgraphClient(l2ChainId: number) {
 
     case ChainId.ArbitrumSepolia:
       return createSubgraphClient('l2-arbitrum-sepolia')
+
+    case ChainId.NexusOrbit:
+      return 'http://localhost:8000/subgraphs/name/umer/layer2-token-gateway-nexus'
 
     default:
       throw new Error(`[getL2SubgraphClient] unsupported chain: ${l2ChainId}`)
