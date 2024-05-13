@@ -7,7 +7,7 @@ export type NetworkType =
   | 'Rollup'
   | 'AnyTrust'
   | 'Ethereum Testnet'
-  | 'Arbitrum Testnet' 
+  | 'Arbitrum Testnet'
 
 export type BridgeUiConfig = {
   color: `#${string}`
@@ -351,18 +351,18 @@ export const orbitTestnets: { [key in number]: OrbitChainConfig } = {
       sequencerInbox: '0x2813f740FF6A6c09839951855CaDfA814129B6A9'
     },
     nativeToken: '0x4e6f41acbfa8eb4a3b25e151834d9a14b49b69d2',
-    explorerUrl: 'http://54.151.152.20:3000/',
-    rpcUrl: 'http://54.151.152.20:8449',
+    explorerUrl: 'http://explorer.nexusnetwork.co.in/',
+    rpcUrl: 'https://rpc.nexusnetwork.co.in',
     isArbitrum: true,
     isCustom: true,
     name: 'Nexus Orbit Chain',
     slug: 'nexus-orbit',
     partnerChainID: 17000,
-    partnerChainIDs: [],
+    partnerChainIDs: [17000],
     retryableLifetimeSeconds: 604800,
     tokenBridge: {
       l1CustomGateway: '0x2fB2f4438E58Adf2317A8E01D7A9147c35E8B17C',
-      l1ERC20Gateway: '0xf124911E6FEbB02e306594176B95Eebab6a2DB07', // standard gatway 
+      l1ERC20Gateway: '0xf124911E6FEbB02e306594176B95Eebab6a2DB07', // standard gatway
       l1GatewayRouter: '0x49256233ea0e7f335b0709BeE166d7A7833697f0',
       l1MultiCall: '0xF3cA368BeF5252476E84de2A835167c90262D3C1',
       l1ProxyAdmin: '0x1633e1BFb0F2f4A1A13Cde3B815C8009d54B070c', // only l2 given

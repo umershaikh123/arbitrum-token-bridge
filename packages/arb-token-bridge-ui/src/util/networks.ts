@@ -128,22 +128,23 @@ export function removeCustomChainFromLocalStorage(chainId: number) {
 }
 
 export enum ChainId {
+  Holesky = 17000,
+  NexusOrbit = 13331370,
   // L1
   Ethereum = 1,
   // L1 Testnets
   Local = 1337,
   Sepolia = 11155111,
-  Holesky = 17000,
+
   // L2
   ArbitrumOne = 42161,
   ArbitrumNova = 42170,
   // L2 Testnets
   ArbitrumSepolia = 421614,
   ArbitrumLocal = 412346,
-  NexusOrbit = 13331370,
+
   // Orbit
   StylusTestnet = 23011913
-
 }
 
 export const supportedCustomOrbitParentChains = [
@@ -177,7 +178,7 @@ export const rpcURLs: { [chainId: number]: string } = {
   }),
   [ChainId.NexusOrbit]: loadEnvironmentVariableWithFallback({
     env: process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL,
-    fallback: 'http://54.151.152.20:8449'
+    fallback: 'https://rpc.nexusnetwork.co.in'
   }),
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet.arbitrum.io/rpc'
@@ -196,7 +197,7 @@ export const explorerUrls: { [chainId: number]: string } = {
   [ChainId.ArbitrumSepolia]: 'https://sepolia.arbiscan.io',
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io',
-  [ChainId.NexusOrbit]: 'http://54.151.152.20:3000/'
+  [ChainId.NexusOrbit]: 'http://explorer.nexusnetwork.co.in/'
 }
 
 export const getExplorerUrl = (chainId: ChainId) => {
@@ -349,15 +350,19 @@ export function isNetwork(chainId: ChainId) {
   const isStylusTestnet = chainId === ChainId.StylusTestnet
 
   const isEthereumMainnetOrTestnet =
-    isEthereumMainnet || isSepolia || isHolesky || isLocal 
+    isEthereumMainnet || isSepolia || isHolesky || isLocal
 
   const isArbitrum =
-    isArbitrumOne || isArbitrumNova || isArbitrumLocal || isArbitrumSepolia || isNexusOrbit 
+    isArbitrumOne ||
+    isArbitrumNova ||
+    isArbitrumLocal ||
+    isArbitrumSepolia ||
+    isNexusOrbit
 
   const customChainIds = customChains.map(chain => chain.chainID)
   const isCustomOrbitChain = customChainIds.includes(chainId)
 
-  const isCoreChain = isEthereumMainnetOrTestnet || isArbitrum  
+  const isCoreChain = isEthereumMainnetOrTestnet || isArbitrum
   const isOrbitChain = !isCoreChain
 
   const isTestnet =
@@ -385,6 +390,7 @@ export function isNetwork(chainId: ChainId) {
 
   return {
     // L1
+    isHolesky,
     isEthereumMainnet,
     isEthereumMainnetOrTestnet,
     // L1 Testnets

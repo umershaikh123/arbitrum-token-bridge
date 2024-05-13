@@ -69,7 +69,7 @@ export function chainIdToInfuraKey(chainId: ChainId) {
         process.env.NEXT_PUBLIC_INFURA_KEY_ARBITRUM_SEPOLIA || defaultInfuraKey
       )
       case ChainId.NexusOrbit:
-        return "http://54.151.152.20:8449"
+        return "https://rpc.nexusnetwork.co.in"
 
       
         case ChainId.Holesky:
@@ -92,12 +92,12 @@ export function chainIdToInfuraUrl(chainId: ChainId) {
     case ChainId.ArbitrumSepolia:
       return `https://arbitrum-sepolia.infura.io/v3/${infuraKey}`
 
-      case ChainId.NexusOrbit:
-        return "http://54.151.152.20:8449"
+    case ChainId.NexusOrbit:
+      return "https://rpc.nexusnetwork.co.in"
 
       
-        case ChainId.Holesky:
-          return "https://ethereum-holesky-rpc.publicnode.com"
+    case ChainId.Holesky:
+      return "https://ethereum-holesky-rpc.publicnode.com"
       
     default:
       return undefined

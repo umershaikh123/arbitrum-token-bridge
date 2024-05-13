@@ -106,8 +106,8 @@ export const arbitrumNova: Chain = {
 
 export const nexusOrbit: Chain = {
   id: ChainId.NexusOrbit,
-  network: "nexus-orbit-chain",
-  name: "Nexus Orbit Chain",
+  network: 'nexus-orbit-chain',
+  name: 'Nexus Orbit Chain',
   nativeCurrency: ether,
   rpcUrls: {
     default: {
@@ -118,13 +118,20 @@ export const nexusOrbit: Chain = {
     }
   },
   blockExplorers: {
-    etherscan: { name: 'NexusOrbScan', url: 'http://54.151.152.20:3000/' },
-    blockscount: { name: 'NexusOrbScan', url: 'http://54.151.152.20:3000/' },
-    default: { name: 'NexusOrbScan', url: 'http://54.151.152.20:3000/' }
+    etherscan: {
+      name: 'NexusOrbScan',
+      url: 'http://explorer.nexusnetwork.co.in/'
+    },
+    blockscount: {
+      name: 'NexusOrbScan',
+      url: 'http://explorer.nexusnetwork.co.in/'
+    },
+    default: {
+      name: 'NexusOrbScan',
+      url: 'http://explorer.nexusnetwork.co.in/'
+    }
   }
 }
-
-
 
 export const stylusTestnet: Chain = {
   id: ChainId.StylusTestnet,

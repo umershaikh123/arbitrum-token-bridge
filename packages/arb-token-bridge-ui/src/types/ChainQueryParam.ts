@@ -1,6 +1,6 @@
 import { Chain } from 'wagmi'
 import * as chains from 'wagmi/chains'
-import { holeskyChain , nexusOrbitChain } from '../util/wagmi/ExtraChains'
+import { holeskyChain, nexusOrbitChain } from '../util/wagmi/ExtraChains'
 import {
   ChainId,
   getCustomChainFromLocalStorageById,
@@ -35,9 +35,6 @@ export function isValidChainQueryParam(value: string | number): boolean {
       chain => chain.slug === value
     )
 
-    console.log("isValidOrbitChainSlug" , isValidOrbitChainSlug);
-    console.log("isValidCoreChainSlug" , isValidCoreChainSlug);
-    
     return isValidCoreChainSlug || isValidOrbitChainSlug
   }
 
@@ -46,9 +43,8 @@ export function isValidChainQueryParam(value: string | number): boolean {
 }
 
 export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
-  console.log("chainId" , chainId);
-  console.log("ChainId.Holesky" , ChainId.Holesky);
-  
+  console.log('chainId', chainId)
+
   switch (chainId) {
     case ChainId.Ethereum:
       return 'ethereum'
@@ -77,7 +73,7 @@ export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
       return 'holesky'
 
     case ChainId.NexusOrbit:
-      return 'nexus-orbit-chain' 
+      return 'nexus-orbit-chain'
 
     default:
       const customChain = getCustomChainFromLocalStorageById(chainId)
@@ -101,19 +97,14 @@ export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
 export function getChainForChainKeyQueryParam(
   chainKeyQueryParam: ChainKeyQueryParam
 ): Chain {
-
-  console.log("chains.sepolia" , chains.sepolia);
-  console.log("holeskyChain" , holeskyChain);
-  console.log("nexusOrbitChain" , nexusOrbitChain);
-  
-  switch (chainKeyQueryParam) {    
+  switch (chainKeyQueryParam) {
     case 'ethereum':
       return chains.mainnet
 
     case 'sepolia':
       return chains.sepolia
     case 'holesky':
-        return holeskyChain
+      return holeskyChain
 
     case 'arbitrum-one':
       return chains.arbitrum
@@ -134,9 +125,7 @@ export function getChainForChainKeyQueryParam(
       return customChains.localL2Network
 
     case 'nexus-orbit-chain':
-      return  nexusOrbitChain
-
-
+      return nexusOrbitChain
 
     default:
       const orbitChain = getOrbitChains().find(

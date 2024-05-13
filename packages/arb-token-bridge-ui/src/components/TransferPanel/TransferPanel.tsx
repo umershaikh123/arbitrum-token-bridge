@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import { useState, useMemo, useCallback } from 'react'
 import Tippy from '@tippyjs/react'
-import { BigNumber, constants, utils } from 'ethers'
+import { BigNumber, constants, utils, providers, ethers } from 'ethers'
 import { useLatest } from 'react-use'
 import * as Sentry from '@sentry/react'
 import { useAccount, useChainId, useSigner } from 'wagmi'
@@ -72,6 +72,7 @@ import { useNetworks } from '../../hooks/useNetworks'
 import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { CctpTransferStarter } from '@/token-bridge-sdk/CctpTransferStarter'
 import { truncateExtraDecimals } from '../../util/NumberUtils'
+import { log } from 'console'
 
 const isAllowedL2 = async ({
   l1TokenAddress,
@@ -137,6 +138,7 @@ export function TransferPanel() {
   })
   const chainId = useChainId()
   const [networks] = useNetworks()
+
   const {
     childChain,
     childChainProvider,
@@ -145,17 +147,36 @@ export function TransferPanel() {
     isDepositMode
   } = useNetworksRelationship(networks)
   const latestNetworks = useLatest(networks)
-
+  // console.log('transfer panel')
+  // console.log('chainId', chainId)
+  // console.log('childChain', childChain)
+  // console.log('childChainProvider', childChainProvider)
+  // console.log('parentChain.id', parentChain.id)
+  // console.log('parentChain', parentChain)
+  // console.log('networks', networks)
+  // console.log('parentChainProvider', parentChainProvider)
+  // console.log('transfer panel ends')
   const nativeCurrency = useNativeCurrency({ provider: childChainProvider })
 
   const { isEOA, isSmartContractWallet } = useAccountType()
 
+  // const { data: l1Signer } = useSigner({
+  //   chainId: parentChain.id
+  // })
+  // const { data: l1Signer } = useSigner({
+  //   chainId: 421614 // arbitrum sepolia
+  // })
+
+  // 13331370 nexus  , 42161 arbitrum one , 11155111 sepolia
   const { data: l1Signer } = useSigner({
     chainId: parentChain.id
   })
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
+
+  console.log('l1Signer transfer panel', l1Signer)
+  // console.log('l2Signer', l2Signer)
 
   const { openTransactionHistoryPanel, setTransferring } =
     useAppContextActions()
@@ -264,18 +285,21 @@ export function TransferPanel() {
 
       return type
     }
-
+    console.log('log1')
     // Check if we need to show `TokenDepositCheckDialog` for first-time bridging
     const dialogType = getDialogType()
+    console.log('log2')
 
     if (dialogType) {
       setTokenDepositCheckDialogType(dialogType)
-
+      console.log('log3')
       const waitForInput = openTokenCheckDialog()
       const [confirmed] = await waitForInput()
 
       if (confirmed) {
+        console.log('log4')
         transfer()
+        console.log('log5')
       }
     } else {
       transfer()
@@ -293,6 +317,9 @@ export function TransferPanel() {
 
     const ethBridger = await EthBridger.fromProvider(childChainProvider)
     const { l2Network } = ethBridger
+    console.log('childChainProvider', childChainProvider)
+    console.log('ethBridger', ethBridger)
+    console.log('l2Network', l2Network)
 
     if (typeof l2Network.nativeToken === 'undefined') {
       throw new Error('l2 network does not use custom fee token')
@@ -319,6 +346,9 @@ export function TransferPanel() {
       const approveCustomFeeTokenTx = await ethBridger.approveGasToken({
         l1Signer
       })
+
+      console.log('approveCustomFeeTokenTx ', approveCustomFeeTokenTx)
+
       await approveCustomFeeTokenTx.wait()
     }
 
@@ -340,16 +370,21 @@ export function TransferPanel() {
 
     const erc20Bridger = await Erc20Bridger.fromProvider(childChainProvider)
     const l2Network = erc20Bridger.l2Network
+    console.log('erc20Bridger ', erc20Bridger)
+    console.log('l2Network', l2Network)
 
     if (typeof l2Network.nativeToken === 'undefined') {
       throw new Error('l2 network does not use custom fee token')
     }
-
+    console.log('parentChainProvider', parentChainProvider)
+    console.log('childChainProvider', childChainProvider)
     const l1Gateway = await fetchErc20ParentChainGatewayAddress({
       erc20ParentChainAddress: selectedToken.address,
       parentChainProvider,
       childChainProvider
     })
+
+    console.log('l1Gateway ', l1Gateway)
 
     const customFeeTokenAllowanceForL1Gateway = await fetchErc20Allowance({
       address: l2Network.nativeToken,
@@ -639,9 +674,16 @@ export function TransferPanel() {
 
     try {
       setTransferring(true)
-      if (chainId !== networks.sourceChain.id) {
-        await switchNetworkAsync?.(networks.sourceChain.id)
-      }
+      console.log(
+        'chainId !== networks.sourceChain.id',
+        chainId !== networks.sourceChain.id
+      )
+      console.log('chainId', chainId)
+      console.log('networks.sourceChain.id', networks.sourceChain.id)
+
+      // if (chainId !== networks.sourceChain.id) {
+      //   await switchNetworkAsync?.(networks.sourceChain.id)
+      // }
     } catch (e) {
       if (isUserRejectedError(e)) {
         return
@@ -832,10 +874,39 @@ export function TransferPanel() {
               return
             }
           }
+          const l1Provider = new providers.JsonRpcProvider(
+            'https://ethereum-holesky-rpc.publicnode.com'
+          )
+          console.log('l1Signer', l1Signer)
+          // let signer = null
 
-          await latestEth.current.deposit({
+          // let provider
+          // if (window.ethereum == null) {
+          //   // If MetaMask is not installed, we use the default provider,
+          //   // which is backed by a variety of third-party services (such
+          //   // as INFURA). They do not have private keys installed,
+          //   // so they only have read-only access
+          //   console.log('MetaMask not installed; using read-only defaults')
+          //   provider = ethers.getDefaultProvider()
+          // } else {
+          //   // Connect to the MetaMask EIP-1193 object. This is a standard
+          //   // protocol that allows Ethers access to make all read-only
+          //   // requests through MetaMask.
+          //   provider = new ethers.providers.Web3Provider(window.ethereum)
+
+          //   // It also provides an opportunity to request access to write
+          //   // operations, which will be performed by the private key
+          //   // that MetaMask manages for the user.
+          //   signer = await provider.getSigner()
+          //   console.log('l1Signer.provider', l1Signer.provider)
+          //   console.log('ethers signer', signer)
+
+          // }
+
+          const r = await latestEth.current.deposit({
             amount: utils.parseUnits(amount, nativeCurrency.decimals),
             l1Signer,
+
             txLifecycle: {
               onTxSubmit: () => {
                 openTransactionHistoryPanel()
@@ -853,6 +924,8 @@ export function TransferPanel() {
               onTxError
             }
           })
+
+          console.log('r', r)
         }
       } else {
         if (!l2Signer) {

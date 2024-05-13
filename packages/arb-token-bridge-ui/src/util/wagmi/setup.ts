@@ -11,7 +11,8 @@ import {
   stylusTestnet,
   localL1Network as local,
   localL2Network as arbitrumLocal,
-  nexusOrbit
+  nexusOrbit,
+  holesky
 } from './wagmiAdditionalNetworks'
 import { isTestingEnvironment } from '../CommonUtils'
 import { getCustomChainsFromLocalStorage, ChainId } from '../networks'
@@ -35,6 +36,7 @@ const chainList = isTestingEnvironment
       // sepolia & arb sepolia are for tx history panel tests
       sepolia,
       arbitrumSepolia,
+      holesky,
       // Orbit chains
       stylusTestnet,
       ...wagmiOrbitChains,
@@ -117,7 +119,7 @@ function getChainId(targetChainKey: TargetChainKey): number {
       return ChainId.Holesky
 
       default :
-        return undefined
+      return undefined
   }
 }
 

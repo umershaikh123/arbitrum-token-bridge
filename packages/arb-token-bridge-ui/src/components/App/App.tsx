@@ -108,6 +108,9 @@ export const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
       parentChain.id
     ).isEthereumMainnetOrTestnet
 
+    console.log('childChain.id', childChain.id)
+    console.log('parentChain.id', parentChain.id)
+
     actions.app.reset(networks.sourceChain.id)
     actions.app.setChainIds({
       l1NetworkChainId: parentChain.id,
@@ -217,15 +220,14 @@ function AppContent() {
           method: 'wallet_addEthereumChain',
           params: [
             {
-              chainId: '0x13331370',
-              rpcUrls: ['http://54.151.152.20:8449'],
+              chainId: '0xCB6BAA',
+              rpcUrls: ['https://rpc.nexusnetwork.co.in'],
               chainName: 'Nexus Orbit Chain',
               nativeCurrency: {
                 name: 'ETHER',
                 symbol: 'ETH',
                 decimals: 18
-              },
-              blockExplorerUrls: ['http://54.151.152.20:3000/']
+              }
             }
           ]
         })

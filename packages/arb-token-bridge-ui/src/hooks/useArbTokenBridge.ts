@@ -1,6 +1,6 @@
 import { useCallback, useState, useMemo } from 'react'
 import { Chain, useAccount } from 'wagmi'
-import { BigNumber, utils } from 'ethers'
+import { BigNumber, utils, ethers } from 'ethers'
 import { Signer } from '@ethersproject/abstract-signer'
 import { JsonRpcProvider } from '@ethersproject/providers'
 import { useLocalStorage } from '@rehooks/local-storage'
@@ -107,6 +107,7 @@ export const useArbTokenBridge = (
   params: TokenBridgeParams
 ): ArbTokenBridge => {
   const { l1, l2 } = params
+
   const { address: walletAddress } = useAccount()
   const [bridgeTokens, setBridgeTokens] = useState<
     ContractStorage<ERC20BridgeToken> | undefined
@@ -181,6 +182,9 @@ export const useArbTokenBridge = (
     }
 
     const ethBridger = await EthBridger.fromProvider(l2.provider)
+
+    console.log('ethBridger useArbToken', ethBridger)
+
     const parentChainBlockTimestamp = (await l1.provider.getBlock('latest'))
       .timestamp
 
@@ -188,17 +192,34 @@ export const useArbTokenBridge = (
       amount,
       from: walletAddress
     })
-
+    console.log('parentChainBlockTimestamp', parentChainBlockTimestamp)
+    console.log('depositRequest', depositRequest)
     let tx: L1EthDepositTransaction
 
     try {
       const gasLimit = await l1.provider.estimateGas(depositRequest.txRequest)
+      console.log('amount useArbToken', amount)
+      console.log('l1Signer useArbToken', l1Signer)
+
+      // if (window.ethereum) {
+      //   // MetaMask is installed
+      //   const provider = new ethers.providers.Web3Provider(window.ethereum)
+      //   // Request account access if needed
+      //   await window.ethereum.request({ method: 'eth_requestAccounts' })
+      //   console.log('Connected to MetaMask')
+      //   const signer = provider.getSigner()
+      //   console.log('signer', signer)
+      // } else {
+      //   console.log('MetaMask not detected')
+      //   // Handle the case where MetaMask is not installed
+      // }
 
       tx = await ethBridger.deposit({
         amount,
         l1Signer,
         overrides: { gasLimit: percentIncrease(gasLimit, BigNumber.from(5)) }
       })
+      console.log('tx', tx)
 
       if (txLifecycle?.onTxSubmit) {
         txLifecycle.onTxSubmit(tx)
@@ -252,6 +273,7 @@ export const useArbTokenBridge = (
     })
 
     const receipt = await tx.wait()
+    console.log('receipt', receipt)
 
     if (txLifecycle?.onTxConfirm) {
       txLifecycle.onTxConfirm(receipt)

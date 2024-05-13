@@ -110,22 +110,22 @@ export var holeskyChain:Chain = {
     nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
     rpcUrls: {
       default: {
-        http: ["http://54.151.152.20:8449"],
+        http: ["https://rpc.nexusnetwork.co.in"],
         // ws : ["ws://54.151.152.20:8449"]
       },
       public: {
-        http: ["http://54.151.152.20:8449"],
+        http: ["https://rpc.nexusnetwork.co.in"],
         // ws : ["ws://54.151.152.20:8449"]
       }
     },
     blockExplorers: {
       blockscout: {
         name: "blockscout",
-        url: "http://54.151.152.20:3000/"
+        url: "http://explorer.nexusnetwork.co.in/"
       },
       default: {
         name: "blockscout",
-        url: "http://54.151.152.20:3000/"
+        url: "http://explorer.nexusnetwork.co.in/"
       }
     },
     contracts: {
