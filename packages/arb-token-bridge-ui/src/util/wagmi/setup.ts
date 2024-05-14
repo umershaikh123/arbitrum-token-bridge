@@ -119,7 +119,7 @@ function getChainId(targetChainKey: TargetChainKey): number {
       return ChainId.Holesky
 
       default :
-      return undefined
+      return 0
   }
 }
 
