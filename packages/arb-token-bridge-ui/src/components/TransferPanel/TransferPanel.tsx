@@ -681,9 +681,9 @@ export function TransferPanel() {
       console.log('chainId', chainId)
       console.log('networks.sourceChain.id', networks.sourceChain.id)
 
-      // if (chainId !== networks.sourceChain.id) {
-      //   await switchNetworkAsync?.(networks.sourceChain.id)
-      // }
+      if (chainId !== networks.sourceChain.id) {
+        await switchNetworkAsync?.(networks.sourceChain.id)
+      }
     } catch (e) {
       if (isUserRejectedError(e)) {
         return
