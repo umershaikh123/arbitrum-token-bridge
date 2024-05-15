@@ -149,7 +149,7 @@ export function TransferPanel() {
   const latestNetworks = useLatest(networks)
   // console.log('transfer panel')
   // console.log('chainId', chainId)
-  // console.log('childChain', childChain)
+  console.log('childChain.id', childChain.id)
   // console.log('childChainProvider', childChainProvider)
   console.log('parentChain.id', parentChain.id)
   // console.log('parentChain', parentChain)
@@ -180,9 +180,7 @@ export function TransferPanel() {
     chainId: 200
   })
 
-  
 
-  
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
@@ -190,10 +188,15 @@ export function TransferPanel() {
   const { data: l2NexusSigner } = useSigner({
     chainId: 13331370
   })
+
+  const { data: l2Randigner } = useSigner({
+    chainId: 25
+  })
   console.log("l1Signer" ,   l1Signer);
-  console.log('l1SignerHolesky', l1SignerHolesky)
-  console.log('l2Signer', l2Signer)
-  console.log('l2NexusSigner', l2NexusSigner)
+  // console.log('l1SignerHolesky', l1SignerHolesky)
+  // console.log('l2Signer', l2Signer)
+  // console.log('l2NexusSigner', l2NexusSigner)
+  console.log('l2Randigner ', l2Randigner )
   const { openTransactionHistoryPanel, setTransferring } =
     useAppContextActions()
   const { addPendingTransaction } = useTransactionHistory(walletAddress)
