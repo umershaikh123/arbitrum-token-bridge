@@ -1,6 +1,6 @@
 // src/chains.ts
 import {
-  holesky,
+ 
   arbitrum,
   arbitrumGoerli,
   aurora,
@@ -95,7 +95,7 @@ import {
 } from "@wagmi/chains";
 
 export {
-  holesky,
+  
   arbitrum,
   arbitrumGoerli,
   aurora,

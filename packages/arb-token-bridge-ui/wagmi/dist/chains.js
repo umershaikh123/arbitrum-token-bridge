@@ -1,6 +1,6 @@
 // src/chains.ts
 import {
- holesky,
+ 
   arbitrum,
   arbitrumGoerli,
   aurora,
@@ -94,7 +94,7 @@ import {
   zkSyncTestnet
 } from "@wagmi/core/chains";
 export {
-  holesky,
+ 
   arbitrum,
   arbitrumGoerli,
   aurora,

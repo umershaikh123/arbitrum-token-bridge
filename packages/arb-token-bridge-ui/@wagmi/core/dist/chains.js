@@ -1,5 +1,5 @@
 import {
-  holesky,
+  
   arbitrum,
   arbitrumGoerli,
   aurora,
@@ -94,7 +94,7 @@ import {
 } from "./chunk-OL6OIPEP.js";
 import "./chunk-MQXBDTVK.js";
 export {
- holesky,
+ 
   arbitrum,
   arbitrumGoerli,
   aurora,

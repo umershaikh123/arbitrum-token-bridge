@@ -43,7 +43,7 @@ export const sepolia: Chain = {
 
 export const holesky: Chain = {
   id: ChainId.Holesky,
-  name: 'Holesky',
+  name: 'holesky',
   network: 'holesky',
   nativeCurrency: ether,
   rpcUrls: {

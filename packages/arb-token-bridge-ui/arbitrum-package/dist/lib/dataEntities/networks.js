@@ -63,7 +63,7 @@ exports.networks = {
     },
     17000: {
         chainID: 17000,
-        name: 'Holesky',
+        name: 'holesky',
         explorerUrl: 'https://holesky.etherscan.io',
         partnerChainIDs: [13331370],
         blockTime: 12,

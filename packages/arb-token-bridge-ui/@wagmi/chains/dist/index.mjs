@@ -2730,7 +2730,7 @@ var zkSyncTestnet = {
   testnet: true
 };
 export {
-  holesky,
+  
   arbitrum,
   arbitrumGoerli,
   arbitrumNova,
