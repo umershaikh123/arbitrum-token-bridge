@@ -151,7 +151,7 @@ export function TransferPanel() {
   // console.log('chainId', chainId)
   // console.log('childChain', childChain)
   // console.log('childChainProvider', childChainProvider)
-  // console.log('parentChain.id', parentChain.id)
+  console.log('parentChain.id', parentChain.id)
   // console.log('parentChain', parentChain)
   // console.log('networks', networks)
   // console.log('parentChainProvider', parentChainProvider)
@@ -176,16 +176,18 @@ export function TransferPanel() {
   const { data: l1SignerHolesky } = useSigner({
     chainId: 17000
   })
-
+  const { data: l1SignerRans } = useSigner({
+    chainId: 200
+  })
 
   
-  console.log("l1SignerHolesky" ,   l1SignerHolesky);
+
   
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
-
-  console.log('l1Signer transfer panel', l1Signer)
+  // console.log("l1SignerRans" ,   l1SignerRans);
+  console.log('l1SignerHolesky', l1SignerHolesky)
   // console.log('l2Signer', l2Signer)
 
   const { openTransactionHistoryPanel, setTransferring } =
@@ -691,9 +693,9 @@ export function TransferPanel() {
       console.log('chainId', chainId)
       console.log('networks.sourceChain.id', networks.sourceChain.id)
 
-      // if (chainId !== networks.sourceChain.id) {
-      //   await switchNetworkAsync?.(networks.sourceChain.id)
-      // }
+      if (chainId !== networks.sourceChain.id) {
+        await switchNetworkAsync?.(networks.sourceChain.id)
+      }
     } catch (e) {
       if (isUserRejectedError(e)) {
         return
@@ -887,7 +889,7 @@ export function TransferPanel() {
           const l1Provider = new providers.JsonRpcProvider(
             'https://ethereum-holesky-rpc.publicnode.com'
           )
-          console.log('l1Signer', l1Signer)
+          // console.log('l1Signer', l1Signer)
           // let signer = null
 
           // let provider
