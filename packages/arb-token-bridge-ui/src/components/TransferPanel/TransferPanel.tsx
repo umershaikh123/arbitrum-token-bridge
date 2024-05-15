@@ -186,10 +186,14 @@ export function TransferPanel() {
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
+
+  const { data: l2NexusSigner } = useSigner({
+    chainId: 13331370
+  })
   console.log("l1Signer" ,   l1Signer);
   console.log('l1SignerHolesky', l1SignerHolesky)
   console.log('l2Signer', l2Signer)
-
+  console.log('l2NexusSigner', l2NexusSigner)
   const { openTransactionHistoryPanel, setTransferring } =
     useAppContextActions()
   const { addPendingTransaction } = useTransactionHistory(walletAddress)
