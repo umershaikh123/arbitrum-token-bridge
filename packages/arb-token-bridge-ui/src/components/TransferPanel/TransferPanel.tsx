@@ -186,9 +186,9 @@ export function TransferPanel() {
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
-  // console.log("l1SignerRans" ,   l1SignerRans);
+  console.log("l1Signer" ,   l1Signer);
   console.log('l1SignerHolesky', l1SignerHolesky)
-  // console.log('l2Signer', l2Signer)
+  console.log('l2Signer', l2Signer)
 
   const { openTransactionHistoryPanel, setTransferring } =
     useAppContextActions()
