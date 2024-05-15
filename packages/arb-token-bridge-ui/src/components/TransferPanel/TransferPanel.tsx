@@ -171,6 +171,16 @@ export function TransferPanel() {
   const { data: l1Signer } = useSigner({
     chainId: parentChain.id
   })
+
+
+  const { data: l1SignerHolesky } = useSigner({
+    chainId: 17000
+  })
+
+
+  
+  console.log("l1SignerHolesky" ,   l1SignerHolesky);
+  
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
@@ -681,9 +691,9 @@ export function TransferPanel() {
       console.log('chainId', chainId)
       console.log('networks.sourceChain.id', networks.sourceChain.id)
 
-      if (chainId !== networks.sourceChain.id) {
-        await switchNetworkAsync?.(networks.sourceChain.id)
-      }
+      // if (chainId !== networks.sourceChain.id) {
+      //   await switchNetworkAsync?.(networks.sourceChain.id)
+      // }
     } catch (e) {
       if (isUserRejectedError(e)) {
         return
