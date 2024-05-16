@@ -382,10 +382,10 @@ export const orbitTestnets: { [key in number]: OrbitChainConfig } = {
     depositTimeout: 1800000,
     blockTime: constants.ARB_MINIMUM_BLOCK_TIME_IN_SECONDS,
     bridgeUiConfig: {
-      color: '#1B4ADD',
+      color: '#000000',
       network: {
         name: 'Nexus orbit',
-        logo: '/images/ArbitrumLogo.svg',
+        logo: '/images/nexus/nexusLogoCompressed.svg',
         description: 'Nexus orbit'
       },
       nativeTokenData: {
