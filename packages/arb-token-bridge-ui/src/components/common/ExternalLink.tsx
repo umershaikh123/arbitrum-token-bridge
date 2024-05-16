@@ -10,8 +10,11 @@ export function ExternalLink({
   }
 
   return (
-    <Link href={href} rel="noopener noreferrer" {...props}>
+    <Link href={href} rel="noopener noreferrer" {...props} target='_blank'>
       {children}
     </Link>
   )
 }
+
+
+ 
