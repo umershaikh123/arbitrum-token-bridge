@@ -149,9 +149,9 @@ export function TransferPanel() {
   const latestNetworks = useLatest(networks)
   // console.log('transfer panel')
   // console.log('chainId', chainId)
-  console.log('childChain.id', childChain.id)
+  // console.log('childChain.id', childChain.id)
   // console.log('childChainProvider', childChainProvider)
-  console.log('parentChain.id', parentChain.id)
+  // console.log('parentChain.id', parentChain.id)
   // console.log('parentChain', parentChain)
   // console.log('networks', networks)
   // console.log('parentChainProvider', parentChainProvider)
@@ -192,13 +192,13 @@ export function TransferPanel() {
   const { data: l2Randigner } = useSigner({
     chainId: 25
   })
-  console.log("l1Signer" ,   l1Signer);
+  // console.log("l1Signer" ,   l1Signer);
   const { connector } = useAccount();
 
  
-  console.log("connector",connector);
+  // console.log("connector",connector);
   // console.log('l1SignerHolesky', l1SignerHolesky)
-  console.log('l2Signer', l2Signer)
+  // console.log('l2Signer', l2Signer)
   // console.log('l2NexusSigner', l2NexusSigner)
   // console.log('l2Randigner ', l2Randigner )
   const { openTransactionHistoryPanel, setTransferring } =
@@ -340,9 +340,9 @@ export function TransferPanel() {
 
     const ethBridger = await EthBridger.fromProvider(childChainProvider)
     const { l2Network } = ethBridger
-    console.log('childChainProvider', childChainProvider)
-    console.log('ethBridger', ethBridger)
-    console.log('l2Network', l2Network)
+    // console.log('childChainProvider', childChainProvider)
+    // console.log('ethBridger', ethBridger)
+    // console.log('l2Network', l2Network)
 
     if (typeof l2Network.nativeToken === 'undefined') {
       throw new Error('l2 network does not use custom fee token')
@@ -393,14 +393,14 @@ export function TransferPanel() {
 
     const erc20Bridger = await Erc20Bridger.fromProvider(childChainProvider)
     const l2Network = erc20Bridger.l2Network
-    console.log('erc20Bridger ', erc20Bridger)
-    console.log('l2Network', l2Network)
+    // console.log('erc20Bridger ', erc20Bridger)
+    // console.log('l2Network', l2Network)
 
     if (typeof l2Network.nativeToken === 'undefined') {
       throw new Error('l2 network does not use custom fee token')
     }
-    console.log('parentChainProvider', parentChainProvider)
-    console.log('childChainProvider', childChainProvider)
+    // console.log('parentChainProvider', parentChainProvider)
+    // console.log('childChainProvider', childChainProvider)
     const l1Gateway = await fetchErc20ParentChainGatewayAddress({
       erc20ParentChainAddress: selectedToken.address,
       parentChainProvider,
@@ -701,8 +701,8 @@ export function TransferPanel() {
         'chainId !== networks.sourceChain.id',
         chainId !== networks.sourceChain.id
       )
-      console.log('chainId', chainId)
-      console.log('networks.sourceChain.id', networks.sourceChain.id)
+      // console.log('chainId', chainId)
+      // console.log('networks.sourceChain.id', networks.sourceChain.id)
 
       if (chainId !== networks.sourceChain.id) {
         await switchNetworkAsync?.(networks.sourceChain.id)

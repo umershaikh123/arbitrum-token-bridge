@@ -96,8 +96,7 @@ function sanitizeTargetChainKey(targetChainKey: string | null): TargetChainKey {
 }
 
 function getChainId(targetChainKey: TargetChainKey): number {
-   console.log("TargetChainKey.Holesky setup" , TargetChainKey.Holesky);
-   console.log("ChainId.Holesky setup" , ChainId.Holesky);
+ 
   switch (targetChainKey) {
     case TargetChainKey.Ethereum:
       return ChainId.Ethereum

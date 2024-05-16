@@ -43,7 +43,7 @@ export function isValidChainQueryParam(value: string | number): boolean {
 }
 
 export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
-  console.log('chainId', chainId)
+ 
 
   switch (chainId) {
     case ChainId.Ethereum:
