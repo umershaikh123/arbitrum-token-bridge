@@ -15,12 +15,13 @@ import {
 import { ChainId } from '../networks'
 import { getCustomChainFromLocalStorageById } from '../networks'
 import { orbitChains } from '../orbitChainsList'
+import { log } from 'console'
 
 export function getWagmiChain(chainId: number): Chain {
   const customChain = getCustomChainFromLocalStorageById(chainId)
   // excluding Stylus because its part of the SDK
   const orbitChain = orbitChains[chainId]
-
+ 
   if (customChain) {
     return chainToWagmiChain(customChain)
   }
@@ -30,6 +31,10 @@ export function getWagmiChain(chainId: number): Chain {
   }
 
   switch (chainId) {
+   
+    case ChainId.Holesky:
+      return holesky
+
     case ChainId.Ethereum:
       return mainnet
 
@@ -43,8 +48,7 @@ export function getWagmiChain(chainId: number): Chain {
     case ChainId.Sepolia:
       return sepolia
 
-    case ChainId.Holesky:
-      return holesky
+
 
     case ChainId.ArbitrumSepolia:
       return arbitrumSepolia

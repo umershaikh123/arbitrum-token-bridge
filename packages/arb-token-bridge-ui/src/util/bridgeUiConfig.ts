@@ -46,7 +46,7 @@ export function getBridgeUiConfigForChain(chainId: number): BridgeUiConfig {
         ...ethereumBaseConfig,
         network: {
           ...ethereumBaseConfig.network,
-          name: 'Holesky',
+          name: 'holesky',
           description: 'Ethereum testnet.'
         }
       }

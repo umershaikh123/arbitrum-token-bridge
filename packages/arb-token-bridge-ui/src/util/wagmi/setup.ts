@@ -29,6 +29,7 @@ const wagmiOrbitChains = getOrbitChains().map(chain =>
 
 const chainList = isTestingEnvironment
   ? [
+    holesky,
       // mainnet, arb1, & arb nova are for network switch tests
       mainnet,
       arbitrum,
@@ -36,7 +37,7 @@ const chainList = isTestingEnvironment
       // sepolia & arb sepolia are for tx history panel tests
       sepolia,
       arbitrumSepolia,
-      holesky,
+     
       // Orbit chains
       stylusTestnet,
       ...wagmiOrbitChains,
@@ -50,6 +51,7 @@ const chainList = isTestingEnvironment
   : [
       mainnet,
       arbitrum,
+      holesky,
       arbitrumNova,
       sepolia,
       arbitrumSepolia,

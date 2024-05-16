@@ -74,7 +74,7 @@ import { Chain } from "wagmi";
 export var holeskyChain:Chain = {
     id: 17000,
     network: "holesky",
-    name: "Holesky",
+    name: "holesky",
     nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
     rpcUrls: {
       default: {
