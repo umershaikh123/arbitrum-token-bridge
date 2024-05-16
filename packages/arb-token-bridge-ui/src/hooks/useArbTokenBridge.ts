@@ -183,7 +183,7 @@ export const useArbTokenBridge = (
 
     const ethBridger = await EthBridger.fromProvider(l2.provider)
 
-    console.log('ethBridger useArbToken', ethBridger)
+ 
 
     const parentChainBlockTimestamp = (await l1.provider.getBlock('latest'))
       .timestamp
@@ -192,14 +192,12 @@ export const useArbTokenBridge = (
       amount,
       from: walletAddress
     })
-    console.log('parentChainBlockTimestamp', parentChainBlockTimestamp)
-    console.log('depositRequest', depositRequest)
+   
     let tx: L1EthDepositTransaction
 
     try {
       const gasLimit = await l1.provider.estimateGas(depositRequest.txRequest)
-      console.log('amount useArbToken', amount)
-      console.log('l1Signer useArbToken', l1Signer)
+ 
 
       // if (window.ethereum) {
       //   // MetaMask is installed

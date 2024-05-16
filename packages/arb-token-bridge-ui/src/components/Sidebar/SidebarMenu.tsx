@@ -225,7 +225,7 @@ export const SidebarMenu = ({
       title: 'deposit',
       iconSrc: IconBridge,
       link: '/',
-      isExternalLink: true,
+      isExternalLink: false,
       onClick: () => {
         menuItemClickCallback?.()
         sendClickEventForLink('Bridge')
@@ -237,7 +237,7 @@ export const SidebarMenu = ({
       title: 'Rollup Dashboard',
       iconSrc: IconRollup,
       link: ROLLUP_DASHBOARD_LINK,
-      isExternalLink: true,
+      isExternalLink: false,
 
       onClick: () => {
         menuItemClickCallback?.()
@@ -251,7 +251,7 @@ export const SidebarMenu = ({
       title: 'Withdraw',
       iconSrc: IconWithdraw,
       link: WITHDRAW_LINK,
-      isExternalLink: true,
+      isExternalLink: false,
 
       onClick: () => {
         menuItemClickCallback?.()

@@ -161,7 +161,7 @@ export function getL1SubgraphClient(l2ChainId: number) {
       return createSubgraphClient('l1-arbitrum-sepolia')
 
     case ChainId.Holesky:
-      return 'https://api.studio.thegraph.com/proxy/55613/l1_holesky_orbit/version/latest'
+      return createApolloClient('https://api.studio.thegraph.com/proxy/55613/l1_holesky_orbit/version/latest')
     default:
       throw new Error(`[getL1SubgraphClient] unsupported chain: ${l2ChainId}`)
   }
@@ -176,7 +176,7 @@ export function getL2SubgraphClient(l2ChainId: number) {
       return createSubgraphClient('l2-arbitrum-sepolia')
 
     case ChainId.NexusOrbit:
-      return 'http://localhost:8000/subgraphs/name/umer/layer2-token-gateway-nexus'
+      return createApolloClient('https://graph.nexusnetwork.co.in/subgraphs/name/umer/layer2-token-gateway-nexus/graphql')
 
     default:
       throw new Error(`[getL2SubgraphClient] unsupported chain: ${l2ChainId}`)

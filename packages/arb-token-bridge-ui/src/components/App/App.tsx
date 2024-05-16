@@ -108,8 +108,8 @@ export const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
       parentChain.id
     ).isEthereumMainnetOrTestnet
 
-    console.log('childChain.id', childChain.id)
-    console.log('parentChain.id', parentChain.id)
+    // console.log('childChain.id', childChain.id)
+    // console.log('parentChain.id', parentChain.id)
 
     actions.app.reset(networks.sourceChain.id)
     actions.app.setChainIds({
@@ -227,7 +227,8 @@ function AppContent() {
                 name: 'ETHER',
                 symbol: 'ETH',
                 decimals: 18
-              }
+              },
+              blockExplorerUrls : ["https://explorer.nexusnetwork.co.in/"]
             }
           ]
         })

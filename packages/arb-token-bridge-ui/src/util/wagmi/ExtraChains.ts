@@ -74,7 +74,7 @@ import { Chain } from "wagmi";
 export var holeskyChain:Chain = {
     id: 17000,
     network: "holesky",
-    name: "Holesky",
+    name: "holesky",
     nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
     rpcUrls: {
       default: {
@@ -121,11 +121,11 @@ export var holeskyChain:Chain = {
     blockExplorers: {
       blockscout: {
         name: "blockscout",
-        url: "http://explorer.nexusnetwork.co.in/"
+        url: "https://explorer.nexusnetwork.co.in/"
       },
       default: {
         name: "blockscout",
-        url: "http://explorer.nexusnetwork.co.in/"
+        url: "https://explorer.nexusnetwork.co.in/"
       }
     },
     contracts: {

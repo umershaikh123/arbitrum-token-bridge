@@ -164,7 +164,11 @@ export const rpcURLs: { [chainId: number]: string } = {
     env: process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL,
     fallback: chainIdToInfuraUrl(ChainId.Sepolia)
   }),
-  [ChainId.Holesky]: 'https://ethereum-holesky-rpc.publicnode.com',
+  [ChainId.Holesky]: loadEnvironmentVariableWithFallback({
+    env:  'https://ethereum-holesky-rpc.publicnode.com',
+    fallback:  'https://ethereum-holesky-rpc.publicnode.com'
+  }),
+ 
   // L2
   [ChainId.ArbitrumOne]: loadEnvironmentVariableWithFallback({
     env: chainIdToInfuraUrl(ChainId.ArbitrumOne),
@@ -197,7 +201,7 @@ export const explorerUrls: { [chainId: number]: string } = {
   [ChainId.ArbitrumSepolia]: 'https://sepolia.arbiscan.io',
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io',
-  [ChainId.NexusOrbit]: 'http://explorer.nexusnetwork.co.in/'
+  [ChainId.NexusOrbit]: 'https://explorer.nexusnetwork.co.in/'
 }
 
 export const getExplorerUrl = (chainId: ChainId) => {

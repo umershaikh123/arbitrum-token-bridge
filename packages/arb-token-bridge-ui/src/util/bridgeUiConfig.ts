@@ -46,7 +46,7 @@ export function getBridgeUiConfigForChain(chainId: number): BridgeUiConfig {
         ...ethereumBaseConfig,
         network: {
           ...ethereumBaseConfig.network,
-          name: 'Holesky',
+          name: 'holesky',
           description: 'Ethereum testnet.'
         }
       }
@@ -109,10 +109,10 @@ export function getBridgeUiConfigForChain(chainId: number): BridgeUiConfig {
 
       case ChainId.NexusOrbit:
         return {
-          color: '#E57310',
+          color: '#000000',
           network: {
             name: 'Nexus Orbit',
-            logo: '/images/ArbitrumNovaLogo.svg',
+            logo: '/images/nexus/nexusLogoCompressed.svg',
             description:
               'Nexus Network Orbit chain'
           }

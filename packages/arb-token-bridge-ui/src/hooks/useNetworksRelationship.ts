@@ -11,12 +11,14 @@ type UseNetworksRelationshipState = {
   parentChainProvider: StaticJsonRpcProvider
   isDepositMode: boolean
 }
+
 export function useNetworksRelationship({
   sourceChain,
   sourceChainProvider,
   destinationChain,
   destinationChainProvider
 }: UseNetworksState): UseNetworksRelationshipState {
+  //@ts-ignore
   return useMemo(() => {
     const _isDepositMode = isDepositMode({
       sourceChainId: sourceChain.id,
