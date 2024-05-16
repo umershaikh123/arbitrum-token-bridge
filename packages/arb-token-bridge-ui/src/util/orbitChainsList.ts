@@ -351,7 +351,7 @@ export const orbitTestnets: { [key in number]: OrbitChainConfig } = {
       sequencerInbox: '0x2813f740FF6A6c09839951855CaDfA814129B6A9'
     },
     nativeToken: '0x4e6f41acbfa8eb4a3b25e151834d9a14b49b69d2',
-    explorerUrl: 'http://explorer.nexusnetwork.co.in/',
+    explorerUrl: 'https://explorer.nexusnetwork.co.in/',
     rpcUrl: 'https://rpc.nexusnetwork.co.in',
     isArbitrum: true,
     isCustom: true,

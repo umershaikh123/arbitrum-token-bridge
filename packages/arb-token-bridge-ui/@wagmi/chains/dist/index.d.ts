@@ -2152,7 +2152,7 @@ declare const nexusOrbit: {
  
         readonly default: {
             readonly name: "Etherscan";
-            readonly url: "http://explorer.nexusnetwork.co.in/";
+            readonly url: "https://explorer.nexusnetwork.co.in/";
         };
     };
     readonly contracts: {

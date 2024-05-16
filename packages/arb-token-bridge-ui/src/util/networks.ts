@@ -201,7 +201,7 @@ export const explorerUrls: { [chainId: number]: string } = {
   [ChainId.ArbitrumSepolia]: 'https://sepolia.arbiscan.io',
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io',
-  [ChainId.NexusOrbit]: 'http://explorer.nexusnetwork.co.in/'
+  [ChainId.NexusOrbit]: 'https://explorer.nexusnetwork.co.in/'
 }
 
 export const getExplorerUrl = (chainId: ChainId) => {

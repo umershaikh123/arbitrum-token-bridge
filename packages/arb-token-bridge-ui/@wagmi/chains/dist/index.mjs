@@ -82,11 +82,11 @@ var nexusOrbit = {
   blockExplorers: {
     blockscout: {
       name: "blockscout",
-      url: "http://explorer.nexusnetwork.co.in/"
+      url: "https://explorer.nexusnetwork.co.in/"
     },
     default: {
       name: "blockscout",
-      url: "http://explorer.nexusnetwork.co.in/"
+      url: "https://explorer.nexusnetwork.co.in/"
     }
   },
   contracts: {

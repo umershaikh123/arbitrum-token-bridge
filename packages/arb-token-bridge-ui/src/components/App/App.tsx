@@ -227,7 +227,8 @@ function AppContent() {
                 name: 'ETHER',
                 symbol: 'ETH',
                 decimals: 18
-              }
+              },
+              blockExplorerUrls : ["https://explorer.nexusnetwork.co.in/"]
             }
           ]
         })
