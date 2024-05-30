@@ -19,7 +19,7 @@ export const SidebarHeader = () => {
       )}
     >
       <Link
-        href="/"
+        href="/?destinationChain=nexus-orbit-chain&sourceChain=holesky"
         className={twMerge(
           'arb-hover flex cursor-pointer flex-col items-start',
           sidebarOpened && 'items-start px-[16px]'

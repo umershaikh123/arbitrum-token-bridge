@@ -224,7 +224,7 @@ export const SidebarMenu = ({
       id: 'bridge',
       title: 'deposit',
       iconSrc: IconBridge,
-      link: '/',
+      link: '/?destinationChain=nexus-orbit-chain&sourceChain=holesky',
       isExternalLink: false,
       onClick: () => {
         menuItemClickCallback?.()
