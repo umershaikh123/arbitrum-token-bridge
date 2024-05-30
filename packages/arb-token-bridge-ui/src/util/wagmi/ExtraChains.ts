@@ -78,10 +78,10 @@ export var holeskyChain:Chain = {
     nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
     rpcUrls: {
       default: {
-        http: ["https://ethereum-holesky-rpc.publicnode.com"]
+        http: ["https://holesky.infura.io/v3/fffc0af392524e46b05ebe5666152690"]
       },
       public: {
-        http: ["https://ethereum-holesky-rpc.publicnode.com"]
+        http: ["https://holesky.infura.io/v3/fffc0af392524e46b05ebe5666152690"]
       }
     },
     blockExplorers: {

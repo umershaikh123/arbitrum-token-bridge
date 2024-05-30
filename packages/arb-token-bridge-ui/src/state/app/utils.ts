@@ -104,8 +104,23 @@ export const transformDeposit = (tx: Transaction): MergedTransaction => {
 export const transformWithdrawal = (
   tx: L2ToL1EventResultPlus
 ): MergedTransaction => {
+  console.log('Received transaction:', tx);
   const uniqueIdOrHash = getUniqueIdOrHashFromEvent(tx)
-
+  console.log('Computed uniqueIdOrHash:', uniqueIdOrHash);
+  console.log('tx.sender', tx.sender);
+  console.log('tx.destinationAddress', tx.destinationAddress);
+  console.log('outgoingStateToString[tx.outgoingMessageState]', outgoingStateToString[tx.outgoingMessageState]);
+  console.log('NodeBlockDeadlineStatusTypes.EXECUTE_CALL_EXCEPTION', NodeBlockDeadlineStatusTypes.EXECUTE_CALL_EXCEPTION);
+  console.log('tx.l2TxHash', tx.l2TxHash);
+  console.log('tx.symbol', tx.symbol);
+  console.log('tx.type', tx.type);
+  console.log('value', ethers.utils.formatUnits(tx.value?.toString(), tx.decimals));
+  console.log('tx.ethBlockNum.toNumber()', tx.ethBlockNum.toNumber());
+  console.log('tx.tokenAddress', tx.tokenAddress);
+  console.log('tx.nodeBlockDeadline', tx.nodeBlockDeadline);
+  console.log(' tx.parentChainId',  tx.parentChainId);
+  console.log('tx.childChainId', tx.childChainId);
+ 
   return {
     sender: tx.sender,
     destination: tx.destinationAddress,
@@ -182,6 +197,12 @@ export const isPending = (tx: MergedTransaction) => {
   if (tx.isCctp && !tx.resolvedAt && tx.status !== 'Failure') {
     return true
   }
+  console.log("tx.status ispending" ,tx.status);
+  
+  console.log('outgoingStateToString[OutgoingMessageState.UNCONFIRMED]', outgoingStateToString[OutgoingMessageState.UNCONFIRMED]);
+  console.log('outgoingStateToString[OutgoingMessageState.CONFIRMED]', outgoingStateToString[OutgoingMessageState.CONFIRMED]);
+  console.log('isWithdrawal(tx)', isWithdrawal(tx));
+ 
   return (
     (isDeposit(tx) &&
       (tx.status === 'pending' ||
@@ -194,6 +215,7 @@ export const isPending = (tx: MergedTransaction) => {
 }
 
 export const isFailed = (tx: MergedTransaction) => {
+  console.log('tx.nodeBlockDeadline', tx.nodeBlockDeadline);
   return (
     (isDeposit(tx) &&
       (tx.status === 'failure' ||
