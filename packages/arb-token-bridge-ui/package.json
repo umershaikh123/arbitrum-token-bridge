@@ -4,7 +4,8 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "@apollo/client": "^3.7.11",
+    "@apollo/client": "^3.10.0-rc.1",
+    "@apollo/experimental-nextjs-app-support": "^0.11.0",
     "@arbitrum/sdk": "file:arbitrum-package",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -12,10 +13,8 @@
     "@headlessui/react": "^1.7.8",
     "@headlessui/tailwindcss": "^0.1.2",
     "@heroicons/react": "^2.0.18",
- 
     "@mui/icons-material": "^5.15.15",
     "@mui/material": "^5.15.15",
- 
     "@rainbow-me/rainbowkit": "^0.12.16",
     "@rehooks/local-storage": "^2.4.4",
     "@sentry/react": "^7.73.0",
