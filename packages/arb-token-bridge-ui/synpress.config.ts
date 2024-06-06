@@ -136,8 +136,7 @@ const SEPOLIA_INFURA_RPC_URL = `https://sepolia.infura.io/v3/${INFURA_KEY}`
 
 console.log("MAINNET_INFURA_RPC_URL" , MAINNET_INFURA_RPC_URL);
 console.log("SEPOLIA_INFURA_RPC_URL " , SEPOLIA_INFURA_RPC_URL );
-// console.log("a" , a);
-// console.log("a" , a);
+ 
 
 
 const ethRpcUrl = (() => {

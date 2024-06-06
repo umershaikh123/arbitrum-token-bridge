@@ -145,81 +145,7 @@ export const SidebarMenu = ({
   }
 
   const menuConfig: MenuConfig[] = [
-    // {
-    //   id: 'home',
-    //   title: 'Home',
-    //   iconSrc: IconHome,
-    //   isExternalLink: false,
-    //   isExpandable: false,
-    //   link: PORTAL_DOMAIN,
-    //   onClick: () => {
-    //     setActiveMenu('home')
-    //     menuItemClickCallback?.()
-    //   }
-    // },
-    // {
-    //   id: 'projects',
-    //   title: 'Projects',
-    //   iconSrc: IconProjects,
-    //   isExternalLink: false,
-    //   isExpandable: true,
-    //   onClick: () => {
-    //     toggleActiveMenu('projects')
-    //   },
-    //   children: (
-    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-    //       {Object.entries(projectCategories).map(([categoryName, path]) => (
-    //         <SubMenuItem
-    //           link={`${PORTAL_DOMAIN}/projects/${path}`}
-    //           onClick={() => {
-    //             menuItemClickCallback?.()
-    //             sendClickEventForMenuItem(categoryName)
-    //           }}
-    //           key={path}
-    //         >
-    //           {categoryName}
-    //         </SubMenuItem>
-    //       ))}
-    //     </div>
-    //   )
-    // },
-    // {
-    //   id: 'arcade',
-    //   title: 'Arcade',
-    //   iconSrc: IconMissions,
-    //   isExternalLink: false,
-    //   link: `${PORTAL_DOMAIN}/arcade`,
-    //   className:
-    //     'bg-gradient-to-r from-[#E59010] to-[#00ADE3] bg-clip-text text-transparent',
-    //   onClick: () => {
-    //     menuItemClickCallback?.()
-    //     sendClickEventForLink('Arcade')
-    //   }
-    // },
-    // {
-    //   id: 'orbit',
-    //   title: 'Orbit',
-    //   iconSrc: IconOrbit,
-    //   isExpandable: true,
-    //   isExternalLink: false,
-    //   onClick: () => toggleActiveMenu('orbit'),
-    //   children: (
-    //     <div className="mb-4 flex flex-col gap-2 text-sm">
-    //       {orbitMenuItems.map(subMenuItem => (
-    //         <SubMenuItem
-    //           key={stringToKey(subMenuItem.title)}
-    //           link={subMenuItem.link}
-    //           onClick={() => {
-    //             menuItemClickCallback?.()
-    //             sendClickEventForMenuItem(subMenuItem.title)
-    //           }}
-    //         >
-    //           {subMenuItem.title}
-    //         </SubMenuItem>
-    //       ))}
-    //     </div>
-    //   )
-    // },
+ 
     {
       id: 'bridge',
       title: 'Deposit',
@@ -260,103 +186,7 @@ export const SidebarMenu = ({
       }
     }
 
-    // {
-    //   id: 'learn',
-    //   title: 'Learn',
-    //   iconSrc: IconLearn,
-    //   isExpandable: true,
-    //   isExternalLink: false,
-    //   onClick: () => toggleActiveMenu('learn'),
-    //   children: (
-    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-    //       {learnMenuItems.map(subMenuItem => (
-    //         <SubMenuItem
-    //           key={stringToKey(subMenuItem.title)}
-    //           link={subMenuItem.link}
-    //           onClick={() => {
-    //             menuItemClickCallback?.()
-    //             sendClickEventForMenuItem(subMenuItem.title)
-    //           }}
-    //           isExternalLink
-    //         >
-    //           {subMenuItem.title}
-    //         </SubMenuItem>
-    //       ))}
-    //     </div>
-    //   )
-    // },
-    // {
-    //   id: 'tools',
-    //   title: 'Tools',
-    //   iconSrc: IconTools,
-    //   isExternalLink: false,
-    //   isExpandable: true,
-    //   onClick: () => toggleActiveMenu('tools'),
-    //   children: (
-    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-    //       {toolsMenuItems.map(subMenuItem => (
-    //         <SubMenuItem
-    //           key={stringToKey(subMenuItem.title)}
-    //           link={subMenuItem.link}
-    //           onClick={() => {
-    //             menuItemClickCallback?.()
-    //             sendClickEventForMenuItem(subMenuItem.title)
-    //           }}
-    //           isExternalLink
-    //         >
-    //           {subMenuItem.title}
-    //         </SubMenuItem>
-    //       ))}
-    //     </div>
-    //   )
-    // },
-    // {
-    //   id: 'community',
-    //   title: 'Community',
-    //   iconSrc: IconCommunity,
-    //   isExternalLink: false,
-    //   isExpandable: true,
-    //   onClick: () => toggleActiveMenu('community'),
-    //   children: (
-    //     <div className="mb-[16px] flex flex-col gap-[8px] text-sm">
-    //       {communityMenuItems.map(subMenuItem => (
-    //         <SubMenuItem
-    //           key={stringToKey(subMenuItem.title)}
-    //           link={subMenuItem.link}
-    //           onClick={() => {
-    //             menuItemClickCallback?.()
-    //             sendClickEventForMenuItem(subMenuItem.title)
-    //           }}
-    //           isExternalLink
-    //         >
-    //           {subMenuItem.title}
-    //         </SubMenuItem>
-    //       ))}
-    //     </div>
-    //   )
-    // },
-    // {
-    //   id: 'careers',
-    //   title: 'Ecosystem Jobs',
-    //   iconSrc: IconCareers,
-    //   isExternalLink: true,
-    //   link: CAREERS_ARBITRUM_LINK,
-    //   onClick: () => {
-    //     menuItemClickCallback?.()
-    //     sendClickEventForLink('Careers')
-    //   }
-    // },
-    // {
-    //   id: 'getHelp',
-    //   title: 'Get Help',
-    //   iconSrc: IconGetHelp,
-    //   isExternalLink: true,
-    //   link: GET_HELP_LINK,
-    //   onClick: () => {
-    //     menuItemClickCallback?.()
-    //     sendClickEventForLink('Get Help')
-    //   }
-    // }
+    
   ]
 
   return (
@@ -400,14 +230,7 @@ export const SidebarMenu = ({
               />
             )}
 
-            {/* {menu.isExternalLink && (
-              <ArrowTopRightOnSquareIcon
-                className={twMerge(
-                  'h-[16px] w-[16px] opacity-70 group-hover:opacity-100',
-                  !sidebarOpened && 'hidden'
-                )}
-              />
-            )} */}
+ 
           </MenuItem>
 
           <div
