@@ -172,20 +172,7 @@ export const SidebarMenu = ({
       }
     },
 
-    {
-      id: 'withdraw',
-      title: 'Withdraw',
-      iconSrc: IconWithdraw,
-      link: WITHDRAW_LINK,
-      isExternalLink: false,
-
-      onClick: () => {
-        menuItemClickCallback?.()
-        sendClickEventForLink('Withdraw')
-        toggleActiveMenu('withdraw')
-      }
-    }
-
+ 
     
   ]
 
