@@ -222,7 +222,7 @@ export const SidebarMenu = ({
     // },
     {
       id: 'bridge',
-      title: 'deposit',
+      title: 'Deposit',
       iconSrc: IconBridge,
       link: '/?destinationChain=nexus-orbit-chain&sourceChain=holesky',
       isExternalLink: false,

@@ -100,9 +100,9 @@ export function ValidatorsData() {
     <table className=" mt-4  w-full  text-left  text-black table-fixed">
       <tbody className="w-full">
         <tr className=''>
-    <th className="w-[40%]">Public Key</th>
-        <th className="w-[5%] p-2">clusterId</th>
-    <th className="w-[18%] px-4">rollup</th>
+    <th className="w-[20%] px-2">Public Key</th>
+        <th className="w-[5%]  py-2 px-4">clusterId</th>
+    <th className="w-[20%] px-4">rollup</th>
     <th className="w-[10%]">status</th>
         </tr>
 
@@ -110,9 +110,9 @@ export function ValidatorsData() {
         
             {data.validators.map((validator, index) => (
       <tr key={index} className="  border-t-2  py-4">
-      <td className="w-1/4 p-3 max-w-[15rem] overflow-hidden  text-ellipsis whitespace-nowrap" title={validator.id}>{validator.id}</td>
-      <td className="w-1/4"  >{validator.clusterId}</td>
-      <td className="w-1/4 px-4">{validator.rollup}</td>
+      <td className="w-1/4 p-3 max-w-[5rem] overflow-hidden  text-ellipsis whitespace-nowrap" title={validator.id}>{validator.id}</td>
+      <td className="w-1/4 text-center"  >{validator.clusterId}</td>
+      <td className="w-1/4 px-4 max-w-[5rem] overflow-hidden text-ellipsis whitespace-nowrap">{validator.rollup}</td>
       <td className="w-1/4">{validator.status}</td>
               </tr>
             ))}

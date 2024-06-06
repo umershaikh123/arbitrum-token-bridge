@@ -159,27 +159,14 @@ export function TransferPanel() {
   })
 
 
-  const { data: l1SignerHolesky } = useSigner({
-    chainId: 17000
-  })
-  const { data: l1SignerRans } = useSigner({
-    chainId: 200
-  })
-
+ 
 
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
 
-  const { data: l2NexusSigner } = useSigner({
-    chainId: 13331370
-  })
-
-  const { data: l2Randigner } = useSigner({
-    chainId: 25
-  })
  
-  const { connector } = useAccount();
+   
 
  
   const { openTransactionHistoryPanel, setTransferring } =

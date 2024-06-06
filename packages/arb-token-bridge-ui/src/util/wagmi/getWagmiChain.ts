@@ -35,6 +35,9 @@ export function getWagmiChain(chainId: number): Chain {
     case ChainId.Holesky:
       return holesky
 
+    case ChainId.NexusOrbit:
+        return  nexusOrbit
+
     case ChainId.Ethereum:
       return mainnet
 
@@ -56,15 +59,13 @@ export function getWagmiChain(chainId: number): Chain {
     case ChainId.StylusTestnet:
       return stylusTestnet
 
-    // Local networks
+    // // Local networks
     case ChainId.Local:
       return localL1Network
 
     case ChainId.ArbitrumLocal:
       return localL2Network
 
-    case ChainId.NexusOrbit:
-      return  nexusOrbit
     default:
       throw new Error(`[getWagmiChain] Unexpected chain id: ${chainId}`)
   }
