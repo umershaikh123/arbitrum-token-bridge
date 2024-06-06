@@ -353,14 +353,14 @@ export function isNetwork(chainId: ChainId) {
 
   const isStylusTestnet = chainId === ChainId.StylusTestnet
 
-  const isEthereumMainnetOrTestnet =
-    isEthereumMainnet || isSepolia || isHolesky || isLocal
+  const isEthereumMainnetOrTestnet =isHolesky
+    // isEthereumMainnet || isSepolia    || isLocal
 
   const isArbitrum =
-    isArbitrumOne ||
-    isArbitrumNova ||
-    isArbitrumLocal ||
-    isArbitrumSepolia ||
+    // isArbitrumOne ||
+    // isArbitrumNova ||
+    // isArbitrumLocal ||
+    // isArbitrumSepolia ||
     isNexusOrbit
 
   const customChainIds = customChains.map(chain => chain.chainID)
@@ -370,26 +370,26 @@ export function isNetwork(chainId: ChainId) {
   const isOrbitChain = !isCoreChain
 
   const isTestnet =
-    isLocal ||
-    isArbitrumLocal ||
-    isSepolia ||
+    // isLocal ||
+    // isArbitrumLocal ||
+    // isSepolia ||
     isHolesky ||
-    isArbitrumSepolia ||
-    isCustomOrbitChain ||
-    isStylusTestnet ||
-    isTestnetOrbitChain ||
     isNexusOrbit
+    // isArbitrumSepolia ||
+    // isCustomOrbitChain ||
+    // isStylusTestnet ||
+    // isTestnetOrbitChain ||
 
   const isSupported =
-    isArbitrumOne ||
-    isArbitrumNova ||
-    isEthereumMainnet ||
-    isSepolia ||
+    // isArbitrumOne ||
+    // isArbitrumNova ||
+    // isEthereumMainnet ||
+    // isSepolia ||
+    // isArbitrumSepolia ||
+    // isCustomOrbitChain ||
+    // isMainnetOrbitChain ||
+    // isTestnetOrbitChain ||
     isHolesky ||
-    isArbitrumSepolia ||
-    isCustomOrbitChain ||
-    isMainnetOrbitChain ||
-    isTestnetOrbitChain ||
     isNexusOrbit
 
   return {
