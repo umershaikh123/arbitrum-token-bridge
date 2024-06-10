@@ -8,8 +8,9 @@ import { useArbQueryParams } from '../../hooks/useArbQueryParams'
 interface NetworkItem {
   mode: string;
 }
-const network: NetworkItem[] = [{ mode: 'Testnet' }, { mode: 'Mainnet' }]
+// const network: NetworkItem[] = [{ mode: 'Testnet' }, { mode: 'Mainnet' }]
 
+const network: NetworkItem[] = [{ mode: 'Testnet' }]
 export default function TestModeSelect() {
   const initialNetworkItem = network[0];
   const [selected, setSelected] = useState<NetworkItem | undefined>(initialNetworkItem)

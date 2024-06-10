@@ -104,8 +104,11 @@ export const transformDeposit = (tx: Transaction): MergedTransaction => {
 export const transformWithdrawal = (
   tx: L2ToL1EventResultPlus
 ): MergedTransaction => {
+ 
   const uniqueIdOrHash = getUniqueIdOrHashFromEvent(tx)
-
+  
+ 
+ 
   return {
     sender: tx.sender,
     destination: tx.destinationAddress,
@@ -182,6 +185,8 @@ export const isPending = (tx: MergedTransaction) => {
   if (tx.isCctp && !tx.resolvedAt && tx.status !== 'Failure') {
     return true
   }
+ 
+ 
   return (
     (isDeposit(tx) &&
       (tx.status === 'pending' ||
@@ -194,6 +199,7 @@ export const isPending = (tx: MergedTransaction) => {
 }
 
 export const isFailed = (tx: MergedTransaction) => {
+ 
   return (
     (isDeposit(tx) &&
       (tx.status === 'failure' ||

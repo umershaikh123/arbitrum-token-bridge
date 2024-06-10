@@ -14,7 +14,7 @@ export const SidebarFooter = ({ className }: { className?: string }) => {
       )}
     >
       <div className="duration-300  ease-in-out hover:scale-125">
-        <Link href={'https://twitter.com/_Nexus_Network'} target="_blank">
+        <Link href={'https://x.com/NexusNetwork_0x'} target="_blank">
           <TwitterIcon sx={{ fontSize: 35 }} />
         </Link>
       </div>

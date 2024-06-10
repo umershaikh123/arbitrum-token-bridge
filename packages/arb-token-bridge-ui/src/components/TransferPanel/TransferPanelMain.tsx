@@ -229,7 +229,7 @@ function NetworkContainer({
         <div
           className="absolute left-0 top-0 h-full w-full bg-[-2px_0] bg-no-repeat bg-origin-content p-3 opacity-50"
           style={{
-            backgroundImage,
+            // backgroundImage,
             backgroundSize: `auto ${bgLogoHeight + (isSmallScreen ? -12 : 0)}px`
           }}
         />

@@ -82,14 +82,14 @@ enum TargetChainKey {
 }
 
 function sanitizeTargetChainKey(targetChainKey: string | null): TargetChainKey {
-  // Default to Ethereum Mainnet if nothing passed in
+  // Default to Holesky Mainnet if nothing passed in
   if (targetChainKey === null) {
-    return TargetChainKey.Ethereum
+    return TargetChainKey.Holesky
   }
 
-  // Default to Ethereum Mainnet if invalid
+  // Default to Holesky Mainnet if invalid
   if (!(Object.values(TargetChainKey) as string[]).includes(targetChainKey)) {
-    return TargetChainKey.Ethereum
+    return TargetChainKey.Holesky
   }
 
   return targetChainKey as TargetChainKey

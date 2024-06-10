@@ -72,7 +72,7 @@ import { useNetworks } from '../../hooks/useNetworks'
 import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { CctpTransferStarter } from '@/token-bridge-sdk/CctpTransferStarter'
 import { truncateExtraDecimals } from '../../util/NumberUtils'
-import { log } from 'console'
+ 
 
 const isAllowedL2 = async ({
   l1TokenAddress,
@@ -147,60 +147,28 @@ export function TransferPanel() {
     isDepositMode
   } = useNetworksRelationship(networks)
   const latestNetworks = useLatest(networks)
-  // console.log('transfer panel')
-  // console.log('chainId', chainId)
-  // console.log('childChain.id', childChain.id)
-  // console.log('childChainProvider', childChainProvider)
-  // console.log('parentChain.id', parentChain.id)
-  // console.log('parentChain', parentChain)
-  // console.log('networks', networks)
-  // console.log('parentChainProvider', parentChainProvider)
-  // console.log('transfer panel ends')
+ 
   const nativeCurrency = useNativeCurrency({ provider: childChainProvider })
 
   const { isEOA, isSmartContractWallet } = useAccountType()
 
-  // const { data: l1Signer } = useSigner({
-  //   chainId: parentChain.id
-  // })
-  // const { data: l1Signer } = useSigner({
-  //   chainId: 421614 // arbitrum sepolia
-  // })
-
+   
   // 13331370 nexus  , 42161 arbitrum one , 11155111 sepolia
   const { data: l1Signer } = useSigner({
     chainId: parentChain.id
   })
 
 
-  const { data: l1SignerHolesky } = useSigner({
-    chainId: 17000
-  })
-  const { data: l1SignerRans } = useSigner({
-    chainId: 200
-  })
-
+ 
 
   const { data: l2Signer } = useSigner({
     chainId: childChain.id
   })
 
-  const { data: l2NexusSigner } = useSigner({
-    chainId: 13331370
-  })
-
-  const { data: l2Randigner } = useSigner({
-    chainId: 25
-  })
-  // console.log("l1Signer" ,   l1Signer);
-  const { connector } = useAccount();
+ 
+   
 
  
-  // console.log("connector",connector);
-  // console.log('l1SignerHolesky', l1SignerHolesky)
-  // console.log('l2Signer', l2Signer)
-  // console.log('l2NexusSigner', l2NexusSigner)
-  // console.log('l2Randigner ', l2Randigner )
   const { openTransactionHistoryPanel, setTransferring } =
     useAppContextActions()
   const { addPendingTransaction } = useTransactionHistory(walletAddress)
@@ -340,9 +308,7 @@ export function TransferPanel() {
 
     const ethBridger = await EthBridger.fromProvider(childChainProvider)
     const { l2Network } = ethBridger
-    // console.log('childChainProvider', childChainProvider)
-    // console.log('ethBridger', ethBridger)
-    // console.log('l2Network', l2Network)
+ 
 
     if (typeof l2Network.nativeToken === 'undefined') {
       throw new Error('l2 network does not use custom fee token')
@@ -393,14 +359,12 @@ export function TransferPanel() {
 
     const erc20Bridger = await Erc20Bridger.fromProvider(childChainProvider)
     const l2Network = erc20Bridger.l2Network
-    // console.log('erc20Bridger ', erc20Bridger)
-    // console.log('l2Network', l2Network)
+ 
 
     if (typeof l2Network.nativeToken === 'undefined') {
       throw new Error('l2 network does not use custom fee token')
     }
-    // console.log('parentChainProvider', parentChainProvider)
-    // console.log('childChainProvider', childChainProvider)
+ 
     const l1Gateway = await fetchErc20ParentChainGatewayAddress({
       erc20ParentChainAddress: selectedToken.address,
       parentChainProvider,
@@ -897,34 +861,7 @@ export function TransferPanel() {
               return
             }
           }
-          const l1Provider = new providers.JsonRpcProvider(
-            'https://ethereum-holesky-rpc.publicnode.com'
-          )
-          // console.log('l1Signer', l1Signer)
-          // let signer = null
-
-          // let provider
-          // if (window.ethereum == null) {
-          //   // If MetaMask is not installed, we use the default provider,
-          //   // which is backed by a variety of third-party services (such
-          //   // as INFURA). They do not have private keys installed,
-          //   // so they only have read-only access
-          //   console.log('MetaMask not installed; using read-only defaults')
-          //   provider = ethers.getDefaultProvider()
-          // } else {
-          //   // Connect to the MetaMask EIP-1193 object. This is a standard
-          //   // protocol that allows Ethers access to make all read-only
-          //   // requests through MetaMask.
-          //   provider = new ethers.providers.Web3Provider(window.ethereum)
-
-          //   // It also provides an opportunity to request access to write
-          //   // operations, which will be performed by the private key
-          //   // that MetaMask manages for the user.
-          //   signer = await provider.getSigner()
-          //   console.log('l1Signer.provider', l1Signer.provider)
-          //   console.log('ethers signer', signer)
-
-          // }
+ 
 
           const r = await latestEth.current.deposit({
             amount: utils.parseUnits(amount, nativeCurrency.decimals),
