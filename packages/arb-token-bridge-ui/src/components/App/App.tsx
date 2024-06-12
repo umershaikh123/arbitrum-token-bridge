@@ -42,7 +42,7 @@ import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { HeaderConnectWalletButton } from '../common/HeaderConnectWalletButton'
 import { AppConnectionFallbackContainer } from './AppConnectionFallbackContainer'
 import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
-
+import { Button } from '@mui/material'
 declare global {
   interface Window {
     Cypress?: any
@@ -107,10 +107,7 @@ export const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
     const isParentChainEthereum = isNetwork(
       parentChain.id
     ).isEthereumMainnetOrTestnet
-
-    // console.log('childChain.id', childChain.id)
-    // console.log('parentChain.id', parentChain.id)
-
+ 
     actions.app.reset(networks.sourceChain.id)
     actions.app.setChainIds({
       l1NetworkChainId: parentChain.id,
@@ -204,15 +201,9 @@ function AppContent() {
   const { parentChain, childChain } = useNetworksRelationship(networks)
   const { address, isConnected, connector } = useAccount()
   const { isBlocked } = useAccountIsBlocked()
-  // const [tosAccepted] = useLocalStorage<boolean>(TOS_LOCALSTORAGE_KEY, false)
+ 
   const { openConnectModal } = useConnectModal()
-
-  // useEffect(() => {
-  //   if (tosAccepted && !isConnected) {
-  //     openConnectModal?.()
-  //   }
-  // }, [isConnected, tosAccepted, openConnectModal])
-
+ 
   async function addNexusNetwork() {
     try {
       if (typeof window.ethereum !== 'undefined') {
@@ -300,15 +291,23 @@ function AppContent() {
 
   return (
     <>
+    <div>
+
+      
+    </div>
       <Header>
         <HeaderAccountPopover />
+
       </Header>
-      <button
-        className=" ml-6 rounded-lg bg-[#ff6600] px-4 py-2 text-sm text-white"
+
+      
+      <Button
+        className="   rounded-lg  px-4 py-2 text-sm font-medium   border-2 hover:border-2   float-right   mr-6"
         onClick={addNexusNetwork}
+        variant="outlined"
       >
         Add Nexus Network
-      </button>
+      </Button>
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />

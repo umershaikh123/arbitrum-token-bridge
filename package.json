@@ -6,7 +6,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "yarn workspace arb-token-bridge-ui dev",
+    "dev": "yarn workspace arb-token-bridge-ui dev", 
     "build": "yarn workspace arb-token-bridge-ui build",
     "start": "yarn build && yarn workspace arb-token-bridge-ui start",
     "audit:ci": "audit-ci --config ./audit-ci.jsonc",

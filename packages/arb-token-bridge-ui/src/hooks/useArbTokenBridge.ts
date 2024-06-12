@@ -198,20 +198,7 @@ export const useArbTokenBridge = (
     try {
       const gasLimit = await l1.provider.estimateGas(depositRequest.txRequest)
  
-
-      // if (window.ethereum) {
-      //   // MetaMask is installed
-      //   const provider = new ethers.providers.Web3Provider(window.ethereum)
-      //   // Request account access if needed
-      //   await window.ethereum.request({ method: 'eth_requestAccounts' })
-      //   console.log('Connected to MetaMask')
-      //   const signer = provider.getSigner()
-      //   console.log('signer', signer)
-      // } else {
-      //   console.log('MetaMask not detected')
-      //   // Handle the case where MetaMask is not installed
-      // }
-
+ 
       tx = await ethBridger.deposit({
         amount,
         l1Signer,
@@ -312,7 +299,15 @@ export const useArbTokenBridge = (
         overrides: { gasLimit: percentIncrease(gasLimit, BigNumber.from(30)) }
       })
 
+      console.log("withdrawalRequest" ,withdrawalRequest);
+      console.log("tx" ,tx);
+     
+      
+      console.log("txLifecycle?.onTxSubmit" ,txLifecycle?.onTxSubmit);
+   
+     
       if (txLifecycle?.onTxSubmit) {
+        console.log("txLifecycle.onTxSubmit(tx)" ,txLifecycle.onTxSubmit(tx));
         txLifecycle.onTxSubmit(tx)
       }
 
@@ -338,9 +333,10 @@ export const useArbTokenBridge = (
       })
 
       const receipt = await tx.wait()
-
+      console.log("receipt " ,receipt );
       if (txLifecycle?.onTxConfirm) {
         txLifecycle.onTxConfirm(receipt)
+        console.log("  txLifecycle.onTxConfirm(receipt) " ,  txLifecycle.onTxConfirm(receipt) );
       }
 
       updateEthBalances()
@@ -349,6 +345,7 @@ export const useArbTokenBridge = (
     } catch (error) {
       if (txLifecycle?.onTxError) {
         txLifecycle.onTxError(error)
+        console.log("  txLifecycle.onTxError(error) " ,  txLifecycle.onTxError(error) );
       }
       console.error('withdrawEth err', error)
     }

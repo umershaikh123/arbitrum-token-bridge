@@ -134,62 +134,7 @@ export function WhitlistAssetRow({ ...props }: AssetRowProps) {
     </div>
   )
 }
-
-// const options = ["Change Limit"]
-
-// const ITEM_HEIGHT = 48
-
-// export function ChangeLimitButton() {
-//   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-//   const open = Boolean(anchorEl)
-//   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-//     setAnchorEl(event.currentTarget)
-//   }
-//   const handleClose = () => {
-//     setAnchorEl(null)
-//   }
-
-//   return (
-//     <div>
-//       <IconButton
-//         aria-label="more"
-//         id="long-button"
-//         aria-controls={open ? "long-menu" : undefined}
-//         aria-expanded={open ? "true" : undefined}
-//         aria-haspopup="true"
-//         onClick={handleClick}
-//       >
-//         <MoreVertIcon />
-//       </IconButton>
-//       <Menu
-//         id="long-menu"
-//         MenuListProps={{
-//           "aria-labelledby": "long-button",
-//         }}
-//         anchorEl={anchorEl}
-//         open={open}
-//         onClose={handleClose}
-//         PaperProps={{
-//           style: {
-//             maxHeight: ITEM_HEIGHT * 4.5,
-//             width: "20ch",
-//           },
-//         }}
-//       >
-//         {options.map(option => (
-//           <MenuItem
-//             key={option}
-//             selected={option === "Pyxis"}
-//             onClick={handleClose}
-//           >
-//             {option}
-//           </MenuItem>
-//         ))}
-//       </Menu>
-//     </div>
-//   )
-// }
-
+ 
 export function DeListButton() {
   const [open, setOpen] = React.useState(false)
 
@@ -315,56 +260,7 @@ export function WhiteListButton() {
   )
 }
 
-// export function WhiteListButton() {
-//   const [open, setOpen] = React.useState(false)
-
-//   const handleClickOpen = () => {
-//     setOpen(true)
-//   }
-
-//   const handleClose = () => {
-//     setOpen(false)
-//   }
-
-//   return (
-//     <React.Fragment>
-// <Button
-//   variant="contained"
-//   onClick={handleClickOpen}
-//   // sx={{ color: "white", backgroundColor: "#0375C9" }}
-//   sx={{
-//     color: "white",
-//     backgroundColor: "#0375C9",
-//     fontSize: "18px",
-//     paddingX: "2.5rem",
-//     textTransform: "capitalize",
-//   }}
-// >
-//   WhiteList
-// </Button>
-//       <Dialog
-//         open={open}
-//         onClose={handleClose}
-//         aria-labelledby="alert-dialog-title"
-//         aria-describedby="alert-dialog-description"
-//       >
-//         <DialogTitle id="alert-dialog-title">{"WhiteList Token"}</DialogTitle>
-//         <DialogContent>
-//           <DialogContentText id="alert-dialog-description">
-// WhiteListing token contract address
-// 0x8a770B7700f941Bb2E6Dd023AD3B22c2c41C5901
-//           </DialogContentText>
-//         </DialogContent>
-//         <DialogActions>
-//           <Button onClick={handleClose}>Disagree</Button>
-//           <Button onClick={handleClose} autoFocus>
-//             Agree
-//           </Button>
-//         </DialogActions>
-//       </Dialog>
-//     </React.Fragment>
-//   )
-// }
+ 
 
 export function ChangeLimitButton() {
   const [open, setOpen] = React.useState(false)

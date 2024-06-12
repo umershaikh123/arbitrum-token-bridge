@@ -61,7 +61,7 @@
 #root,
 body {
   @apply min-h-screen;
-  @apply bg-black;
+  @apply bg-white;
   font-weight: 300;
 }
 
