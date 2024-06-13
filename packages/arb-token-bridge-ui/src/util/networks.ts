@@ -211,6 +211,8 @@ export const getExplorerUrl = (chainId: ChainId) => {
 
 export const getBlockTime = (chainId: ChainId) => {
   const network = arbitrumSdkChains[chainId]
+  
+  
   if (!network) {
     throw new Error(`Couldn't get block time. Unexpected chain ID: ${chainId}`)
   }
@@ -219,7 +221,7 @@ export const getBlockTime = (chainId: ChainId) => {
 
 export const getConfirmPeriodBlocks = (chainId: ChainId) => {
   const network = arbitrumSdkChains[chainId]
-  if (!network || !isArbitrumChain(network)) {
+  if (!network || !isArbitrumChain(network)  ) {
     throw new Error(
       `Couldn't get confirm period blocks. Unexpected chain ID: ${chainId}`
     )
@@ -353,7 +355,7 @@ export function isNetwork(chainId: ChainId) {
 
   const isStylusTestnet = chainId === ChainId.StylusTestnet
 
-  const isEthereumMainnetOrTestnet =isHolesky
+  const isEthereumMainnetOrTestnet = isHolesky
     // isEthereumMainnet || isSepolia    || isLocal
 
   const isArbitrum =
@@ -381,14 +383,14 @@ export function isNetwork(chainId: ChainId) {
     // isTestnetOrbitChain ||
 
   const isSupported =
-    // isArbitrumOne ||
-    // isArbitrumNova ||
-    // isEthereumMainnet ||
-    // isSepolia ||
-    // isArbitrumSepolia ||
-    // isCustomOrbitChain ||
-    // isMainnetOrbitChain ||
-    // isTestnetOrbitChain ||
+    isArbitrumOne ||
+    isArbitrumNova ||
+    isEthereumMainnet ||
+    isSepolia ||
+    isArbitrumSepolia ||
+    isCustomOrbitChain ||
+    isMainnetOrbitChain ||
+    isTestnetOrbitChain ||
     isHolesky ||
     isNexusOrbit
 
