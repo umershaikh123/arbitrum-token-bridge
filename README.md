@@ -1,26 +1,16 @@
-# [Arbitrum Token Bridge](https://bridge.arbitrum.io/)
+# Nexus Orbit Chain Dapp
 
-### The canonical token-bridge of [Arbitrum](https://arbitrum.io/)
+## Introduction
+Nexus Orbit Chain is a chain run on arbitrum nitro node and the repo is a fork of arbitrum bridge which showcases Nexus Staking yeilds for Rollups(currently on nexus chain) with support of holesky as parent chain 
 
-Are you a developer looking to explore the Arbitrum token bridge and its underlying technology? Then you've come to the right place! We'll walk you through the steps to run the Arbitrum token bridge website locally on your machine.
+Official arbitrum bridge [Repo](https://github.com/OffchainLabs/arbitrum-token-bridge)
 
-<br />
-
-Offchain Labs ❤️ Open-source
-
-Interested in contributing to this repo? We welcome your contribution.
-[Check out the contribution guidelines and instructions here](CONTRIBUTING.md).
-
-<br />
-
----
-
-<br />
 
 ## Prerequisites for running the code
 
 - Install [Node.js](https://nodejs.org/en/download/) for your platform
 - Install [Node Version Manager (nvm)](https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/) to setup the correct Node version for the project.
+- use node version 18
 - Install [VS Code](https://code.visualstudio.com/download) for your platform
 - Install [Yarn (version 1)](https://classic.yarnpkg.com) - Package manager
 
@@ -71,12 +61,14 @@ Interested in contributing to this repo? We welcome your contribution.
 
    3. Set `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` to your WalletConnect project ID. You can create a new project on the [WalletConnect dashboard](https://cloud.walletconnect.com/app).
 
+   4. set `NEXT_PUBLIC_NEXUS_GRAPH_API` which is nexus contracts subgraph url to fetch dashboard data 
+
    4. For custom urls, set optional vars:
 
    - `NEXT_PUBLIC_ETHEREUM_RPC_URL=my-eth-node`
    - `NEXT_PUBLIC_SEPOLIA_RPC_URL=my-sepolia-node`
-     (see [.env.sample](./packages/arb-token-bridge-ui/.env.sample))
-     If no custom URL is provided, Infura will be used by default.
+     (see [.env.local.sample](./packages/arb-token-bridge-ui/.env.local.sample))
+     If no custom URL is provided, `NEXT_PUBLIC_INFURA_KEY` will be used by default.
 
 5. Build the project and internal packages
 

@@ -91,8 +91,8 @@ export function sanitizeQueryParams({
       !isSupportedChainId(destinationChainId))
   ) {
     return {
-      sourceChainId: ChainId.Ethereum,
-      destinationChainId: ChainId.ArbitrumOne
+      sourceChainId: ChainId.Holesky,
+      destinationChainId: ChainId.NexusOrbit
     }
   }
 
