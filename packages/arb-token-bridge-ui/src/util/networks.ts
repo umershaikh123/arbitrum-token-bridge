@@ -182,7 +182,7 @@ export const rpcURLs: { [chainId: number]: string } = {
   }),
   [ChainId.NexusOrbit]: loadEnvironmentVariableWithFallback({
     env: process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL,
-    fallback: 'https://rpc.nexusnetwork.co.in'
+    fallback: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`
   }),
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet.arbitrum.io/rpc'
@@ -201,7 +201,7 @@ export const explorerUrls: { [chainId: number]: string } = {
   [ChainId.ArbitrumSepolia]: 'https://sepolia.arbiscan.io',
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io',
-  [ChainId.NexusOrbit]: 'https://explorer.nexusnetwork.co.in/'
+  [ChainId.NexusOrbit]: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`
 }
 
 export const getExplorerUrl = (chainId: ChainId) => {
