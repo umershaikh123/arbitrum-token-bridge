@@ -43,7 +43,7 @@ Official arbitrum bridge [Repo](https://github.com/OffchainLabs/arbitrum-token-b
       $ cp ./packages/arb-token-bridge-ui/.env.local.sample  ./packages/arb-token-bridge-ui/.env
       ```
 
-   2. In `.env` created, add `NEXT_PUBLIC_INFURA_KEY=my-infura-key`
+   2. In `.env` created, add `NEXT_PUBLIC_INFURA_KEY=my-infura-key` get it from [Infura](https://app.infura.io/login)
 
    3. Set `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID` to your WalletConnect project ID. You can create a new project on the [WalletConnect dashboard](https://cloud.walletconnect.com/app).
 
