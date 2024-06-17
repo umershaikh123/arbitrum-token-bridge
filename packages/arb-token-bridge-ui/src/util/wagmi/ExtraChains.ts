@@ -41,22 +41,22 @@ export var holeskyChain:Chain = {
     nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
     rpcUrls: {
       default: {
-        http: ["https://rpc.nexusnetwork.co.in"],
-        // ws : ["ws://54.151.152.20:8449"]
+        http: [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`],
+ 
       },
       public: {
-        http: ["https://rpc.nexusnetwork.co.in"],
-        // ws : ["ws://54.151.152.20:8449"]
+        http: [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`],
+        
       }
     },
     blockExplorers: {
       blockscout: {
         name: "blockscout",
-        url: "https://explorer.nexusnetwork.co.in/"
+        url: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`
       },
       default: {
         name: "blockscout",
-        url: "https://explorer.nexusnetwork.co.in/"
+        url: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`
       }
     },
     contracts: {

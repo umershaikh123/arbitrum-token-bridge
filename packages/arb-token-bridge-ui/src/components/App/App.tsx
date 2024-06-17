@@ -212,14 +212,14 @@ function AppContent() {
           params: [
             {
               chainId: '0xCB6BAA',
-              rpcUrls: ['https://rpc.nexusnetwork.co.in'],
+              rpcUrls: [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`],
               chainName: 'Nexus Orbit Chain',
               nativeCurrency: {
                 name: 'ETHER',
                 symbol: 'ETH',
                 decimals: 18
               },
-              blockExplorerUrls : ["https://explorer.nexusnetwork.co.in/"]
+              blockExplorerUrls : [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`]
             }
           ]
         })

@@ -69,7 +69,7 @@ export function chainIdToInfuraKey(chainId: ChainId) {
         process.env.NEXT_PUBLIC_INFURA_KEY_ARBITRUM_SEPOLIA || defaultInfuraKey
       )
       case ChainId.NexusOrbit:
-        return "https://rpc.nexusnetwork.co.in"
+        return `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`
 
       
         case ChainId.Holesky:
@@ -93,7 +93,7 @@ export function chainIdToInfuraUrl(chainId: ChainId) {
       return `https://arbitrum-sepolia.infura.io/v3/${infuraKey}`
 
     case ChainId.NexusOrbit:
-      return "https://rpc.nexusnetwork.co.in"
+      return `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`
 
       
     case ChainId.Holesky:

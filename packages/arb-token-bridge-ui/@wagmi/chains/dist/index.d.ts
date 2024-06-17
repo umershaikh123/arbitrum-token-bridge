@@ -2142,17 +2142,17 @@ declare const nexusOrbit: {
     readonly rpcUrls: {
 
         readonly default: {
-            readonly http: readonly ["https://rpc.nexusnetwork.co.in"];
+            readonly http: readonly ["https://testnet.rpc.nexusnetwork.live"];
         };
         readonly public: {
-            readonly http: readonly ["https://rpc.nexusnetwork.co.in"];
+            readonly http: readonly ["https://testnet.rpc.nexusnetwork.live"];
         };
     };
     readonly blockExplorers: {
  
         readonly default: {
             readonly name: "Etherscan";
-            readonly url: "https://explorer.nexusnetwork.co.in/";
+            readonly url: "https://testnet.explorer.nexusnetwork.live";
         };
     };
     readonly contracts: {
