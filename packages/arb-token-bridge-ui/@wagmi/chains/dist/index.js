@@ -1911,22 +1911,22 @@ var nexusOrbit = {
   nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
   rpcUrls: {
     default: {
-      http: ["https://rpc.nexusnetwork.co.in"],
-      // ws : ["ws://54.151.152.20:8449"]
+      http: ["https://testnet.rpc.nexusnetwork.live"],
+      
     },
     public: {
-      http: ["https://rpc.nexusnetwork.co.in"],
-      // ws : ["ws://54.151.152.20:8449"]
+      http: ["https://testnet.rpc.nexusnetwork.live"],
+      
     }
   },
   blockExplorers: {
     blockscout: {
       name: "blockscout",
-      url: "https://explorer.nexusnetwork.co.in/"
+      url: "https://testnet.explorer.nexusnetwork.live"
     },
     default: {
       name: "blockscout",
-      url: "https://explorer.nexusnetwork.co.in/"
+      url: "https://testnet.explorer.nexusnetwork.live"
     }
   },
   contracts: {

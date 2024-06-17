@@ -120,15 +120,15 @@ export const nexusOrbit: Chain = {
   blockExplorers: {
     etherscan: {
       name: 'NexusOrbScan',
-      url: 'https://explorer.nexusnetwork.co.in/'
+      url: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`
     },
     blockscount: {
       name: 'NexusOrbScan',
-      url: 'https://explorer.nexusnetwork.co.in/'
+      url: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`
     },
     default: {
       name: 'NexusOrbScan',
-      url: 'https://explorer.nexusnetwork.co.in/'
+      url: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`
     }
   }
 }
