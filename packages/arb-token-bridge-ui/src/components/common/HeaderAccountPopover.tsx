@@ -55,7 +55,7 @@ export function HeaderAccountPopover({
     'arb-hover flex w-full flex-row items-center space-x-2 px-12 py-2 text-sm sm:text-sm text-white sm:text-white hover:bg-ocl-blue sm:px-4 sm:py-1'
 
   return (
-    <Popover className="red relative w-full rounded-lg border-2 border-black bg-white px-6    sm:w-max sm:p-0">
+    <Popover className=" z-50 red relative w-full rounded-lg border-2 border-[#001321] bg-[#00243D] px-6    sm:w-max sm:p-0">
       <Popover.Button
         className={twMerge(
           'flex w-full flex-row items-center justify-start gap-3 px-[12px] py-[7px] text-blue-400 transition-[background] duration-300',
@@ -75,14 +75,14 @@ export function HeaderAccountPopover({
             <CustomBoringAvatar size={isSmallScreen ? 24 : 40} name={address} />
           }
         />
-        <span className="flex flex-col text-justify text-base font-medium leading-extra-tight  text-black sm:text-black">
+        <span className="flex flex-col text-justify text-base font-base leading-extra-tight  text-white sm:text-white">
           {ensName ?? udInfo.name ?? accountShort}
           {isSmartContractWallet && !isLoadingAccountType && (
             <span className="text-[10px]">Smart Contract Wallet</span>
           )}
         </span>
 
-        <ChevronDownIcon className="ml-auto h-[16px] w-[16px] font-medium text-black transition duration-200 sm:text-black" />
+        <ChevronDownIcon className="ml-auto h-[16px] w-[16px] font-base text-white transition duration-200 sm:text-white" />
       </Popover.Button>
       <Transition className="w-full sm:absolute sm:top-0">
         <Popover.Panel className="flex w-full flex-col overflow-hidden rounded pb-2 sm:absolute sm:top-0 sm:bg-dark">

@@ -7,6 +7,7 @@
 :root {
   --primary: transparent;
   --secondary: #ffffff30;
+  --background : #001321;
   --toastify-color-error: #cd0000;
   --toastify-text-color-light: #1a1c1d;
   --toastify-text-color-info: #1a1c1d;
@@ -16,6 +17,8 @@
   --toastify-font-family: Roboto, sans-serif;
   --toastify-toast-min-height: 44px;
   --blue-link: #1366C1;
+  --mobile-menu-bg:#01080F;
+  --nav-link-hover :#77C3F8 ;
 }
 
 /* Firefox */
@@ -61,7 +64,7 @@
 #root,
 body {
   @apply min-h-screen;
-  @apply bg-white;
+  background-color: var(--background);
   font-weight: 300;
 }
 

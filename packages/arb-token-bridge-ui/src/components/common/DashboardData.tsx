@@ -85,19 +85,19 @@ export function ValidatorsData() {
   }, [])
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div className='text-white'>Loading...</div>
   }
 
   if (!data) {
-    return <div>No data available</div>
+    return <div className='text-white'>No data available</div>
   }
   if (data) {
     console.log('data', data.validators.length)
   }
   return (
-    <div className="  ">
+    <div className="    ">
        {data.validators.length ? (
-    <table className=" mt-4  w-full  text-left  text-black table-fixed">
+    <table className=" mt-4  w-full  text-left  text-white table-fixed">
       <tbody className="w-full">
         <tr className=''>
     <th className="w-[20%] px-2">Public Key</th>
@@ -109,7 +109,7 @@ export function ValidatorsData() {
        
         
             {data.validators.map((validator, index) => (
-      <tr key={index} className="  border-t-2  py-4">
+      <tr key={index} className="  border-t-2  border-[#005792] py-4">
       <td className="w-1/4 p-3 max-w-[5rem] overflow-hidden  text-ellipsis whitespace-nowrap" title={validator.id}>{validator.id}</td>
       <td className="w-1/4 text-center"  >{validator.clusterId}</td>
       <td className="w-1/4 px-4 max-w-[5rem] overflow-hidden text-ellipsis whitespace-nowrap">{validator.rollup}</td>
@@ -123,7 +123,7 @@ export function ValidatorsData() {
  ) 
 : (
   <>
-  <h1>No Validator Data found</h1>
+  <h1 className='text-white'>No Validator Data found</h1>
   </>
      )}
   </div>
@@ -168,16 +168,15 @@ export function NodeOperatorData() {
   }, [])
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div className='text-white'>Loading...</div>
   }
 
   if (!data) {
-    return <div>No data available</div>
-  }
+    return <div className='text-white'>No data available</div> }
 
   return (
     <div className="  ">
-      <table className=" mt-4  w-full  text-left  text-black table-fixed">
+      <table className=" mt-4  w-full  text-left   text-white table-fixed">
         <tbody className="w-full">
           <tr className=''>
           <th className="w-[5%] p-2 px-4">Id</th>
@@ -190,7 +189,7 @@ export function NodeOperatorData() {
           {data && (
             <>
               {data.nodeOperators.map((operator, index) => (
-        <tr key={index} className="  border-t-2  py-4">
+        <tr key={index} className="  border-t-2 border-[#005792] py-4">
         <td className="w-1/4 p-3 ">
           <Link href={`https://holesky.explorer.ssv.network/operators/${operator.id}`} target='_blank' className='hover:border-b-2 border-b-2 hover:border-black  border-transparent duration-300 hover:transition-all  hover:font-medium  ease-in-out'>
           

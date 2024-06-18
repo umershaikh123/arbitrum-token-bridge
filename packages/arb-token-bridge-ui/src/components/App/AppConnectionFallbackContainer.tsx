@@ -9,7 +9,7 @@ import Image from 'next/image'
 function WalletConnectWarning() {
   return (
     <>
-      <div className="mt-8  flex w-full flex-col items-center justify-center">
+      <div className="mt-8  flex w-full text-white flex-col items-center justify-center">
         <h1 className="text-[2.5rem] font-black  ">Get Started</h1>
 
         <div>

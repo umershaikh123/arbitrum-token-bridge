@@ -14,7 +14,7 @@ import axios from 'axios'
 import { createOvermind, Overmind } from 'overmind'
 import { Provider } from 'overmind-react'
 import { useLocalStorage } from '@uidotdev/usehooks'
-
+import ResponsiveAppBar from '../common/navbar'
 import { ConnectionState } from '../../util'
 import { TokenBridgeParams } from '../../hooks/useArbTokenBridge'
 import { WelcomeDialog } from './WelcomeDialog'
@@ -43,15 +43,19 @@ import { HeaderConnectWalletButton } from '../common/HeaderConnectWalletButton'
 import { AppConnectionFallbackContainer } from './AppConnectionFallbackContainer'
 import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
 import { Button } from '@mui/material'
+import { Footer } from '../common/Footer'
 declare global {
   interface Window {
     Cypress?: any
   }
 }
 
-const rainbowkitTheme = merge(lightTheme(), {
+const rainbowkitTheme = merge(darkTheme(), {
   colors: {
-    accentColor: 'var(--blue-link)'
+   
+ 
+   
+    accentColor: '#1377BB',
   },
   fonts: {
     body: 'Roboto, sans-serif'
@@ -295,23 +299,24 @@ function AppContent() {
 
       
     </div>
-      <Header>
+      {/* <Header>
         <HeaderAccountPopover />
 
-      </Header>
+      </Header> */}
 
-      
-      <Button
+      <ResponsiveAppBar/>
+      {/* <Button
         className="   rounded-lg  px-4 py-2 text-sm font-medium   border-2 hover:border-2   float-right   mr-6"
         onClick={addNexusNetwork}
         variant="outlined"
       >
         Add Nexus Network
-      </Button>
+      </Button> */}
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />
       <MainContent />
+      <Footer/>
     </>
   )
 }
