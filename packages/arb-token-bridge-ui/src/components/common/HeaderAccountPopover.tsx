@@ -36,6 +36,8 @@ export function HeaderAccountPopover({
     chain,
     setQueryParams
   } = useAccountMenu()
+ 
+  
   const [{ sourceChain }] = useNetworks()
   const { isTestnet } = isNetwork(sourceChain.id)
   const [, copyToClipboard] = useCopyToClipboard()
@@ -55,7 +57,7 @@ export function HeaderAccountPopover({
     'arb-hover flex w-full flex-row items-center space-x-2 px-12 py-2 text-sm sm:text-sm text-white sm:text-white hover:bg-ocl-blue sm:px-4 sm:py-1'
 
   return (
-    <Popover className=" z-50 red relative w-full rounded-lg border-2 border-[#001321] bg-[#00243D] px-6    sm:w-max sm:p-0">
+    <Popover className=" z-50 red relative w-full rounded-lg border-2 border-[#001321] bg-[#001A2C] px-6    sm:w-max sm:p-0">
       <Popover.Button
         className={twMerge(
           'flex w-full flex-row items-center justify-start gap-3 px-[12px] py-[7px] text-blue-400 transition-[background] duration-300',
@@ -85,7 +87,7 @@ export function HeaderAccountPopover({
         <ChevronDownIcon className="ml-auto h-[16px] w-[16px] font-base text-white transition duration-200 sm:text-white" />
       </Popover.Button>
       <Transition className="w-full sm:absolute sm:top-0">
-        <Popover.Panel className="flex w-full flex-col overflow-hidden rounded pb-2 sm:absolute sm:top-0 sm:bg-dark">
+        <Popover.Panel className="flex w-full flex-col overflow-hidden rounded pb-2 sm:absolute sm:top-0 sm:bg-[#061017]">
           {/* Profile photo with address */}
           {showCopied && (
             <span className="absolute right-2 top-4 z-50 text-xs text-white">
@@ -94,7 +96,7 @@ export function HeaderAccountPopover({
           )}
           <div className="relative hidden w-full flex-row items-center px-2 pb-2 pt-3 sm:flex">
             {/* Blurred background */}
-            <div className="absolute inset-0 flex h-8 w-full flex-col items-center overflow-hidden bg-dark text-center">
+            <div className="absolute inset-0 flex h-8 w-full flex-col items-center overflow-hidden bg-[#061017] text-center">
               <div className="scale-400 blur-2xl filter">
                 <SafeImage
                   className="h-100 w-100 rounded-full"

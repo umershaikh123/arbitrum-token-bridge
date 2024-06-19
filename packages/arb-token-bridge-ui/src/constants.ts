@@ -7,7 +7,7 @@ export const SIDEBAR_OPEN_PREFERENCE_KEY = 'arbitrum:sidebar:opened'
 const SUPPORT_LINK_BASE = 'https://support.arbitrum.io'
 
 export const GET_HELP_LINK = `${SUPPORT_LINK_BASE}/hc/en-us/requests/new?ticket_form_id=18155929976987`
-
+export const NEXUS_DISCORD = "https://discord.gg/kubuD7Mvf7"
 export const PORTAL_DOMAIN = 'https://portal.arbitrum.io'
 
 export const CAREERS_ARBITRUM_LINK = 'https://jobs.arbitrum.io/jobs'

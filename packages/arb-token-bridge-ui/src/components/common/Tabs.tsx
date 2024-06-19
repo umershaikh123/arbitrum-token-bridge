@@ -38,8 +38,8 @@ export default function CenteredTabs() {
   };
  
   return (
-    <Box sx={{ width: '100%', bgcolor: '#001321'  ,  }}>
-      <Tabs value={value} onChange={handleChange} centered>
+    <Box sx={{ width: '100%', bgcolor: 'transparent'   }}>
+      <Tabs value={value} onChange={handleChange} centered sx={{    backdropFilter : "blur(10px)"   }}>
         <Tab label="Validators"  sx={{color: "white"}}/>
         <Tab label="Node Operators" sx={{color: "white"}}/>
    

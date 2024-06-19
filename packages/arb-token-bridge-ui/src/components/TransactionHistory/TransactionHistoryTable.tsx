@@ -38,7 +38,7 @@ export const ContentWrapper = ({
   return (
     <div
       className={twMerge(
-        'w-full flex-col items-center rounded bg-[#191919] p-4 text-center text-xs text-white',
+        'w-full flex-col items-center rounded bg-[#061017] p-4 text-center text-xs text-white',
         className
       )}
     >

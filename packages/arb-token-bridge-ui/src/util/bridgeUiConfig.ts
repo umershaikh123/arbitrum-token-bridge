@@ -43,7 +43,7 @@ export function getBridgeUiConfigForChain(chainId: number): BridgeUiConfig {
       }
     case ChainId.Holesky:
       return {
-        ...ethereumBaseConfig,
+        color: '#00233C',
         network: {
           ...ethereumBaseConfig.network,
           name: 'Holesky',
