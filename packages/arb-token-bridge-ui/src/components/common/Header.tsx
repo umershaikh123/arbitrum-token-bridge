@@ -29,22 +29,22 @@ export function Header({ children }: { children?: React.ReactNode }) {
   return (
     <header
       className={twMerge(
-        'sticky top-0 z-10 flex h-12 w-full justify-center bg-transparent px-4 backdrop-blur sm:relative sm:h-16 sm:px-6 sm:backdrop-blur-none [body.menu-open_&]:fixed'
+        'sticky top-0 z-50 flex h-12 w-full justify-center bg-transparent px-4 backdrop-blur sm:relative sm:h-16 sm:px-6 sm:backdrop-blur-none [body.menu-open_&]:fixed'
       )}
     >
       <div className="flex w-full items-center justify-end gap-2 text-black">
-        <Image
+        {/* <Image
           className="mr-auto h-6 w-6 sm:hidden"
           src={ArbitrumLogoSmall}
           alt="Arbitrum"
-        />
-        {isConnected && (
+        /> */}
+        {/* {isConnected && (
           <>
             <div className="flex  grow items-center  space-x-1  font-medium  text-black">
               <TestModeSelect />
             </div>
           </>
-        )}
+        )} */}
         <div className="hidden sm:flex">{children}</div>
       </div>
       <Disclosure>

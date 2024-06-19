@@ -8,7 +8,7 @@ export const Footer = () => {
   return (
     <div  className='text-white w-full flex justify-center items-center p-2 mt-1'>
 
-        <div className='flex sm:flex-row flex-col justify-between items-center     w-1/2 max-w-[600px]'>
+        <div className='   min-[900px]:flex  hidden justify-between items-center     w-1/2 max-w-[600px]'>
 
             <div>
             © 2024 Nexus Network, Inc.

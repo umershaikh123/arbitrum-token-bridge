@@ -97,7 +97,7 @@ export function WithdrawalConfirmationDialog(
     >
       <div className="flex flex-col pt-4">
         <Tab.Group onChange={setSelectedIndex}>
-          <Tab.List className="border-b border-gray-dark">
+          <Tab.List className=" ">
             {isArbitrumOne && <TabButton>Third party bridge</TabButton>}
             <TabButton>Arbitrum’s bridge</TabButton>
           </Tab.List>
@@ -161,7 +161,7 @@ export function WithdrawalConfirmationDialog(
                   <SecurityGuaranteed />
                 </div>
 
-                <div className="flex flex-col justify-center space-y-2.5 rounded border border-gray-dark bg-black/80 py-4 align-middle text-white">
+                {/* <div className="flex flex-col justify-center space-y-2.5 rounded border border-gray-dark bg-black/80 py-4 align-middle text-white">
                   <p className="text-center text-sm font-light">
                     Set calendar reminder for {confirmationPeriod} from now
                   </p>
@@ -188,7 +188,7 @@ export function WithdrawalConfirmationDialog(
                   <p className="text-center text-xs font-light">
                     We don’t store any email data
                   </p>
-                </div>
+                </div> */}
               </div>
             </div>
           </Tab.Panel>
