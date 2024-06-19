@@ -3,9 +3,9 @@
 import * as React from 'react'
 
 import { Box, Toolbar, IconButton, Menu, Button, MenuItem } from '@mui/material'
-import XIcon from '@mui/icons-material/X';
-import ArticleIcon from '@mui/icons-material/Article';
-import discordIcon from "@/icons/Discord.svg"
+import XIcon from '@mui/icons-material/X'
+import ArticleIcon from '@mui/icons-material/Article'
+import discordIcon from '@/icons/Discord.svg'
 import MenuIcon from '@mui/icons-material/Menu'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -14,11 +14,13 @@ import logo from '/public/images/nexus/nexusLogoUncompressed.svg'
 import { usePathname } from 'next/navigation'
 import { HeaderAccountPopover } from './HeaderAccountPopover'
 import { Header } from './Header'
-import { addNexusChain , addHoleskyChain } from '../../util/metamask'
-
-import {  useNetworks } from '../../hooks/useNetworks'
+import { addNexusChain, addHoleskyChain } from '../../util/metamask'
+import { useAccount } from 'wagmi'
+import { useNetworks } from '../../hooks/useNetworks'
 import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
-import { isNetwork  } from '../../util/networks'
+import { isNetwork } from '../../util/networks'
+
+import { AddChainButton , AddHoleskyButton  , AddNexusButton} from '../common/AddChain'
 interface ResponsiveAppBarProps {
   wallet: Boolean
 
@@ -36,19 +38,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
     setAnchorElNav(null)
   }
 
-  const [networks] = useNetworks()
-  const { parentChain, childChain } = useNetworksRelationship(networks)
- 
-  
-  
-  const {
-    isArbitrum: isConnectedToArbitrum,
-    isOrbitChain: isConnectedToOrbitChain
-  } = isNetwork(networks.sourceChain.id)
-  const isParentChainEthereum = isNetwork(
-    parentChain.id
-  ).isEthereumMainnetOrTestnet
-
+  const { isConnected } = useAccount()
   return (
     <div className={`z-30 ${marginBelow}  flex justify-center`}>
       <nav
@@ -112,13 +102,16 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
                 }
               }}
             >
-              <MenuItem
-                sx={{
-                  transition: 'background 0.3s ease-in-out'
-                }}
-              >
-                <HeaderAccountPopover />
-              </MenuItem>
+              {isConnected && (
+                <MenuItem
+                  sx={{
+                    transition: 'background 0.3s ease-in-out'
+                  }}
+                >
+                  <HeaderAccountPopover />
+                </MenuItem>
+              )}
+
               <Link href="/?destinationChain=nexus-orbit-chain&sourceChain=holesky">
                 <MenuItem
                   sx={{
@@ -203,87 +196,63 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
                 </MenuItem>
               </Link>
 
+              {wallet && (
               <MenuItem
-                  sx={{
-                    width: { sm: '80vw', xs: '90vw' },
+              sx={{
+                width: { sm: '80vw', xs: '90vw' },
 
-                    transition: 'background 0.3s ease-in-out',
- 
-                  }}
-                >
-                      <div className="flex  justify-center w-full    items-center   "> 
-
-
-              {isParentChainEthereum && isConnectedToArbitrum  ||
-      isConnectedToOrbitChain ? (
-        <Button
-        className="   rounded-lg    text-sm font-medium   border-2 hover:border-2       "
-        onClick={addHoleskyChain}
-        variant="outlined"
-        sx={{ color : "#1377BB"}}
-        title='add testnet holesky chain to your metamask'
-        >
-              Add Holesky Chain
-            </Button>
-        ) : (
-          <Button
-          className="   rounded-lg    text-sm font-medium   border-2 hover:border-2       "
-          onClick={addNexusChain}
-          variant="outlined"
-          sx={{ color : "#1377BB"}}
-          title='add testnet nexus network chain to your metamask'
-          >
-          Add Nexus Chain
-        </Button>
-        )
-      }
-      </div>
-        </MenuItem>
-
-
-        <MenuItem
-                  sx={{
-                    width: { sm: '80vw', xs: '90vw' },
-
-                   
-                  }}
-                >
-                   <div  className='text-white w-full flex justify-center items-center p-2 mt-1'>
- 
-        <div className='flex justify-between  items-center space-x-5 '>
-            <Link
-                href={"https://twitter.com/NexusNetwork_0x"}
-                target="_blank"
-                className="sm:text-lg text-sm mb-2 hover:scale-110 duration-300  transition-all  ease-in-out"
-                  title='Twitter'
-              >
-                <XIcon/>
-              </Link>
-              <Link
-                href={
-                  "https://nexusnetwork0x.substack.com/"
-                }
-                target="_blank"
-                className="sm:text-lg text-sm mb-2 hover:scale-110 duration-300  transition-all  ease-in-out"
-                title='Nexus Blog'
-              >
-                <ArticleIcon/>
-              </Link>
- 
-
-              <Link
-                href={
-                  "https://discord.gg/kubuD7Mvf7"
-                }
-                target="_blank"
-                className="sm:text-lg text-sm mb-2 hover:scale-110   duration-300  transition-all  ease-in-out"
-                 title='Discord Server'
-              >
-             <Image src={discordIcon} width={30} height={30} alt='discord icon' className='' />
-              </Link>
+                transition: 'background 0.3s ease-in-out'
+              }}
+            >
+              <div className="flex  w-full items-center    justify-center   ">
+                <AddChainButton />
               </div>
-       </div>
-       </MenuItem>
+            </MenuItem>
+
+              )}
+
+
+              <MenuItem
+                sx={{
+                  width: { sm: '80vw', xs: '90vw' }
+                }}
+              >
+                <div className="mt-1 flex w-full items-center justify-center p-2 text-white">
+                  <div className="flex items-center  justify-between space-x-5 ">
+                    <Link
+                      href={'https://twitter.com/NexusNetwork_0x'}
+                      target="_blank"
+                      className="mb-2 text-sm transition-all duration-300 ease-in-out  hover:scale-110  sm:text-lg"
+                      title="Twitter"
+                    >
+                      <XIcon />
+                    </Link>
+                    <Link
+                      href={'https://nexusnetwork0x.substack.com/'}
+                      target="_blank"
+                      className="mb-2 text-sm transition-all duration-300 ease-in-out  hover:scale-110  sm:text-lg"
+                      title="Nexus Blog"
+                    >
+                      <ArticleIcon />
+                    </Link>
+
+                    <Link
+                      href={'https://discord.gg/kubuD7Mvf7'}
+                      target="_blank"
+                      className="mb-2 text-sm transition-all duration-300   ease-in-out  hover:scale-110  sm:text-lg"
+                      title="Discord Server"
+                    >
+                      <Image
+                        src={discordIcon}
+                        width={30}
+                        height={30}
+                        alt="discord icon"
+                        className=""
+                      />
+                    </Link>
+                  </div>
+                </div>
+              </MenuItem>
             </Menu>
           </Box>
 

@@ -42,10 +42,10 @@ import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { HeaderConnectWalletButton } from '../common/HeaderConnectWalletButton'
 import { AppConnectionFallbackContainer } from './AppConnectionFallbackContainer'
 import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
-import { Button } from '@mui/material'
+ 
 import { Footer } from '../common/Footer'
-
-import { addNexusChain , addHoleskyChain } from '../../util/metamask'
+import { AddChainButton } from '../common/AddChain'
+ 
 declare global {
   interface Window {
     Cypress?: any
@@ -283,30 +283,7 @@ function AppContent() {
  
       <div className=' absolute top-16 xl:right-32 right-8 lg:block hidden'>
 
-        {isParentChainEthereum && isConnectedToArbitrum  ||
-      isConnectedToOrbitChain ? (
-              <Button
-              className="   rounded-lg    text-sm font-medium   border-2 hover:border-2       "
-              onClick={addHoleskyChain}
-              variant="outlined"
-              sx={{ color : "#1377BB"}}
-              title='add testnet holesky chain to your metamask'
-            >
-              Add Holesky Chain
-            </Button>
-        ) : (
-          <Button
-          className="   rounded-lg    text-sm font-medium   border-2 hover:border-2       "
-          onClick={addNexusChain}
-          variant="outlined"
-          sx={{ color : "#1377BB"}}
-          title='add testnet nexus network chain to your metamask'
-        >
-          Add Nexus Chain
-        </Button>
-        )
-        }
-
+        <AddChainButton />
  
       </div>
 
