@@ -15,10 +15,7 @@ import { usePathname } from 'next/navigation'
 import { HeaderAccountPopover } from './HeaderAccountPopover'
 import { Header } from './Header'
 import { addNexusChain, addHoleskyChain } from '../../util/metamask'
-import { useAccount } from 'wagmi'
-import { useNetworks } from '../../hooks/useNetworks'
-import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
-import { isNetwork } from '../../util/networks'
+ 
 
 import { AddChainButton , AddHoleskyButton  , AddNexusButton} from '../common/AddChain'
 interface ResponsiveAppBarProps {
@@ -38,7 +35,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
     setAnchorElNav(null)
   }
 
-  const { isConnected } = useAccount()
+ 
   return (
     <div className={`z-30 ${marginBelow}  flex justify-center`}>
       <nav
@@ -102,7 +99,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
                 }
               }}
             >
-              {isConnected && (
+              {wallet && (
                 <MenuItem
                   sx={{
                     transition: 'background 0.3s ease-in-out'
