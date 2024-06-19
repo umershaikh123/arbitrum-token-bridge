@@ -4,12 +4,17 @@ import { GET_HELP_LINK } from '../../constants'
 import { ExternalLink } from '../common/ExternalLink'
 import metamaskLogo from '@/icons/MetamaskLogo.svg'
 import Image from 'next/image'
-
+import { AddChainButton , AddHoleskyButton  , AddNexusButton} from '../common/AddChain'
 
 function WalletConnectWarning() {
   return (
     <>
  
+ <div className=' absolute top-16  right-32    '>
+
+<AddNexusButton/>
+
+</div>
       <div className="flex w-full text-white flex-col items-center justify-center ">
   
                    
@@ -39,7 +44,7 @@ export function AppConnectionFallbackContainer({
   children?: React.ReactNode
 }) {
   return (
-    <div className="flex flex-col justify-center w-full    items-center pt-4 ">
+    <div className="flex flex-col justify-center w-full    items-center pt-4   ">
 
 {/* <div
                   className={` px-4  h-full   min-h-[20vh] w-full max-w-[25rem]  shadow-innerC shadow-[#005792]   flex-col   py-4   bg-gradient-to-t from-[#00243D]  to-[#001321]    border-8 border-[#18364c] rounded-2xl    border-double flex justify-center items-center  `}

@@ -6,7 +6,7 @@ import {
 export function SecurityGuaranteed() {
   return (
     <div className="flex">
-      <div className="flex h-fit items-center space-x-1 rounded bg-lime-dark p-2 text-xs text-lime">
+      <div className="flex h-fit items-center space-x-1 rounded bg-[#003F69] p-2 text-xs text-lime">
         <CheckCircleIcon height={16} />
         <span>Security guaranteed by Ethereum</span>
       </div>

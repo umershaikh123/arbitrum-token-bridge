@@ -42,8 +42,10 @@ import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { HeaderConnectWalletButton } from '../common/HeaderConnectWalletButton'
 import { AppConnectionFallbackContainer } from './AppConnectionFallbackContainer'
 import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
-import { Button } from '@mui/material'
+ 
 import { Footer } from '../common/Footer'
+import { AddChainButton } from '../common/AddChain'
+ 
 declare global {
   interface Window {
     Cypress?: any
@@ -202,43 +204,20 @@ function AppContent() {
   const { parentChain, childChain } = useNetworksRelationship(networks)
   const { address, isConnected, connector } = useAccount()
   const { isBlocked } = useAccountIsBlocked()
+  
+  
+  const {
+    isArbitrum: isConnectedToArbitrum,
+    isOrbitChain: isConnectedToOrbitChain
+  } = isNetwork(networks.sourceChain.id)
+  const isParentChainEthereum = isNetwork(
+    parentChain.id
+  ).isEthereumMainnetOrTestnet
+
 
   const { openConnectModal } = useConnectModal()
 
-  async function addNexusNetwork() {
-    try {
-      if (typeof window.ethereum !== 'undefined') {
-        const result = await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            {
-              chainId: '0xCB6BAA',
-              rpcUrls: [
-                `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || 'null rpc'}`
-              ],
-              chainName: 'Nexus Orbit Chain',
-              nativeCurrency: {
-                name: 'ETHER',
-                symbol: 'ETH',
-                decimals: 18
-              },
-              blockExplorerUrls: [
-                `${
-                  process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL ||
-                  'null Explorer url'
-                }`
-              ]
-            }
-          ]
-        })
-        console.log('Metamask is installed')
-      } else {
-        console.log('Metamask is not installed')
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  
   useEffect(() => {
     if (!isConnected) {
       openConnectModal?.()
@@ -300,21 +279,16 @@ function AppContent() {
   }
 
   return (
-    <div id='backgroundImage' className='h-screen'>
-       
-      {/* <Header>
-        <HeaderAccountPopover />
+    <div id='backgroundImage' className='h-screen relative'>
+ 
+      <div className=' absolute top-16 xl:right-32 right-8 lg:block hidden'>
 
-      </Header> */}
+        <AddChainButton />
+ 
+      </div>
 
       <ResponsiveAppBar wallet={true}   marginBelow={"mb-22"} />
-      {/* <Button
-        className="   rounded-lg  px-4 py-2 text-sm font-medium   border-2 hover:border-2   float-right   mr-6"
-        onClick={addNexusNetwork}
-        variant="outlined"
-      >
-        Add Nexus Network
-      </Button> */}
+
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />

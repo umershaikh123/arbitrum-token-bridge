@@ -83,7 +83,7 @@ export function SwitchNetworksButton(
   const [networks, setNetworks] = useNetworks()
 
   return (
-    <div className="z-[1] flex h-4 w-full items-center justify-center lg:h-1">
+    <div className="z-10 flex h-4 w-full items-center justify-center lg:h-1">
       <button
         type="button"
         disabled={disabled}
@@ -664,7 +664,7 @@ export function TransferPanelMain({
   )
 
   return (
-    <div className="mb-2 flex flex-col lg:gap-y-1">
+    <div className="mb-2 flex flex-col lg:gap-y-1   z-10">
       <NetworkContainer bgLogoHeight={138} network={networks.sourceChain}>
         <NetworkListboxPlusBalancesContainer>
           <NetworkSelectionContainer

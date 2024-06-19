@@ -54,14 +54,14 @@ export function HeaderAccountPopover({
   }
 
   const headerItemsClassName =
-    'arb-hover flex w-full flex-row items-center space-x-2 px-12 py-2 text-sm sm:text-sm text-white sm:text-white hover:bg-ocl-blue sm:px-4 sm:py-1'
+    ' z-50 arb-hover flex w-full flex-row items-center space-x-2 px-12 py-2 text-sm sm:text-sm text-white sm:text-white hover:bg-ocl-blue sm:px-4 sm:py-1'
 
   return (
-    <Popover className=" z-50 red relative w-full rounded-lg border-2 border-[#001321] bg-[#001A2C] px-6    sm:w-max sm:p-0">
+    <Popover className=" z-50 red relative w-full rounded-lg border-2 border-[#001321] sm:bg-[#001A2C] px-6 bg-[#0D1419]    sm:w-max sm:p-0">
       <Popover.Button
         className={twMerge(
           'flex w-full flex-row items-center justify-start gap-3 px-[12px] py-[7px] text-blue-400 transition-[background] duration-300',
-          'ui-open:bg-white/20 ui-not-open:bg-transparent ui-not-open:hover:bg-white/20',
+       'ui-open:bg-white/20 ui-not-open:bg-transparent ui-not-open:hover:bg-white/20',
           '  sm:w-max sm:rounded sm:px-2 sm:py-1'
           // isTestnet
           //   ? '  sm:ui-not-open:bg-white/20'
@@ -86,7 +86,7 @@ export function HeaderAccountPopover({
 
         <ChevronDownIcon className="ml-auto h-[16px] w-[16px] font-base text-white transition duration-200 sm:text-white" />
       </Popover.Button>
-      <Transition className="w-full sm:absolute sm:top-0">
+      <Transition className="w-full sm:absolute sm:top-0 ">
         <Popover.Panel className="flex w-full flex-col overflow-hidden rounded pb-2 sm:absolute sm:top-0 sm:bg-[#061017]">
           {/* Profile photo with address */}
           {showCopied && (
