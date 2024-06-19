@@ -19,12 +19,17 @@
   --blue-link: #1366C1;
   --mobile-menu-bg:#01080F;
   --nav-link-hover :#77C3F8 ;
+  --line-gradient-from : #141b22;
+  --line-gradient-to : #2776c0;
+  --box-shadow-from : #0F1923;
+  --box-shadow-to : #1B2630;
+  --box-shadow-border : #28333d;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #1366C1 rgb(212, 212, 212);
+  scrollbar-color: #005792 #00243D;
   /* color:white */
 }
 
@@ -66,6 +71,14 @@ body {
   @apply min-h-screen;
   background-color: var(--background);
   font-weight: 300;
+}
+
+#backgroundImage {
+  @apply min-h-screen;
+  background-image: url("/images/nexus/Hero-image.webp");
+  background-size: cover;
+  background-position: center;
+  
 }
 
 /*** HIDE NUMBER INPUT STEPS BUTTONS ****/

@@ -52,10 +52,7 @@ declare global {
 
 const rainbowkitTheme = merge(darkTheme(), {
   colors: {
-   
- 
-   
-    accentColor: '#1377BB',
+    accentColor: '#1377BB'
   },
   fonts: {
     body: 'Roboto, sans-serif'
@@ -111,7 +108,7 @@ export const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
     const isParentChainEthereum = isNetwork(
       parentChain.id
     ).isEthereumMainnetOrTestnet
- 
+
     actions.app.reset(networks.sourceChain.id)
     actions.app.setChainIds({
       l1NetworkChainId: parentChain.id,
@@ -205,9 +202,9 @@ function AppContent() {
   const { parentChain, childChain } = useNetworksRelationship(networks)
   const { address, isConnected, connector } = useAccount()
   const { isBlocked } = useAccountIsBlocked()
- 
+
   const { openConnectModal } = useConnectModal()
- 
+
   async function addNexusNetwork() {
     try {
       if (typeof window.ethereum !== 'undefined') {
@@ -216,14 +213,21 @@ function AppContent() {
           params: [
             {
               chainId: '0xCB6BAA',
-              rpcUrls: [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`],
+              rpcUrls: [
+                `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || 'null rpc'}`
+              ],
               chainName: 'Nexus Orbit Chain',
               nativeCurrency: {
                 name: 'ETHER',
                 symbol: 'ETH',
                 decimals: 18
               },
-              blockExplorerUrls : [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`]
+              blockExplorerUrls: [
+                `${
+                  process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL ||
+                  'null Explorer url'
+                }`
+              ]
             }
           ]
         })
@@ -266,15 +270,17 @@ function AppContent() {
 
   if (!isConnected) {
     return (
-      <>
-        <Header>
-          <HeaderConnectWalletButton />
-        </Header>
-
+      <div id='backgroundImage' className='h-screen'>
+        <ResponsiveAppBar wallet={false}   marginBelow={"mb-26"} />
         <AppConnectionFallbackContainer>
-          <></>
+        <div className="mt-4 flex w-full  items-center  justify-center">
+          <div>
+            <HeaderConnectWalletButton />
+          </div>
+        </div>
         </AppConnectionFallbackContainer>
-      </>
+ 
+      </div>
     )
   }
 
@@ -294,17 +300,14 @@ function AppContent() {
   }
 
   return (
-    <>
-    <div>
-
-      
-    </div>
+    <div id='backgroundImage' className='h-screen'>
+       
       {/* <Header>
         <HeaderAccountPopover />
 
       </Header> */}
 
-      <ResponsiveAppBar/>
+      <ResponsiveAppBar wallet={true}   marginBelow={"mb-22"} />
       {/* <Button
         className="   rounded-lg  px-4 py-2 text-sm font-medium   border-2 hover:border-2   float-right   mr-6"
         onClick={addNexusNetwork}
@@ -316,8 +319,8 @@ function AppContent() {
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />
       <MainContent />
-      <Footer/>
-    </>
+      <Footer />
+    </div>
   )
 }
 

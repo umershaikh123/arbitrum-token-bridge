@@ -488,6 +488,8 @@ function TokensPanel({
   )
 
   return (
+   
+
     <SearchPanelTable
       searchInputPlaceholder="Search by token name, symbol, or address"
       searchInputValue={newToken}
@@ -509,6 +511,7 @@ function TokensPanel({
         )}
       </AutoSizer>
     </SearchPanelTable>
+            
   )
 }
 
@@ -640,12 +643,16 @@ export function TokenSearch({
 
   return (
     <SearchPanel>
+
+   
       <SearchPanel.MainPage className={className}>
         <SearchPanel.PageTitle title="Select Token">
           <SearchPanel.CloseButton onClick={close} />
         </SearchPanel.PageTitle>
+      
         <TokensPanel onTokenSelected={selectToken} />
-        <div className="flex justify-end pt-4">
+       
+        <div className="flex justify-end pt-2 ">
           {isFetchingTokenLists ? (
             <SearchPanel.LoaderWithMessage loadingMessage="Fetching Tokens..." />
           ) : (

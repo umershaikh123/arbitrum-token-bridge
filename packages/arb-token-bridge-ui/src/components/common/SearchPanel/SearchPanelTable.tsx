@@ -27,7 +27,7 @@ export const SearchPanelTable = ({
     <div className="flex flex-col gap-3">
       <form onSubmit={onSubmit} className="flex flex-col">
         <div className="flex items-stretch gap-2">
-          <div className="relative flex h-full w-full grow items-center rounded border-[1px] border-gray-dark bg-black/30 px-2 text-white shadow-input">
+          <div className="relative flex h-full w-full grow items-center rounded border-[1px] border-gray-800 bg-[#061017] px-2 text-white shadow-input">
             <MagnifyingGlassIcon className="h-4 w-4 shrink-0" />
             <input
               type="search"
@@ -44,7 +44,7 @@ export const SearchPanelTable = ({
         )}
       </form>
       <div
-        className="sm:shadow-search-panel h-[calc(100vh_-_190px)] overflow-hidden rounded border border-gray-dark bg-black/30 sm:h-[400px]"
+        className="sm:shadow-search-panel h-[calc(100vh_-_190px)] overflow-hidden rounded border border-gray-800 bg-[#061017] sm:h-[300px]"
         data-cy={dataCy}
       >
         {children}

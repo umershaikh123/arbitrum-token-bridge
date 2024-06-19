@@ -36,7 +36,8 @@ type NetworkType = 'core' | 'orbit'
 
 enum ChainGroupName {
   core = 'CORE CHAINS',
-  orbit = 'ORBIT CHAINS'
+  orbit = 'ORBIT CHAINS',
+  NULL = ""
 }
 
 type ChainGroupInfo = {
@@ -49,16 +50,17 @@ const chainGroupInfo: { [key in NetworkType]: ChainGroupInfo } = {
     name: ChainGroupName.core
   },
   orbit: {
-    name: ChainGroupName.orbit,
+    name: ChainGroupName.NULL,
     description: (
-      <p className="mt-2 flex gap-1 whitespace-normal rounded bg-orange-dark px-2 py-1 text-xs text-orange">
-        <ShieldExclamationIcon className="h-4 w-4 shrink-0" />
-        <span>
-          Independent projects using Arbitrum technology. Orbit chains have
-          varying degrees of decentralization.{' '}
-          <span className="font-semibold">Bridge at your own risk.</span>
-        </span>
-      </p>
+      <></>
+      // <p className="mt-2 flex gap-1 whitespace-normal rounded bg-orange-dark px-2 py-1 text-xs text-orange">
+      //   <ShieldExclamationIcon className="h-4 w-4 shrink-0" />
+      //   <span>
+      //     Independent projects using Arbitrum technology. Orbit chains have
+      //     varying degrees of decentralization.{' '}
+      //     <span className="font-semibold">Bridge at your own risk.</span>
+      //   </span>
+      // </p>
     )
   }
 }
@@ -79,8 +81,6 @@ function ChainTypeInfoRow({
       style={style}
       className={twMerge(
         'px-4 py-3',
-        !isCoreGroup &&
-          'before:-mt-3 before:mb-3 before:block before:h-[1px] before:w-full before:bg-white/30 before:content-[""]'
       )}
     >
       <p className="text-sm text-white/70">{name}</p>
