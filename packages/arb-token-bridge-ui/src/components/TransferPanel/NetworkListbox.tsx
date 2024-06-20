@@ -37,7 +37,7 @@ export function NetworkListbox({
         <>
           <Listbox.Button
             style={{ backgroundColor }}
-            className="arb-hover flex w-max items-center gap-1 rounded px-3 py-2 text-sm text-white md:gap-2 md:text-xl"
+            className="arb-hover flex w-max items-center gap-1 rounded px-3 py-2 text-sm text-white md:gap-2 md:text-lg"
           >
             <span className="max-w-[220px] truncate leading-extra-tight md:max-w-[250px]">
               {label} {getNetworkName(value.id)}

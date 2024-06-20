@@ -4,7 +4,8 @@ import { Button } from '@mui/material'
 import { useNetworks } from '../../hooks/useNetworks'
 import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { isNetwork } from '../../util/networks'
-
+import MetamaskLogo from "@/icons/MetamaskLogo.svg"
+import Image from 'next/image'
 export const AddChainButton = () => {
   const [networks] = useNetworks()
   const { parentChain, childChain } = useNetworksRelationship(networks)
@@ -27,8 +28,10 @@ export const AddChainButton = () => {
           variant="outlined"
           sx={{ color: '#1377BB' }}
           title="add testnet holesky chain to your metamask"
+     
         >
-          Add Holesky Chain
+          <Image src={MetamaskLogo} width={25} height={25} alt='metamask logo' className='mr-2'/>
+          Add Holesky  
         </Button>
       ) : (
         <Button
@@ -38,7 +41,8 @@ export const AddChainButton = () => {
           sx={{ color: '#1377BB' }}
           title="add testnet nexus network chain to your metamask"
         >
-          Add Nexus Chain
+            <Image src={MetamaskLogo} width={25} height={25} alt='metamask logo' className='mr-2'/>
+          Add Nexus  
         </Button>
       )}
     </div>
@@ -55,7 +59,8 @@ export const AddNexusButton = () => {
         sx={{ color: '#1377BB' }}
         title="add testnet nexus network chain to your metamask"
       >
-        Add Nexus Chain
+          <Image src={MetamaskLogo} width={25} height={25} alt='metamask logo' className='mr-2'/>
+        Add Nexus 
       </Button>
     </div>
   )
@@ -71,7 +76,8 @@ export const AddHoleskyButton = () => {
         sx={{ color: '#1377BB' }}
         title="add testnet holesky chain to your metamask"
       >
-        Add Holesky Chain
+          <Image src={MetamaskLogo} width={25} height={25} alt='metamask logo' className='mr-2'/>
+        Add Holesky 
       </Button>
     </div>
   )

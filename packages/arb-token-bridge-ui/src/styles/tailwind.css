@@ -51,18 +51,30 @@
 
 * {
   box-sizing: border-box;
- 
+  /* font-family: inter; */
+  font-family: "Inter", sans-serif;
 }
 
+#validatorTable {
+  border-collapse: collapse;
+  width: 100%;
+}
 
+#validatorTableContainer{
+   overflow-x: auto;
+}
+
+.validatorTableRow{
+
+}
  
 .tabular-nums {
-  font-family: Roboto !important;
+  font-family: inter !important;
 }
 
 @layer base {
   html {
-    font-family: Roboto, sans-serif;
+    font-family: inter, sans-serif;
   }
 }
 

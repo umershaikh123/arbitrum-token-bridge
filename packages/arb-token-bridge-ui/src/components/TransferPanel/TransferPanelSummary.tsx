@@ -142,10 +142,10 @@ function TransferPanelSummaryContainer({
   className?: string
 }) {
   return (
-    <div className="mb-8 flex flex-col text-white">
+    <div className="mb-4 flex flex-col text-white">
       <span className="mb-3 text-xl">Summary</span>
 
-      <div className={twMerge('flex flex-col space-y-3', className)}>
+      <div className={twMerge('flex flex-col space-y-2', className)}>
         {children}
       </div>
     </div>

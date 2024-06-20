@@ -1104,9 +1104,9 @@ export function TransferPanel() {
                 backgroundColor: `${destinationChainUIcolor}66`
               }}
               className={twMerge(
-                'w-full border bg-eth-dark py-3 text-lg',
+                'w-full border bg-eth-dark py-2 text-base',
                 'disabled:!border-white/10 disabled:!bg-white/10',
-                'lg:text-lg'
+                'lg:text-base'
               )}
             >
               {isSmartContractWallet && isTransferring
@@ -1136,9 +1136,9 @@ export function TransferPanel() {
                 backgroundColor: `${destinationChainUIcolor}66`
               }}
               className={twMerge(
-                'w-full border py-3 text-lg',
+                'w-full border py-2 text-base',
                 'disabled:!border-white/10 disabled:!bg-white/10',
-                'lg:text-lg'
+                'lg:text-base'
               )}
             >
               {isSmartContractWallet && isTransferring

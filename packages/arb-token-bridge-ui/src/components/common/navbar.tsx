@@ -45,7 +45,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
         <Toolbar disableGutters>
           <Box
             sx={{
-              display: { xs: 'none', md: 'flex' }
+              display: { xs: 'none', lg: 'flex' }
             }}
           >
             <Image
@@ -59,7 +59,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
           <Box
             sx={{
               flexGrow: 1,
-              display: { xs: 'flex', md: 'none' },
+              display: { xs: 'flex', lg: 'none' },
               color: 'white'
             }}
           >
@@ -89,7 +89,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', lg: 'none' },
                 mt: '1px',
 
                 backdropFilter: 'blur(5px)',
@@ -193,7 +193,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
                 </MenuItem>
               </Link>
 
-              {wallet && (
+              {/* {wallet && (
               <MenuItem
               sx={{
                 width: { sm: '80vw', xs: '90vw' },
@@ -206,7 +206,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
               </div>
             </MenuItem>
 
-              )}
+              )} */}
 
 
               <MenuItem
@@ -259,7 +259,7 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
 
           <Box
             sx={{
-              display: { xs: 'flex', md: 'none', flexGrow: 1, mr: 2 }
+              display: { xs: 'flex', lg: 'none', flexGrow: 1, mr: 2 }
             }}
           >
             <Image
@@ -272,32 +272,44 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
           </Box>
 
           {/* Web Links */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <button className="mx-5 my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' } }}>
+            <div className='   space-x-6  flex  text-base  '>
+
+            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
               <Link href="/?destinationChain=nexus-orbit-chain&sourceChain=holesky">
                 Deposit
               </Link>
             </button>
 
-            <button className="mx-5 my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
               <Link href="/rollup">Dashboard</Link>
             </button>
 
-            <button className="mx-5 my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
               <Link href="https://docs.nexusnetwork.live/" target="_blank">
                 Docs
               </Link>
             </button>
 
-            <button className="mx-5 my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
               <Link href="https://www.nexusnetwork.live/" target="_blank">
                 Website
               </Link>
             </button>
+          </div>
           </Box>
 
           {wallet && (
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+ 
+              <div className="flex  w-full items-center  justify-end  max-w-max   mr-4 ">
+                <AddChainButton />
+              </div>
+        
+
+              )}
+
+          {wallet && (
+            <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
               <HeaderAccountPopover />
             </Box>
           )}
