@@ -3,6 +3,7 @@ import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { GET_HELP_LINK } from '../../constants'
 import { ExternalLink } from '../common/ExternalLink'
 import metamaskLogo from '@/icons/MetamaskLogo.svg'
+import walletLogo from "@/images/crypto-wallet.png"
 import Image from 'next/image'
 import { AddChainButton , AddHoleskyButton  , AddNexusButton} from '../common/AddChain'
 
@@ -10,11 +11,11 @@ function WalletConnectWarning() {
   return (
     <>
  
- <div className=' absolute top-16  right-32    '>
+ {/* <div className=' absolute top-16  right-32    '>
 
 <AddNexusButton/>
 
-</div>
+</div> */}
       <div className="flex w-full text-white flex-col items-center justify-center ">
   
                    
@@ -25,13 +26,13 @@ function WalletConnectWarning() {
             src={metamaskLogo}
             width={200}
             height={200}
-            alt="metamask logo"
+            alt="walletLogo"
             className=" "
             />
         </div>
-        <h1 className="mt-2 text-lg font-light ">
+        {/* <h1 className="mt-2 text-lg font-light ">
           connect your wallet to get started{' '}
-        </h1>
+        </h1> */}
         
     
       </div>

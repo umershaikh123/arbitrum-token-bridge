@@ -10,7 +10,10 @@ export default function Document() {
     <Html lang="en">
       <Head>
         <meta charSet="utf-8" />
-        <link rel="icon" href="/images/nexus/nexusLogocompressed.svg" />
+        <link rel="icon" href="/images/nexus/nexusLogoCompressed.svg" />
+        <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+</style>
 
         <meta name="theme-color" content="#001321" />
         <meta name="description" content={siteDescription} />

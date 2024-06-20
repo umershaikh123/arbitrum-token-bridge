@@ -95,31 +95,30 @@ export function ValidatorsData() {
     console.log('data', data.validators.length)
   }
   return (
-    <div className="    ">
-       {data.validators.length ? (
-    <table className=" mt-4  w-full  text-left  text-white table-fixed">
-      <tbody className="w-full">
-        <tr className=''>
-    <th className="w-[20%] px-2">Public Key</th>
-        <th className="w-[5%]  py-2 px-4">clusterId</th>
-    <th className="w-[20%] px-4">rollup</th>
-    <th className="w-[10%]">status</th>
-        </tr>
-
-       
-        
-            {data.validators.map((validator, index) => (
-      <tr key={index} className="  border-t-2  border-[#005792] py-4">
-      <td className="w-1/4 p-3 max-w-[5rem] overflow-hidden  text-ellipsis whitespace-nowrap" title={validator.id}>{validator.id}</td>
-      <td className="w-1/4 text-center"  >{validator.clusterId}</td>
-      <td className="w-1/4 px-4 max-w-[5rem] overflow-hidden text-ellipsis whitespace-nowrap">{validator.rollup}</td>
-      <td className="w-1/4">{validator.status}</td>
-              </tr>
-            ))}
-         
-       
-      </tbody>
-    </table>
+    <div className=" overflow-x-auto  ">
+    {data.validators.length ? (
+      <table className="mt-4 w-full text-left text-gray-200  table-fixed min-w-full   border-collapse ">
+        <thead>
+          <tr className=' bg-[#00233C]      '>
+            <th className="w-16 text-center p-2  ">S.No</th>
+            <th className="w-[80%] text-center   ">Validator public Key</th>
+            <th className="text-center  ">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.validators.map((validator, index) => (
+            <tr key={index} className=" border-2 border-[#003F69] py-4  ">
+              <td className="text-center   ">{index}</td>
+              <td className="p-3 text-center overflow-hidden text-ellipsis whitespace-nowrap  sm:w-[10rem] " title={validator.id}>
+                <Link href={`https://holesky.beaconcha.in/validator/${validator.id}`} target='_blank' className='w-full duration-300 hover:transition-all hover:font-medium hover:text-[#2E9AE4] ease-in-out '>
+                  {validator.id}
+                </Link>
+              </td>
+              <td className="text-center  ">{validator.status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
  ) 
 : (
   <>
@@ -175,38 +174,35 @@ export function NodeOperatorData() {
     return <div className='text-white'>No data available</div> }
 
   return (
-    <div className="  ">
-      <table className=" mt-4  w-full  text-left   text-white table-fixed">
-        <tbody className="w-full">
-          <tr className=''>
-          <th className="w-[5%] p-2 px-4">Id</th>
-      <th className="w-[40%]">Public Key</th>
-      <th className="w-[20%] px-4">Ip</th>
-      <th className="w-[7%]">Name</th>
-      <th className="w-[10%] px-4 ">Cluster Id</th>
+    <div className="overflow-x-auto">
+      <table className="mt-4 w-full text-left text-white table-fixed">
+        <thead>
+          <tr className='bg-[#00233C]      '>
+            <th className="p-2 text-center">SSV operator ID</th>
+            <th className="text-center">SSV operator name</th>
+            <th className="text-center">SSV cluster ID</th>
           </tr>
-
-          {data && (
-            <>
-              {data.nodeOperators.map((operator, index) => (
-        <tr key={index} className="  border-t-2 border-[#005792] py-4">
-        <td className="w-1/4 p-3 ">
-          <Link href={`https://holesky.explorer.ssv.network/operators/${operator.id}`} target='_blank' className='hover:border-b-2 border-b-2 hover:border-black  border-transparent duration-300 hover:transition-all  hover:font-medium  ease-in-out'>
-          
-          {operator.id}
-          </Link>
-          </td>
-        <td className="  max-w-[15rem] overflow-hidden  text-ellipsis whitespace-nowrap"  title={operator.pubkey}>{operator.pubkey}</td>
-        <td className="  px-4">{operator.ip}</td>
-        <td className=" ">{operator.name}</td>
-        <td className=" text-center ">{operator.clusterId}</td>
-                </tr>
-              ))}
-            </>
+        </thead>
+        <tbody>
+          {data && data.nodeOperators.length > 0 ? (
+            data.nodeOperators.map((operator, index) => (
+              <tr key={index} className=" border-2 border-[#003F69] py-4  ">
+                <td className="p-3 text-center">
+                  <Link href={`https://holesky.explorer.ssv.network/operators/${operator.id}`} target="_blank" className='w-full duration-300 hover:transition-all hover:font-medium hover:text-[#2E9AE4] ease-in-out'>
+                    {operator.id}
+                  </Link>
+                </td>
+                <td className="text-center">{operator.name}</td>
+                <td className="text-center">{operator.clusterId}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={3} className="text-center p-4">No operators found.</td>
+            </tr>
           )}
         </tbody>
       </table>
-  
     </div>
   )
 }

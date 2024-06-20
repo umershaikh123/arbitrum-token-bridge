@@ -281,11 +281,11 @@ function AppContent() {
   return (
     <div id='backgroundImage' className='h-screen relative'>
  
-      <div className=' absolute top-16 xl:right-32 right-8 lg:block hidden'>
+      {/* <div className=' absolute top-16 xl:right-32 right-8 lg:block hidden'>
 
         <AddChainButton />
  
-      </div>
+      </div> */}
 
       <ResponsiveAppBar wallet={true}   marginBelow={"mb-22"} />
 
@@ -366,6 +366,7 @@ export default function App() {
         <WagmiConfig {...wagmiConfigProps}>
           <RainbowKitProvider
             theme={rainbowkitTheme}
+             modalSize="compact"
             {...rainbowKitProviderProps}
           >
             <ConnectedChainSyncer />

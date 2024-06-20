@@ -320,7 +320,7 @@ function NetworkListboxPlusBalancesContainer({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex flex-row flex-wrap items-center justify-between gap-1 gap-y-2.5 whitespace-nowrap">
+    <div className="flex flex-row flex-wrap items-center justify-between gap-1 gap-y-2.5 whitespace-nowrap ">
       {children}
     </div>
   )
@@ -664,17 +664,17 @@ export function TransferPanelMain({
   )
 
   return (
-    <div className="mb-2 flex flex-col lg:gap-y-1   z-10">
+    <div className="mb-2 flex flex-col lg:gap-y-1    z-10">
       <NetworkContainer bgLogoHeight={138} network={networks.sourceChain}>
         <NetworkListboxPlusBalancesContainer>
           <NetworkSelectionContainer
             buttonStyle={buttonStyle}
             buttonClassName={twMerge(
-              'arb-hover flex w-max items-center gap-1 md:gap-2 rounded px-3 py-2 text-sm text-white outline-none md:text-xl'
+              'arb-hover flex w-max items-center gap-1 md:gap-2 rounded px-3 py-2 text-sm text-white outline-none md:text-lg'
             )}
             onChange={networkListboxProps.from.onChange}
           >
-            <span className="max-w-[220px] truncate text-sm leading-[1.1] md:max-w-[250px] md:text-xl">
+            <span className="max-w-[220px] truncate text-sm leading-[1.1] md:max-w-[250px] md:text-lg">
               From: {getNetworkName(networks.sourceChain.id)}
             </span>
           </NetworkSelectionContainer>
