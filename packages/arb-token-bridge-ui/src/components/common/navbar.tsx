@@ -15,9 +15,12 @@ import { usePathname } from 'next/navigation'
 import { HeaderAccountPopover } from './HeaderAccountPopover'
 import { Header } from './Header'
 import { addNexusChain, addHoleskyChain } from '../../util/metamask'
- 
 
-import { AddChainButton , AddHoleskyButton  , AddNexusButton} from '../common/AddChain'
+import {
+  AddChainButton,
+  AddHoleskyButton,
+  AddNexusButton
+} from '../common/AddChain'
 interface ResponsiveAppBarProps {
   wallet: Boolean
 
@@ -35,7 +38,6 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
     setAnchorElNav(null)
   }
 
- 
   return (
     <div className={`z-30 ${marginBelow}  flex justify-center`}>
       <nav
@@ -193,22 +195,6 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
                 </MenuItem>
               </Link>
 
-              {/* {wallet && (
-              <MenuItem
-              sx={{
-                width: { sm: '80vw', xs: '90vw' },
-
-                transition: 'background 0.3s ease-in-out'
-              }}
-            >
-              <div className="flex  w-full items-center    justify-center   ">
-                <AddChainButton />
-              </div>
-            </MenuItem>
-
-              )} */}
-
-
               <MenuItem
                 sx={{
                   width: { sm: '80vw', xs: '90vw' }
@@ -273,40 +259,36 @@ function ResponsiveAppBar({ wallet, marginBelow }: ResponsiveAppBarProps) {
 
           {/* Web Links */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', lg: 'flex' } }}>
-            <div className='   space-x-6  flex  text-base  '>
+            <div className="   flex  space-x-6  text-base  ">
+              <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+                <Link href="/?destinationChain=nexus-orbit-chain&sourceChain=holesky">
+                  Deposit
+                </Link>
+              </button>
 
-            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
-              <Link href="/?destinationChain=nexus-orbit-chain&sourceChain=holesky">
-                Deposit
-              </Link>
-            </button>
+              <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+                <Link href="/rollup">Dashboard</Link>
+              </button>
 
-            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
-              <Link href="/rollup">Dashboard</Link>
-            </button>
+              <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+                <Link href="https://docs.nexusnetwork.live/" target="_blank">
+                  Docs
+                </Link>
+              </button>
 
-            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
-              <Link href="https://docs.nexusnetwork.live/" target="_blank">
-                Docs
-              </Link>
-            </button>
-
-            <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
-              <Link href="https://www.nexusnetwork.live/" target="_blank">
-                Website
-              </Link>
-            </button>
-          </div>
+              <button className=" my-2 block  font-normal  capitalize   transition-all  duration-300  ease-in-out  hover:text-[#1377BB]">
+                <Link href="https://www.nexusnetwork.live/" target="_blank">
+                  Website
+                </Link>
+              </button>
+            </div>
           </Box>
 
           {wallet && (
- 
-              <div className="flex  w-full items-center  justify-end  max-w-max   mr-4 ">
-                <AddChainButton />
-              </div>
-        
-
-              )}
+            <div className="mr-4  flex w-full  max-w-max  items-center   justify-end ">
+              <AddChainButton />
+            </div>
+          )}
 
           {wallet && (
             <Box sx={{ display: { xs: 'none', lg: 'flex' } }}>
