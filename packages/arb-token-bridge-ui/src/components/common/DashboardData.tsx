@@ -101,15 +101,15 @@ export function ValidatorsData() {
         <thead>
           <tr className=' bg-[#00233C]      '>
             <th className="w-16 text-center p-2  ">S.No</th>
-            <th className="w-[80%] text-center   ">Validator public Key</th>
-            <th className="text-center  ">Status</th>
+            <th className="xl:w-[80%] lg:w-[60%] w-[40%] text-center     ">Validator public Key</th>
+            <th className="text-center w-[30%] ">Status</th>
           </tr>
         </thead>
         <tbody>
           {data.validators.map((validator, index) => (
             <tr key={index} className=" border-2 border-[#003F69] py-4  ">
               <td className="text-center   ">{index}</td>
-              <td className="p-3 text-center overflow-hidden text-ellipsis whitespace-nowrap  sm:w-[10rem] " title={validator.id}>
+              <td className="p-3 text-center overflow-hidden text-ellipsis whitespace-nowrap   " title={validator.id}>
                 <Link href={`https://holesky.beaconcha.in/validator/${validator.id}`} target='_blank' className='w-full duration-300 hover:transition-all hover:font-medium hover:text-[#2E9AE4] ease-in-out '>
                   {validator.id}
                 </Link>
