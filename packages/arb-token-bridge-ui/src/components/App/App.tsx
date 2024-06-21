@@ -279,14 +279,8 @@ function AppContent() {
   }
 
   return (
-    <div id='backgroundImage' className='h-screen relative'>
+    <div id='backgroundImage' className='h-full relative'>
  
-      {/* <div className=' absolute top-16 xl:right-32 right-8 lg:block hidden'>
-
-        <AddChainButton />
- 
-      </div> */}
-
       <ResponsiveAppBar wallet={true}   marginBelow={"mb-22"} />
 
       <TokenListSyncer />

@@ -22,7 +22,7 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteDescription} />
-        <meta property="og:image" content={`/images/nexus/Hero-image.webp`} />
+        <meta property="og:image" content={`/images/nexus/preview.png`} />
 
         {/* <!-- Twitter Meta Tags --> */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -30,7 +30,7 @@ export default function Document() {
         <meta property="twitter:url" content={siteDomain} />
         <meta name="twitter:title" content={siteTitle} />
         <meta name="twitter:description" content={siteDescription} />
-        <meta name="twitter:image" content={`/images/nexus/Hero-image.webp`} />
+        <meta name="twitter:image" content={`/images/nexus/preview.png`} />
       </Head>
       <body>
         <Main />
