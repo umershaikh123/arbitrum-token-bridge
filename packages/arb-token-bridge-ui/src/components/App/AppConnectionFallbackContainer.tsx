@@ -3,13 +3,18 @@ import { InformationCircleIcon } from '@heroicons/react/24/outline'
 import { GET_HELP_LINK } from '../../constants'
 import { ExternalLink } from '../common/ExternalLink'
 import metamaskLogo from '@/icons/MetamaskLogo.svg'
+import walletLogo from '@/images/crypto-wallet.png'
 import Image from 'next/image'
-
+import {
+  AddChainButton,
+  AddHoleskyButton,
+  AddNexusButton
+} from '../common/AddChain'
 
 function WalletConnectWarning() {
   return (
     <>
-      <div className="mt-8  flex w-full flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-center text-white ">
         <h1 className="text-[2.5rem] font-black  ">Get Started</h1>
 
         <div>
@@ -17,13 +22,10 @@ function WalletConnectWarning() {
             src={metamaskLogo}
             width={200}
             height={200}
-            alt="metamask logo"
+            alt="walletLogo"
             className=" "
           />
         </div>
-        <h1 className="mt-4 text-lg font-light ">
-          connect your wallet to get started{' '}
-        </h1>
       </div>
     </>
   )
@@ -31,11 +33,12 @@ function WalletConnectWarning() {
 export function AppConnectionFallbackContainer({
   children
 }: {
-  children: React.ReactNode
+  children?: React.ReactNode
 }) {
   return (
-    <div className="flex flex-col pt-4">
+    <div className="flex w-full flex-col items-center    justify-center pt-4   ">
       <WalletConnectWarning />
+      {children}
     </div>
   )
 }

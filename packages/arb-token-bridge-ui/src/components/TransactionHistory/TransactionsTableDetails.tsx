@@ -16,7 +16,7 @@ import { useETHPrice } from '../../hooks/useETHPrice'
 import { ExternalLink } from '../common/ExternalLink'
 import { TransactionsTableDetailsSteps } from './TransactionsTableDetailsSteps'
 import { Button } from '../common/Button'
-import { GET_HELP_LINK, ether } from '../../constants'
+import { GET_HELP_LINK, ether , NEXUS_DISCORD } from '../../constants'
 import { useTransactionHistory } from '../../hooks/useTransactionHistory'
 import { shortenAddress } from '../../util/CommonUtils'
 import { isTxCompleted } from './helpers'
@@ -28,7 +28,7 @@ const DetailsBox = ({
   header
 }: PropsWithChildren<{ header?: string }>) => {
   return (
-    <div className="my-2 flex w-full flex-col rounded border border-white/30 bg-black p-3 font-light text-white">
+    <div className="my-2 flex w-full flex-col rounded border border-none bg-[#061017] p-3 font-light text-white">
       {header && (
         <h4 className="mb-2 text-xs uppercase text-white/60">{header}</h4>
       )}
@@ -114,7 +114,7 @@ export const TransactionsTableDetails = ({
               leaveTo="opacity-0 scale-95"
               afterLeave={reset}
             >
-              <Dialog.Panel className="h-screen w-screen transform overflow-hidden rounded border border-white/10 bg-dark p-4 text-left align-middle shadow shadow-white/10 transition-all sm:h-auto sm:w-full sm:max-w-[488px]">
+              <Dialog.Panel className="h-screen w-screen transform overflow-hidden rounded border border-white/10 bg-[#0D1419] p-4 text-left align-middle shadow shadow-white/10 transition-all sm:h-auto sm:w-full sm:max-w-[488px]">
                 <Dialog.Title
                   className="mb-4 flex items-center justify-between text-lg font-light text-white"
                   as="h3"
@@ -237,10 +237,10 @@ export const TransactionsTableDetails = ({
 
                 {!isTxCompleted(tx) && (
                   <div className="flex justify-end">
-                    <ExternalLink href={GET_HELP_LINK}>
+                    <ExternalLink href={NEXUS_DISCORD }>
                       <Button
                         variant="secondary"
-                        className="border-white/30 text-xs"
+                        className="border-none text-xs"
                       >
                         Get help
                       </Button>

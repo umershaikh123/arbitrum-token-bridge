@@ -79,14 +79,14 @@ export const SidePanel = ({
             {/* The heading of dialog  */}
             <Dialog.Panel
               className={twMerge(
-                'side-panel flex h-full w-screen max-w-[1000px] flex-col border-l border-gray-dark bg-black',
+                'side-panel flex h-full w-screen max-w-[1000px] flex-col border-l border-gray-dark bg-[#0D1419]',
                 panelClassNameOverrides,
                 scrollable && 'overflow-y-auto'
               )}
             >
               <Dialog.Title
                 className={twMerge(
-                  'sticky top-0 z-50 mx-4 flex flex-row justify-between bg-black pt-4 text-white',
+                  'sticky top-0 z-50 mx-4 flex flex-row justify-between bg-[#0D1419] pt-4 text-white',
                   !heading && 'pb-4'
                 )}
               >

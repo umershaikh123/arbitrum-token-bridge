@@ -7,6 +7,7 @@
 :root {
   --primary: transparent;
   --secondary: #ffffff30;
+  --background : #001321;
   --toastify-color-error: #cd0000;
   --toastify-text-color-light: #1a1c1d;
   --toastify-text-color-info: #1a1c1d;
@@ -16,12 +17,19 @@
   --toastify-font-family: Roboto, sans-serif;
   --toastify-toast-min-height: 44px;
   --blue-link: #1366C1;
+  --mobile-menu-bg:#01080F;
+  --nav-link-hover :#77C3F8 ;
+  --line-gradient-from : #141b22;
+  --line-gradient-to : #2776c0;
+  --box-shadow-from : #0F1923;
+  --box-shadow-to : #1B2630;
+  --box-shadow-border : #28333d;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #1366C1 rgb(212, 212, 212);
+  scrollbar-color: #005792 #00243D;
   /* color:white */
 }
 
@@ -43,26 +51,46 @@
 
 * {
   box-sizing: border-box;
- 
+  /* font-family: inter; */
+  font-family: "Inter", sans-serif;
 }
 
+#validatorTable {
+  border-collapse: collapse;
+  width: 100%;
+}
 
+#validatorTableContainer{
+   overflow-x: auto;
+}
+
+.validatorTableRow{
+
+}
  
 .tabular-nums {
-  font-family: Roboto !important;
+  font-family: inter !important;
 }
 
 @layer base {
   html {
-    font-family: Roboto, sans-serif;
+    font-family: inter, sans-serif;
   }
 }
 
 #root,
 body {
   @apply min-h-screen;
-  @apply bg-white;
+  background-color: var(--background);
   font-weight: 300;
+}
+
+#backgroundImage {
+  @apply min-h-screen;
+  background-image: url("/images/nexus/Hero-image.webp");
+  background-size: cover;
+  background-position: center;
+  
 }
 
 /*** HIDE NUMBER INPUT STEPS BUTTONS ****/

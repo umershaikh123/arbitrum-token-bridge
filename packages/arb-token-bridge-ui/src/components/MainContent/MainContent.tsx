@@ -55,9 +55,9 @@ export function MainContent() {
 
   return (
     <>
-    <div className='w-full   flex justify-center  items-start'>
+    <div className='w-full   flex justify-center  items-start ' >
 
-      <div className="main-panel mx-auto -mt-8 flex w-full flex-col  sm:max-w-[600px] sm:pb-12 sm:pt-6">
+      <div className="main-panel mx-auto -mt-8 flex w-full flex-col  sm:max-w-[600px]  z-10  sm:pt-6">
         {/* <TransactionStatusInfo /> */}
 
         <TransferPanel />

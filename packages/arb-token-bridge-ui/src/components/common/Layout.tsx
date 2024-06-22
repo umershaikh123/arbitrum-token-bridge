@@ -3,11 +3,14 @@ import React from 'react'
 import { twMerge } from 'tailwind-merge'
 import Image from 'next/image'
 import EclipseBottom from '@/images/eclipse_bottom.png'
-
+import {
+  ArbQueryParamProvider,
+  useArbQueryParams
+} from '../../hooks/useArbQueryParams'
 import { Sidebar } from '../Sidebar'
 import { Toast } from './atoms/Toast'
 import { SiteBanner } from './SiteBanner'
-
+import ResponsiveAppBar from './navbar'
 import 'react-toastify/dist/ReactToastify.css'
 
 const unica = localFont({
@@ -38,18 +41,10 @@ export type LayoutProps = {
 
 export function Layout(props: LayoutProps) {
   return (
-    <div className={twMerge('relative flex-col bg-white ')}>
- 
-      <div className="relative flex flex-col sm:min-h-screen ">
+    <div className={twMerge('relative flex-col  ')}>
+      <div className="relative flex flex-col bg-[var(--background)]  sm:min-h-screen">
         <div className="flex flex-row">
-          <Sidebar />
-
-          <main className="grow">
-            <SiteBanner expiryDate="2024-04-07 12:00">
-              The Arbitrum Bridge has a new look!
-            </SiteBanner>
-            {props.children}
-          </main>
+          <main className="grow">{props.children}</main>
 
           <Toast />
         </div>

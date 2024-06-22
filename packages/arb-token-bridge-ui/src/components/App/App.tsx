@@ -14,7 +14,7 @@ import axios from 'axios'
 import { createOvermind, Overmind } from 'overmind'
 import { Provider } from 'overmind-react'
 import { useLocalStorage } from '@uidotdev/usehooks'
-
+import ResponsiveAppBar from '../common/navbar'
 import { ConnectionState } from '../../util'
 import { TokenBridgeParams } from '../../hooks/useArbTokenBridge'
 import { WelcomeDialog } from './WelcomeDialog'
@@ -42,16 +42,19 @@ import { useNetworksRelationship } from '../../hooks/useNetworksRelationship'
 import { HeaderConnectWalletButton } from '../common/HeaderConnectWalletButton'
 import { AppConnectionFallbackContainer } from './AppConnectionFallbackContainer'
 import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
-import { Button } from '@mui/material'
+ 
+import { Footer } from '../common/Footer'
+import { AddChainButton } from '../common/AddChain'
+ 
 declare global {
   interface Window {
     Cypress?: any
   }
 }
 
-const rainbowkitTheme = merge(lightTheme(), {
+const rainbowkitTheme = merge(darkTheme(), {
   colors: {
-    accentColor: 'var(--blue-link)'
+    accentColor: '#1377BB'
   },
   fonts: {
     body: 'Roboto, sans-serif'
@@ -107,7 +110,7 @@ export const ArbTokenBridgeStoreSyncWrapper = (): JSX.Element | null => {
     const isParentChainEthereum = isNetwork(
       parentChain.id
     ).isEthereumMainnetOrTestnet
- 
+
     actions.app.reset(networks.sourceChain.id)
     actions.app.setChainIds({
       l1NetworkChainId: parentChain.id,
@@ -201,36 +204,20 @@ function AppContent() {
   const { parentChain, childChain } = useNetworksRelationship(networks)
   const { address, isConnected, connector } = useAccount()
   const { isBlocked } = useAccountIsBlocked()
- 
+  
+  
+  const {
+    isArbitrum: isConnectedToArbitrum,
+    isOrbitChain: isConnectedToOrbitChain
+  } = isNetwork(networks.sourceChain.id)
+  const isParentChainEthereum = isNetwork(
+    parentChain.id
+  ).isEthereumMainnetOrTestnet
+
+
   const { openConnectModal } = useConnectModal()
- 
-  async function addNexusNetwork() {
-    try {
-      if (typeof window.ethereum !== 'undefined') {
-        const result = await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [
-            {
-              chainId: '0xCB6BAA',
-              rpcUrls: [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`],
-              chainName: 'Nexus Orbit Chain',
-              nativeCurrency: {
-                name: 'ETHER',
-                symbol: 'ETH',
-                decimals: 18
-              },
-              blockExplorerUrls : [`${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`]
-            }
-          ]
-        })
-        console.log('Metamask is installed')
-      } else {
-        console.log('Metamask is not installed')
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+
+  
   useEffect(() => {
     if (!isConnected) {
       openConnectModal?.()
@@ -262,15 +249,17 @@ function AppContent() {
 
   if (!isConnected) {
     return (
-      <>
-        <Header>
-          <HeaderConnectWalletButton />
-        </Header>
-
+      <div id='backgroundImage' className='h-screen'>
+        <ResponsiveAppBar wallet={false}   marginBelow={"mb-26"} />
         <AppConnectionFallbackContainer>
-          <></>
+        <div className="mt-4 flex w-full  items-center  justify-center">
+          <div>
+            <HeaderConnectWalletButton />
+          </div>
+        </div>
         </AppConnectionFallbackContainer>
-      </>
+ 
+      </div>
     )
   }
 
@@ -290,29 +279,16 @@ function AppContent() {
   }
 
   return (
-    <>
-    <div>
+    <div id='backgroundImage' className='h-full relative'>
+ 
+      <ResponsiveAppBar wallet={true}   marginBelow={"mb-22"} />
 
-      
-    </div>
-      <Header>
-        <HeaderAccountPopover />
-
-      </Header>
-
-      
-      <Button
-        className="   rounded-lg  px-4 py-2 text-sm font-medium   border-2 hover:border-2   float-right   mr-6"
-        onClick={addNexusNetwork}
-        variant="outlined"
-      >
-        Add Nexus Network
-      </Button>
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />
       <MainContent />
-    </>
+      <Footer />
+    </div>
   )
 }
 
@@ -384,6 +360,7 @@ export default function App() {
         <WagmiConfig {...wagmiConfigProps}>
           <RainbowKitProvider
             theme={rainbowkitTheme}
+             modalSize="compact"
             {...rainbowKitProviderProps}
           >
             <ConnectedChainSyncer />

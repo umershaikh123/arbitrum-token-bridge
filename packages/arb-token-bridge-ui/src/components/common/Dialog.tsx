@@ -157,7 +157,7 @@ export function Dialog(props: DialogProps) {
         >
           <HeadlessUIDialog.Panel
             className={twMerge(
-              'z-10 max-h-screen w-screen overflow-y-auto border border-gray-dark bg-gray-1 md:max-w-[727px] md:rounded',
+              'z-10 max-h-screen w-screen overflow-y-auto border border-none bg-[#0D1419] md:max-w-[727px] md:rounded',
               className
             )}
           >
@@ -175,7 +175,7 @@ export function Dialog(props: DialogProps) {
             <div className="flex-grow px-6">{props.children}</div>
 
             {!isFooterHidden && (
-              <div className="flex flex-row justify-end space-x-2 bg-[#3B3B3B] px-6 py-2">
+              <div className="flex flex-row justify-end space-x-2 bg-[#061017] px-6 py-2">
                 {closeable && (
                   <Button
                     ref={cancelButtonRef}

@@ -129,7 +129,7 @@ export function EstimatedGas({
     <div
       className={twMerge(
         'flex items-center justify-between',
-        'rounded-md bg-white/30 p-2',
+        'rounded-md bg-[#060B0F] p-2',
         'text-right text-xs font-light text-white opacity-80'
       )}
     >

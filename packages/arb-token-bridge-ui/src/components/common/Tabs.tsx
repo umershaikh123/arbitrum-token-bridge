@@ -23,7 +23,7 @@ interface TabPanelProps {
         {...other}
       >
         {value === index && (
-          <Box sx={{ p: 3 }}>
+          <Box sx={{ p: 1 }}>
             <div>{children}</div>
           </Box>
         )}
@@ -38,10 +38,10 @@ export default function CenteredTabs() {
   };
  
   return (
-    <Box sx={{ width: '100%', bgcolor: 'background.paper'   }}>
-      <Tabs value={value} onChange={handleChange} centered>
-        <Tab label="Validators" />
-        <Tab label="Node Operators" />
+    <Box sx={{ width: '100%', bgcolor: 'transparent'     }}>
+      <Tabs value={value} onChange={handleChange} centered  >
+        <Tab label="Validators"  sx={{color: "white"}}/>
+        <Tab label="Node Operators" sx={{color: "white"}}/>
    
       </Tabs>
 
