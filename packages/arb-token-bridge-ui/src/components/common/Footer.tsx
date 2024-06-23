@@ -29,7 +29,7 @@ export const Footer = () => {
           </Link>
 
           <Link
-            href={'https://discord.gg/kubuD7Mvf7'}
+            href={'https://discord.gg/wnTfyh6T'}
             target="_blank"
             className="mb-2 text-sm transition-all duration-300   ease-in-out  hover:scale-110  sm:text-lg"
             title="Discord Server"
