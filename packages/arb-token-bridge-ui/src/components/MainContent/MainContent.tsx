@@ -11,7 +11,7 @@ import { TransactionHistory } from '../TransactionHistory/TransactionHistory'
 import { useTransactionHistory } from '../../hooks/useTransactionHistory'
 import { isTxPending } from '../TransactionHistory/helpers'
 import { TransactionStatusInfo } from '../TransactionHistory/TransactionStatusInfo'
-
+import { Footer } from '../common/Footer'
 function TransactionHistorySidePanel() {
   const { closeTransactionHistoryPanel } = useAppContextActions()
   const {
@@ -55,13 +55,14 @@ export function MainContent() {
 
   return (
     <>
-    <div className='w-full   flex justify-center  items-start ' >
+    <div className='w-full   h-full  min-h-[78vh] flex flex-col justify-center  items-center ' >
 
-      <div className="main-panel mx-auto -mt-8 flex w-full flex-col  sm:max-w-[600px]  z-10  sm:pt-6">
+      <div className="   mx-auto   flex w-full flex-col  sm:max-w-[600px]  z-10  sm:pt-6">
         {/* <TransactionStatusInfo /> */}
 
         <TransferPanel />
       </div>
+      <Footer />
     </div>
 
       <TransactionHistorySidePanel />

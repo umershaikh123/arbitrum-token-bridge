@@ -281,13 +281,13 @@ function AppContent() {
   return (
     <div id='backgroundImage' className='h-full relative'>
  
-      <ResponsiveAppBar wallet={true}   marginBelow={"mb-22"} />
+      <ResponsiveAppBar wallet={true}   marginBelow={"mb-16"} />
 
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />
       <MainContent />
-      <Footer />
+     
     </div>
   )
 }
