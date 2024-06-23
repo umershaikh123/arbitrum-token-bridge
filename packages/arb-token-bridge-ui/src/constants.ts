@@ -4,9 +4,9 @@ export const TOS_LOCALSTORAGE_KEY = 'arbitrum:bridge:tos-v' + TOS_VERSION
 
 export const SIDEBAR_OPEN_PREFERENCE_KEY = 'arbitrum:sidebar:opened'
 
-const SUPPORT_LINK_BASE = 'https://support.arbitrum.io'
+const SUPPORT_LINK_BASE = 'https://discord.gg/wnTfyh6T'
 
-export const GET_HELP_LINK = `${SUPPORT_LINK_BASE}/hc/en-us/requests/new?ticket_form_id=18155929976987`
+export const GET_HELP_LINK = `https://discord.gg/wnTfyh6T`
 export const NEXUS_DISCORD = "https://discord.gg/wnTfyh6T"
 export const PORTAL_DOMAIN = 'https://portal.arbitrum.io'
 
