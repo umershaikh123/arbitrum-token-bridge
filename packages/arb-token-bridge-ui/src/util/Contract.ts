@@ -10,7 +10,7 @@ export async function getNexusReward(): Promise<string | undefined> {
     const { abi: nexusABI} = NexusAbiJson 
  
     if (window.ethereum) {
-      const holesky_rpc = `https://holesky.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_KEY}` 
+      const holesky_rpc = `https://ethereum-holesky-rpc.publicnode.com` 
       const provider = new ethers.providers.JsonRpcProvider(holesky_rpc);
       const contractAddress = '0x85deaBEa8c6b45ff1f21C128b1f6Ed971bC122b3';
       const NexusLibrary = new ethers.Contract(contractAddress, nexusABI as any , provider );
