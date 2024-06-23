@@ -84,16 +84,28 @@ export function sanitizeQueryParams({
   sourceChainId: ChainId | number
   destinationChainId: ChainId | number
 } {
-  // when both `sourceChain` and `destinationChain` are undefined or invalid, default to Ethereum and Arbitrum One
+  // when both `sourceChain` and `destinationChain` are undefined or invalid, default to Holesky and NexusOrbit
   if (
     (!sourceChainId && !destinationChainId) ||
+    (sourceChainId == 1 || 1337 || 11155111 || 42161 ||42170 ||421614 || 412346 ||23011913   ) ||
+    (destinationChainId == 1 || 1337|| 11155111 || 42161 ||42170 ||421614 || 412346 || 23011913   ) ||
     (!isSupportedChainId(sourceChainId) &&
       !isSupportedChainId(destinationChainId))
   ) {
-    return {
-      sourceChainId: ChainId.Holesky,
-      destinationChainId: ChainId.NexusOrbit
+
+    if (sourceChainId == 17000 && destinationChainId== 13331370) {
+      return {
+        sourceChainId: ChainId.Holesky,
+        destinationChainId: ChainId.NexusOrbit
+      }
     }
+    else {
+      return {
+        sourceChainId:ChainId.NexusOrbit ,
+        destinationChainId:    ChainId.Holesky
+      }
+    }
+
   }
 
   // destinationChainId is valid and sourceChainId is undefined
@@ -102,7 +114,7 @@ export function sanitizeQueryParams({
     isSupportedChainId(destinationChainId)
   ) {
     const [defaultSourceChainId] = getDestinationChainIds(destinationChainId)
-    return { sourceChainId: defaultSourceChainId!, destinationChainId }
+    return { sourceChainId: ChainId.Holesky, destinationChainId }
   }
 
   // sourceChainId is valid and destinationChainId is undefined
@@ -113,7 +125,7 @@ export function sanitizeQueryParams({
     const [defaultDestinationChainId] = getDestinationChainIds(sourceChainId)
     return {
       sourceChainId: sourceChainId,
-      destinationChainId: defaultDestinationChainId!
+      destinationChainId: ChainId.NexusOrbit
     }
   }
 
@@ -122,7 +134,7 @@ export function sanitizeQueryParams({
     const [defaultDestinationChainId] = getDestinationChainIds(sourceChainId!)
     return {
       sourceChainId: sourceChainId!,
-      destinationChainId: defaultDestinationChainId!
+      destinationChainId: ChainId.NexusOrbit
     }
   }
 
