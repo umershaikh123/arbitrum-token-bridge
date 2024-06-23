@@ -73,7 +73,7 @@ export function chainIdToInfuraKey(chainId: ChainId) {
 
       
         case ChainId.Holesky:
-          return "https://holesky.infura.io/v3/fffc0af392524e46b05ebe5666152690"
+          return `https://ethereum-holesky-rpc.publicnode.com`
     default:
       return defaultInfuraKey
   }
@@ -97,7 +97,7 @@ export function chainIdToInfuraUrl(chainId: ChainId) {
 
       
     case ChainId.Holesky:
-      return "https://holesky.infura.io/v3/fffc0af392524e46b05ebe5666152690"
+      return `https://ethereum-holesky-rpc.publicnode.com`
       
     default:
       return undefined
