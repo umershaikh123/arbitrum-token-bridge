@@ -5,11 +5,13 @@ import { BigNumber, ethers  } from 'ethers'
 import { GetContractTypeFromFactory } from '@arbitrum/sdk/dist/lib/abi/common'
 import { useState , useEffect} from 'react'
 import   NexusAbiJson  from '../../NexusLibrary.json'
- import { getNexusReward  } from '../../util/Contract'
+ import { getNexusReward , getNexusBalance } from '../../util/Contract'
 import { getClient } from '../../util/client'
 import { gql } from '@apollo/client'
 import { ValidatorData } from '../../types'
 import { Console } from 'console'
+
+
 const validatorQuery = gql`
   query Now {
     validators {
@@ -22,26 +24,27 @@ const validatorQuery = gql`
 `
 
 export default function Index() {
-  const [rewardEth, setRewardEth] = useState<string>("");
+  const [total, setTotal] = useState<string>("");
   const [heightVariable, setHeight] = useState(700)
   const [transactionCount, setTransactionCount] = useState<number>(0)
   const [stakedAmount, setStakedAmount] = useState<number>(0)
 
-  useEffect(() => {
-    async function fetchReward() {
-      const reward:string | undefined = await getNexusReward();
-      console.log("reward" , reward);
-      
-      if (typeof reward === 'string') {
-        const trimmedReward = parseFloat(reward).toFixed(5);
-        setRewardEth(trimmedReward);
-      }
-    }
+  useEffect(  () => {
+     
     async function fetchData() {
       try {
         const { data } = await getClient.query({ query: validatorQuery })
          const stakedAmount = data.validators.length * 32
          setStakedAmount(stakedAmount)
+         const balance:any = await getNexusBalance()
+         const reward:any = await getNexusReward();
+    
+        const intbalance:number = parseFloat(balance)
+        const intreward:number = parseFloat(reward)
+        //  total amount: balance(bridge contract) + eth staked - rewards
+         const totalBalance:any = ( intbalance + stakedAmount) -  intreward
+         const trimmedtotalBalance= parseFloat(totalBalance).toFixed(3);
+         setTotal(trimmedtotalBalance)
 
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -72,9 +75,10 @@ export default function Index() {
       updateHeight()
    
    
+    // fetchReward();
     fetchTransactionData()
     fetchData()
-    fetchReward();
+   
     window.addEventListener('resize', updateHeight );
 
     return () => {
@@ -95,7 +99,7 @@ export default function Index() {
 
             <div className=" flex h-full w-3/12 flex-col items-center justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
               <h1 className="lg:text-xl xl:text-2xl ">Rewards earned</h1>
-              <h1 className=" font-light lg:text-lg xl:text-xl">  {rewardEth !== null ? `${rewardEth} ETH` : 'Loading rewards...'}</h1>
+              <h1 className=" font-light lg:text-lg xl:text-xl">  {total !== null ? `${total} ETH` : 'Loading rewards...'}</h1>
             </div>
 
             <div className=" flex h-full w-3/12 flex-col items-center  justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
