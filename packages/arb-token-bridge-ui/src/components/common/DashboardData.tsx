@@ -48,7 +48,12 @@ export function ValidatorsData() {
   const [data, setData] = useState<ValidatorData | null>(null)
   const [loading, setLoading] = useState(true)
   const [page, setPage] = useState(1)
-  const rowsPerPage = 5
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const calculateRowsPerPage = (height: number) => {
+    if (height <= 700) return 5;
+    return 5 + Math.floor((height - 700) / 50);
+  };
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -62,6 +67,17 @@ export function ValidatorsData() {
     }
 
     fetchData()
+    const updateRowsPerPage = () => {
+      const height = window.innerHeight;
+      setRowsPerPage(calculateRowsPerPage(height));
+    };
+
+    updateRowsPerPage();
+    window.addEventListener('resize', updateRowsPerPage);
+
+    return () => {
+      window.removeEventListener('resize', updateRowsPerPage);
+    };
   }, [])
   const handleChangePage = (
     event: React.ChangeEvent<unknown>,
@@ -83,8 +99,8 @@ export function ValidatorsData() {
   const paginatedValidators = data.validators.slice(startIndex, endIndex)
 
   return (
-    <div className="overflow-x-auto text-gray-200">
-      <table className="mt-4 w-full min-w-full table-fixed border-collapse text-left text-gray-200">
+    <div className="overflow-x-auto text-gray-200 ">
+      <table className="mt-4 w-full min-w-full table-fixed border-collapse text-left text-gray-200 ">
         <thead>
           <tr className="bg-[#00233C]">
             <td className="w-16 p-2 text-center">S.No</td>
@@ -95,7 +111,9 @@ export function ValidatorsData() {
           </tr>
         </thead>
         <tbody>
-          {paginatedValidators.map((validator, index) => (
+           
+            { paginatedValidators.length > 0 ? (
+          paginatedValidators.map((validator, index) => (
             <tr
               key={startIndex + index}
               className="border-2 border-[#003F69] py-4"
@@ -112,11 +130,18 @@ export function ValidatorsData() {
               </td>
               <td className="text-center  ">{validator.status}</td>
             </tr>
-          ))}
+          ))
+          ) : (
+            <tr>
+              <td colSpan={3} className="p-4 text-center">
+                No Validators found.
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
 
-      <div className=" flex   w-full items-center justify-center">
+      <div className=" flex   w-full items-center justify-center ">
         <Pagination
           className="mt-4 "
           count={Math.ceil(data.validators.length / rowsPerPage)}
