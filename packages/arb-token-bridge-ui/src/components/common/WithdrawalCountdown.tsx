@@ -11,9 +11,9 @@ import { MergedTransaction } from '../../state/app/state'
  * Buffer for after a node is confirmable but isn't yet confirmed.
  * A rollup block (RBlock) typically gets asserted every 30-60 minutes.
  */
-const CONFIRMATION_BUFFER_MINUTES = 5
+const CONFIRMATION_BUFFER_MINUTES = 25
 
-const SECONDS_IN_MIN = 5
+const SECONDS_IN_MIN = 26
 
 export function getTxConfirmationDate({
   createdAt,
