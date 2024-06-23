@@ -23,10 +23,10 @@ const validatorQuery = gql`
 
 export default function Index() {
   const [rewardEth, setRewardEth] = useState<string>("");
- 
+  const [heightVariable, setHeight] = useState(700)
   const [transactionCount, setTransactionCount] = useState<number>(0)
   const [stakedAmount, setStakedAmount] = useState<number>(0)
-  
+
   useEffect(() => {
     async function fetchReward() {
       const reward:string | undefined = await getNexusReward();
@@ -65,15 +65,27 @@ export default function Index() {
         console.error('Error fetching transaction data:', error);
       }
     }
+    const updateHeight = () => {
+      const heightValue = window.innerHeight;
+      setHeight(heightValue)
+      }
+      updateHeight()
+   
+   
     fetchTransactionData()
     fetchData()
     fetchReward();
+    window.addEventListener('resize', updateHeight );
+
+    return () => {
+      window.removeEventListener('resize', updateHeight );
+    };
   }, []);
 
   return (
     <div id="backgroundImage" className="">
       <ResponsiveAppBar wallet={false} marginBelow={'mb-12'} />
-      <div className="    flex    h-full w-full  flex-col     py-2 backdrop-blur-2xl  sm:px-16">
+      <div className="    flex        backdrop-blur-2xl w-full  flex-col     py-2   sm:px-16" style={{ height: heightVariable > 700 ? heightVariable : '100%' }}>
         <>
           <div className="mb-4 mt-4 flex w-full items-center justify-center space-x-8 text-[#CDEBFF]">
             <div className=" flex h-full  w-3/12 flex-col items-center justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">

@@ -9,7 +9,7 @@ import {
 } from '../../hooks/useArbQueryParams'
 import { Sidebar } from '../Sidebar'
 import { Toast } from './atoms/Toast'
-import { SiteBanner } from './SiteBanner'
+ 
 import ResponsiveAppBar from './navbar'
 import 'react-toastify/dist/ReactToastify.css'
 
