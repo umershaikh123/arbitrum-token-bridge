@@ -27,7 +27,7 @@ export default function Index() {
   const [total, setTotal] = useState<string>("");
   const [heightVariable, setHeight] = useState(700)
   // const [transactionCount, setTransactionCount] = useState<number>(0)
-  const [transactionCount, setTransactionCount] = useState<number>(0)
+  const [transactionCount, setTransactionCount] = useState<string>("")
 
   const [stakedAmount, setStakedAmount] = useState<number>(0)
 
