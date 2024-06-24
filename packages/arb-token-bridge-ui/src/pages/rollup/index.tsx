@@ -98,21 +98,21 @@ export default function Index() {
         <>
           <div className="mb-4 mt-4 flex w-full items-center justify-center space-x-8 text-[#CDEBFF]">
             <div className=" flex h-full  w-3/12 flex-col items-center justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
-              <h1 className=" lg:text-xl xl:text-2xl">ETH Staked</h1>
-              <h1 className=" font-light lg:text-lg xl:text-xl"> {stakedAmount !== null ? `${stakedAmount} ETH` : 'Loading amount...'}</h1>
+              <h1 className=" lg:text-xl xl:text-2xl">ETH Bridged</h1>
+              <h1 className=" font-light lg:text-lg xl:text-xl"> {transactionCount !== null ? `${transactionCount} ETH` : 'Loading amount...'}</h1>
             </div>
 
             <div className=" flex h-full w-3/12 flex-col items-center justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
-              <h1 className="lg:text-xl xl:text-2xl ">Rewards earned</h1>
-              <h1 className=" font-light lg:text-lg xl:text-xl">  {total !== null ? `${total} ETH` : 'Loading rewards...'}</h1>
+              <h1 className="lg:text-xl xl:text-2xl ">ETH Staked</h1>
+              <h1 className=" font-light lg:text-lg xl:text-xl"> {stakedAmount !== null ? `${stakedAmount} ETH` : 'Loading amount...'}</h1>
             </div>
 
             <div className=" flex h-full w-3/12 flex-col items-center  justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
               <h1 className=" lg:text-xl xl:text-2xl">
-                ETH Bridged
+                Rewards Earned
               </h1>
-              <h1 className="font-light lg:text-lg xl:text-xl"> {transactionCount !== null ? (
-        <p>{transactionCount}</p>
+              <h1 className="font-light lg:text-lg xl:text-xl"> {total !== null ? (
+        <p>{total} ETH</p>
       ) : (
         <p>Loading...</p>
       )}</h1>
