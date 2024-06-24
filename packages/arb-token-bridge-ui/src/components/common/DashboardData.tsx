@@ -51,7 +51,7 @@ export function ValidatorsData() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const calculateRowsPerPage = (height: number) => {
     if (height <= 700) return 5;
-    return 9;
+    return 6;
   };
 
   useEffect(() => {
