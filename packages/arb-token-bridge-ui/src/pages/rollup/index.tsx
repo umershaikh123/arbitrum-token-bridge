@@ -26,29 +26,34 @@ const validatorQuery = gql`
 export default function Index() {
   const [total, setTotal] = useState<string>("");
   const [heightVariable, setHeight] = useState(700)
+  // const [transactionCount, setTransactionCount] = useState<number>(0)
   const [transactionCount, setTransactionCount] = useState<number>(0)
+
   const [stakedAmount, setStakedAmount] = useState<number>(0)
 
   useEffect(  () => {
-     
+
     async function fetchData() {
       try {
         const { data } = await getClient.query({ query: validatorQuery })
          const stakedAmount = data.validators.length * 32
-         setStakedAmount(stakedAmount)
          const balance:any = await getNexusBalance()
          const reward:any = await getNexusReward();
-    
+        console.log("rewards:", reward)
         const intbalance:number = parseFloat(balance)
         const intreward:number = parseFloat(reward)
         //  total amount: balance(bridge contract) + eth staked - rewards
          const totalBalance:any = ( intbalance + stakedAmount) -  intreward
-         const trimmedtotalBalance= parseFloat(totalBalance).toFixed(3);
-         setTotal(trimmedtotalBalance)
+         const trimmedtotalBalance= parseFloat(balance).toFixed(3);
+         const trimmedReward = parseFloat(reward).toFixed(3)
+         setTotal(trimmedReward)
+         setStakedAmount(stakedAmount)
+         setTransactionCount(trimmedtotalBalance)
+
 
       } catch (error) {
         console.error('Error fetching data:', error)
-      
+
       }
     }
 
@@ -59,8 +64,8 @@ export default function Index() {
           const data = await response.json();
           // Sum up the tx_count values from each object in the chart_data array
           const totalCount = data.chart_data.reduce((acc:any, curr:any) => acc + curr.tx_count, 0);
-       
-          setTransactionCount(totalCount);
+
+          // setTransactionCount(totalCount);
         } else {
           console.error('Failed to fetch transaction data:', response.statusText);
         }
@@ -73,12 +78,12 @@ export default function Index() {
       setHeight(heightValue)
       }
       updateHeight()
-   
-   
+
+
     // fetchReward();
     fetchTransactionData()
     fetchData()
-   
+
     window.addEventListener('resize', updateHeight );
 
     return () => {
@@ -93,7 +98,7 @@ export default function Index() {
         <>
           <div className="mb-4 mt-4 flex w-full items-center justify-center space-x-8 text-[#CDEBFF]">
             <div className=" flex h-full  w-3/12 flex-col items-center justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
-              <h1 className=" lg:text-xl xl:text-2xl">ETH bridged</h1>
+              <h1 className=" lg:text-xl xl:text-2xl">ETH Staked</h1>
               <h1 className=" font-light lg:text-lg xl:text-xl"> {stakedAmount !== null ? `${stakedAmount} ETH` : 'Loading amount...'}</h1>
             </div>
 
@@ -104,7 +109,7 @@ export default function Index() {
 
             <div className=" flex h-full w-3/12 flex-col items-center  justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
               <h1 className=" lg:text-xl xl:text-2xl">
-                Total transactions  
+                ETH Bridged
               </h1>
               <h1 className="font-light lg:text-lg xl:text-xl"> {transactionCount !== null ? (
         <p>{transactionCount}</p>
