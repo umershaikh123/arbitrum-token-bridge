@@ -546,7 +546,7 @@ export function TransferPanelMain({
           <span>
             Gas estimation failed, join our{' '}
             <ExternalLink
-              href="https://discord.com/invite/ZpZuw7p"
+              href="https://discord.gg/wnTfyh6T"
               className="underline"
             >
               Discord

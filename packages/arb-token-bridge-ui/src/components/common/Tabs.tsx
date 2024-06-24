@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import { ValidatorsData , NodeOperatorData } from './DashboardData';
-
+import { useState, useEffect } from 'react'
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -32,12 +32,28 @@ interface TabPanelProps {
   }
 export default function CenteredTabs() {
   const [value, setValue] = React.useState(0);
-
+  const [heightVariable, setHeight] = useState(700)
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
  
+  useEffect(() => {
+    const updateHeight = () => {
+    const heightValue = window.innerHeight;
+    setHeight(heightValue)
+    }
+    updateHeight()
+    window.addEventListener('resize', updateHeight );
+
+    return () => {
+      window.removeEventListener('resize', updateHeight );
+    };
+  }, [])
+  
   return (
+    <div className={`  flex justify-center items-center mt-2  `}  style={{ height: heightVariable > 700 ? 'calc(100vh - 40vh)' : 'auto' }}> 
+   
+  
     <Box sx={{ width: '100%', bgcolor: 'transparent'     }}>
       <Tabs value={value} onChange={handleChange} centered  >
         <Tab label="Validators"  sx={{color: "white"}}/>
@@ -58,5 +74,6 @@ export default function CenteredTabs() {
         </>
       </CustomTabPanel>
     </Box>
+    </div>
   );
 }

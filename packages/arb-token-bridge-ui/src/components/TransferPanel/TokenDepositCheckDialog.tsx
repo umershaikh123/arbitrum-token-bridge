@@ -81,7 +81,7 @@ export function TokenDepositCheckDialog(props: TokenDepositCheckDialogProps) {
           or ask on{' '}
           <ExternalLink
             className="arb-hover underline"
-            href="https://discord.gg/ZpZuw7p"
+            href="https://discord.gg/wnTfyh6T"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -1101,7 +1101,8 @@ export function TransferPanel() {
               }}
               style={{
                 borderColor: destinationChainUIcolor,
-                backgroundColor: `${destinationChainUIcolor}66`
+                // backgroundColor: `${destinationChainUIcolor}`
+                 backgroundColor: `#003F69`
               }}
               className={twMerge(
                 'w-full border bg-eth-dark py-2 text-base',
@@ -1133,7 +1134,9 @@ export function TransferPanel() {
               }}
               style={{
                 borderColor: destinationChainUIcolor,
-                backgroundColor: `${destinationChainUIcolor}66`
+                // backgroundColor: `${destinationChainUIcolor}66`
+                backgroundColor: `#003F69`
+                
               }}
               className={twMerge(
                 'w-full border py-2 text-base',
