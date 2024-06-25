@@ -9,7 +9,7 @@ import {
  
   Pagination
 } from '@mui/material'
-import { Transition } from '@headlessui/react'
+ 
  
 
 export function ValidatorsData({data} : {data : ValidatorData | null}) {
@@ -17,7 +17,7 @@ export function ValidatorsData({data} : {data : ValidatorData | null}) {
  
   const [page, setPage] = useState(1)
   const [rowsPerPage, setRowsPerPage] = useState(5)
-  const [open, setOpen] = useState(true)
+ 
  
   const calculateRowsPerPage = (height: number) => {
     if (height <= 900) return 5
@@ -60,7 +60,7 @@ export function ValidatorsData({data} : {data : ValidatorData | null}) {
 
   return (
     <div className="overflow-x-auto text-gray-200 ">
-      <Transition show={open} appear={true}>
+   
         <table className="mt-4 w-full min-w-full table-fixed border-collapse text-left text-gray-200 transition duration-300 ease-in data-[closed]:opacity-0">
           <thead>
             <tr className="bg-[#00233C]">
@@ -118,7 +118,7 @@ export function ValidatorsData({data} : {data : ValidatorData | null}) {
             }}
           />
         </div>
-      </Transition>
+   
     </div>
   )
 }
