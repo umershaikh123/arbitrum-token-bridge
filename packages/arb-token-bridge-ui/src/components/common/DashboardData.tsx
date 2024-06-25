@@ -51,7 +51,7 @@ export function ValidatorsData() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const calculateRowsPerPage = (height: number) => {
     if (height <= 700) return 5;
-    return 5 + Math.floor((height - 700) / 50);
+    return 6;
   };
 
   useEffect(() => {
@@ -111,7 +111,7 @@ export function ValidatorsData() {
           </tr>
         </thead>
         <tbody>
-           
+
             { paginatedValidators.length > 0 ? (
           paginatedValidators.map((validator, index) => (
             <tr
