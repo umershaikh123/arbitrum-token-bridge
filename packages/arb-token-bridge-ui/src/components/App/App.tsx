@@ -45,7 +45,7 @@ import { ProviderName, trackEvent } from '../../util/AnalyticsUtils'
  
 import { Footer } from '../common/Footer'
 import { AddChainButton } from '../common/AddChain'
- 
+import Fade from '@mui/material/Fade';
 declare global {
   interface Window {
     Cypress?: any
@@ -204,7 +204,7 @@ function AppContent() {
   const { parentChain, childChain } = useNetworksRelationship(networks)
   const { address, isConnected, connector } = useAccount()
   const { isBlocked } = useAccountIsBlocked()
-  
+  const [fadeIn, setFadeIn] = useState(false);
   
   const {
     isArbitrum: isConnectedToArbitrum,
@@ -222,6 +222,7 @@ function AppContent() {
     if (!isConnected) {
       openConnectModal?.()
     }
+    setFadeIn(true);
   }, [isConnected, openConnectModal])
 
   useEffect(() => {
@@ -249,6 +250,7 @@ function AppContent() {
 
   if (!isConnected) {
     return (
+         <Fade in={fadeIn} timeout={1000}> 
       <div id='backgroundImage' className='h-screen'>
         <ResponsiveAppBar wallet={false}   marginBelow={"mb-26"} />
         <AppConnectionFallbackContainer>
@@ -258,8 +260,8 @@ function AppContent() {
           </div>
         </div>
         </AppConnectionFallbackContainer>
- 
       </div>
+      </Fade>
     )
   }
 
@@ -279,16 +281,16 @@ function AppContent() {
   }
 
   return (
+     <Fade in={fadeIn} timeout={1000}> 
     <div id='backgroundImage' className='h-full relative'>
- 
       <ResponsiveAppBar wallet={true}   marginBelow={"mb-16"} />
 
       <TokenListSyncer />
       <BalanceUpdater />
       <ArbTokenBridgeStoreSyncWrapper />
       <MainContent />
-     
     </div>
+     </Fade>
   )
 }
 

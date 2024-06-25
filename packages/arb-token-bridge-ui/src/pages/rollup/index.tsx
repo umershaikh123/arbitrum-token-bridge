@@ -7,14 +7,14 @@ import { useState, useEffect } from 'react'
  
 import { getNexusReward, getNexusBalance } from '../../util/Contract'
 import { fetchValidatorData } from '../../util/graphQL/fetch'
- 
+import Fade from '@mui/material/Fade';
 
 export default function Index() {
   const [rewardsEarned, setRewardsEarned] = useState<string>('')
   const [heightVariable, setHeight] = useState(700)
   const [ethBridged, setEthBridged] = useState<string>('')
   const [stakedAmount, setStakedAmount] = useState<number>(0)
-
+  const [fadeIn, setFadeIn] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -44,7 +44,7 @@ export default function Index() {
     updateHeight()
 
     fetchData()
-
+    setFadeIn(true);
     window.addEventListener('resize', updateHeight)
 
     return () => {
@@ -53,6 +53,7 @@ export default function Index() {
   }, [])
 
   return (
+    
     <div id="backgroundImage" className="">
       <ResponsiveAppBar wallet={false} marginBelow={'mb-12'} />
       <div
@@ -60,6 +61,7 @@ export default function Index() {
         style={{ height: heightVariable > 900 ? heightVariable : '100%' }}
       >
         <>
+      <Fade in={fadeIn} timeout={1000}>
           <div className="mb-4 mt-4 flex w-full items-center justify-center space-x-8 text-[#CDEBFF]">
             <div className=" flex h-full  w-3/12 flex-col items-center justify-center rounded-xl  border-2 border-[#1377BB] px-2 py-4 text-center shadow-md   shadow-[#1377BB]">
               <h1 className=" lg:text-xl xl:text-2xl">ETH Bridged</h1>
@@ -89,12 +91,14 @@ export default function Index() {
               </h1>
             </div>
           </div>
-
+          </Fade>
           <div className="  flex    items-center justify-center ">
             <CenteredTabs />
           </div>
         </>
+        
       </div>
+      
     </div>
   )
 }

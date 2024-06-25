@@ -18,6 +18,8 @@ import {
   Cluster
 } from '../../types'
 import { Loader } from './atoms/Loader'
+import Fade from '@mui/material/Fade';
+
 interface TabPanelProps {
   children?: React.ReactNode
   index: number
@@ -49,6 +51,7 @@ export default function CenteredTabs() {
   const [isLoading, setIsLoading] = useState(true)
   const [nodeData, setNodeData] = useState<NodeData | null>(null)
   const [validatorData, setValidatorData] = useState<ValidatorData | null>(null)
+  const [fadeIn, setFadeIn] = useState(false);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
   }
@@ -82,6 +85,7 @@ export default function CenteredTabs() {
         }
 
         setIsLoading(false)
+        setFadeIn(true);
       } catch (error) {
         console.error('Error fetching data:', error)
       }
@@ -105,6 +109,7 @@ export default function CenteredTabs() {
   }
 
   return (
+    <Fade in={fadeIn} timeout={1000}> 
     <div
       className={`  mt-2 flex items-center justify-center  `}
       style={{ height: heightVariable > 800 ? 'calc(100vh - 30vh)' : 'auto' }}
@@ -132,5 +137,6 @@ export default function CenteredTabs() {
         </CustomTabPanel>
       </Box>
     </div>
+    </Fade>
   )
 }
