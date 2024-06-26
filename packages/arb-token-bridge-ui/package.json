@@ -50,7 +50,7 @@
     "swr": "^2.1.2",
     "tailwind-merge": "^2.0.0",
     "use-query-params": "^2.2.1",
-    "wagmi": "file:wagmi",
+    "wagmi": "^0.12.18",
     "zod": "^3.22.4",
     "zustand": "^4.3.9"
   },
