@@ -37,7 +37,7 @@ type NetworkType = 'core' | 'orbit'
 enum ChainGroupName {
   core = 'CORE CHAINS',
   orbit = 'ORBIT CHAINS',
-  NULL = ""
+ 
 }
 
 type ChainGroupInfo = {
@@ -50,7 +50,7 @@ const chainGroupInfo: { [key in NetworkType]: ChainGroupInfo } = {
     name: ChainGroupName.core
   },
   orbit: {
-    name: ChainGroupName.NULL,
+    name: ChainGroupName.orbit,
     description: (
       <></>
       // <p className="mt-2 flex gap-1 whitespace-normal rounded bg-orange-dark px-2 py-1 text-xs text-orange">
@@ -224,13 +224,13 @@ function NetworksPanel({
       return 0
     }
     if (typeof rowItemOrChainId === 'string') {
-      return rowItemOrChainId === ChainGroupName.core ? 45 : 115
+      return rowItemOrChainId === ChainGroupName.core ? 45 : 50
     }
     const rowItem = getBridgeUiConfigForChain(rowItemOrChainId)
     if (rowItem.network.description) {
-      return 90
+      return 70
     }
-    return 60
+    return 50
   }
 
   useEffect(() => {

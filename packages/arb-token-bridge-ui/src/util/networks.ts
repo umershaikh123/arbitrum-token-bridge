@@ -13,6 +13,7 @@ import { chainIdToInfuraUrl } from './infura'
 
 export const getChains = () => {
   const chains = Object.values(arbitrumSdkChains)
+ 
   return chains.filter(chain => {
     // exclude devnet
     if (chain.chainID === 1338) {
@@ -358,12 +359,12 @@ export function isNetwork(chainId: ChainId) {
   const isEthereumMainnetOrTestnet = isHolesky
     // isEthereumMainnet || isSepolia    || isLocal
 
-  const isArbitrum =
+  const isArbitrum = null
     // isArbitrumOne ||
     // isArbitrumNova ||
     // isArbitrumLocal ||
     // isArbitrumSepolia ||
-    isNexusOrbit
+    // isNexusOrbit
 
   const customChainIds = customChains.map(chain => chain.chainID)
   const isCustomOrbitChain = customChainIds.includes(chainId)
@@ -378,9 +379,9 @@ export function isNetwork(chainId: ChainId) {
     isHolesky ||
     isNexusOrbit
     // isArbitrumSepolia ||
-    // isCustomOrbitChain ||
+    isCustomOrbitChain ||
     // isStylusTestnet ||
-    // isTestnetOrbitChain ||
+    isTestnetOrbitChain 
 
   const isSupported =
     isArbitrumOne ||

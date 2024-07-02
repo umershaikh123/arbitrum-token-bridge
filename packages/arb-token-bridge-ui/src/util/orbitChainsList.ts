@@ -351,14 +351,14 @@ export const orbitTestnets: { [key in number]: OrbitChainConfig } = {
       sequencerInbox: '0x2813f740FF6A6c09839951855CaDfA814129B6A9'
     },
     nativeToken: '0x4e6f41acbfa8eb4a3b25e151834d9a14b49b69d2',
-    explorerUrl: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`,
-    rpcUrl: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`,
+    explorerUrl: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL}`,
+    rpcUrl: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL}`,
     isArbitrum: true,
     isCustom: true,
     name: 'Nexus Orbit Chain',
     slug: 'nexus-orbit',
-    partnerChainID: 17000,
-    partnerChainIDs: [17000],
+    partnerChainID: 1,
+    partnerChainIDs: [1],
     retryableLifetimeSeconds: 604800,
     tokenBridge: {
       l1CustomGateway: '0x2fB2f4438E58Adf2317A8E01D7A9147c35E8B17C',
