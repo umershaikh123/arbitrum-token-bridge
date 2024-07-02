@@ -17,7 +17,9 @@ import {
   stylusTestnet,
   localL1Network as local,
   localL2Network as arbitrumLocal,
-  nexusOrbit
+  nexusOrbit,
+  complare,
+  baseSepolia
 } from '../util/wagmi/wagmiAdditionalNetworks'
 
 import { getDestinationChainIds } from '../util/networks'
@@ -59,18 +61,22 @@ export function isSupportedChainId(
   )
 
   return [
-    mainnet.id,
-    sepolia.id,
     holesky.id,
     nexusOrbit.id,
-    arbitrum.id,
-    arbitrumNova.id,
-    arbitrumSepolia.id,
-    stylusTestnet.id,
-    arbitrumLocal.id,
-    local.id,
-    ...getOrbitChains().map(chain => chain.chainID),
-    ...customChainIds
+    complare.id,
+    baseSepolia.id,
+    // mainnet.id,
+    // sepolia.id,
+    // arbitrum.id,
+    // arbitrumNova.id,
+    // arbitrumSepolia.id,
+    // stylusTestnet.id,
+    // arbitrumLocal.id,
+    // local.id,
+    // complare.id,
+    // baseSepolia.id,
+    // ...getOrbitChains().map(chain => chain.chainID),
+    // ...customChainIds
   ].includes(chainId)
 }
 
@@ -84,28 +90,16 @@ export function sanitizeQueryParams({
   sourceChainId: ChainId | number
   destinationChainId: ChainId | number
 } {
-  // when both `sourceChain` and `destinationChain` are undefined or invalid, default to Holesky and NexusOrbit
+  // when both `sourceChain` and `destinationChain` are undefined or invalid, default to Ethereum and Arbitrum One
   if (
     (!sourceChainId && !destinationChainId) ||
-    (sourceChainId == 1 || 1337 || 11155111 || 42161 ||42170 ||421614 || 412346 ||23011913   ) ||
-    (destinationChainId == 1 || 1337|| 11155111 || 42161 ||42170 ||421614 || 412346 || 23011913   ) ||
     (!isSupportedChainId(sourceChainId) &&
       !isSupportedChainId(destinationChainId))
   ) {
-
-    if (sourceChainId == 17000 && destinationChainId== 13331370) {
-      return {
-        sourceChainId: ChainId.Holesky,
-        destinationChainId: ChainId.NexusOrbit
-      }
+    return {
+      sourceChainId: ChainId.baseSepolia,
+      destinationChainId: ChainId.Complare
     }
-    else {
-      return {
-        sourceChainId:ChainId.NexusOrbit ,
-        destinationChainId:    ChainId.Holesky
-      }
-    }
-
   }
 
   // destinationChainId is valid and sourceChainId is undefined
@@ -114,7 +108,7 @@ export function sanitizeQueryParams({
     isSupportedChainId(destinationChainId)
   ) {
     const [defaultSourceChainId] = getDestinationChainIds(destinationChainId)
-    return { sourceChainId: ChainId.Holesky, destinationChainId }
+    return { sourceChainId: defaultSourceChainId!, destinationChainId }
   }
 
   // sourceChainId is valid and destinationChainId is undefined
@@ -125,7 +119,7 @@ export function sanitizeQueryParams({
     const [defaultDestinationChainId] = getDestinationChainIds(sourceChainId)
     return {
       sourceChainId: sourceChainId,
-      destinationChainId: ChainId.NexusOrbit
+      destinationChainId: defaultDestinationChainId!
     }
   }
 
@@ -134,7 +128,7 @@ export function sanitizeQueryParams({
     const [defaultDestinationChainId] = getDestinationChainIds(sourceChainId!)
     return {
       sourceChainId: sourceChainId!,
-      destinationChainId: ChainId.NexusOrbit
+      destinationChainId: defaultDestinationChainId!
     }
   }
 

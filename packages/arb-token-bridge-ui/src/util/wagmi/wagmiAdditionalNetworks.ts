@@ -133,6 +133,51 @@ export const nexusOrbit: Chain = {
   }
 }
 
+export const baseSepolia: Chain = {
+  id: ChainId.baseSepolia,
+  name: 'Base Sepolia',
+  network: 'Base Sepolia',
+  nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+  rpcUrls: {
+    default: {
+      http: [rpcURLs[ChainId.baseSepolia]!]
+    },
+    public: {
+      http: [rpcURLs[ChainId.baseSepolia]!]
+    }
+  },
+  blockExplorers: {
+    etherscan: {
+      name: 'Etherscan',
+      url: explorerUrls[ChainId.baseSepolia]!
+    },
+    default: { name: 'blockScout', url: explorerUrls[ChainId.baseSepolia]! }
+  }
+}
+
+export const complare: Chain = {
+  id: ChainId.Complare,
+  name: 'complare-chain',
+  network: 'complare-chain',
+  nativeCurrency: ether,
+  rpcUrls: {
+    default: {
+      http: [rpcURLs[ChainId.Complare]!]
+    },
+    public: {
+      http: [rpcURLs[ChainId.Complare]!]
+    }
+  },
+  blockExplorers: {
+    etherscan: {
+      name: 'Etherscan',
+      url: explorerUrls[ChainId.Complare]!
+    },
+    default: { name: 'blockScout', url: explorerUrls[ChainId.Complare]! }
+  }
+}
+
+
 export const stylusTestnet: Chain = {
   id: ChainId.StylusTestnet,
   name: 'Stylus Testnet',

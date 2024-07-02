@@ -12,7 +12,9 @@ import {
   localL1Network as local,
   localL2Network as arbitrumLocal,
   nexusOrbit,
-  holesky
+  holesky,
+  complare,
+  baseSepolia
 } from './wagmiAdditionalNetworks'
 import { isTestingEnvironment } from '../CommonUtils'
 import { getCustomChainsFromLocalStorage, ChainId } from '../networks'
@@ -29,7 +31,8 @@ const wagmiOrbitChains = getOrbitChains().map(chain =>
 
 const chainList = isTestingEnvironment
   ? [
-    holesky,
+      baseSepolia,
+      holesky,
       // mainnet, arb1, & arb nova are for network switch tests
       mainnet,
       arbitrum,
@@ -37,18 +40,21 @@ const chainList = isTestingEnvironment
       // sepolia & arb sepolia are for tx history panel tests
       sepolia,
       arbitrumSepolia,
-     
+
       // Orbit chains
       stylusTestnet,
       ...wagmiOrbitChains,
       // add local environments during testing
       local,
       arbitrumLocal,
-      nexusOrbit,
+      // nexusOrbit,
+      complare,
       // user-added custom chains
       ...customChains
     ]
   : [
+      baseSepolia,
+      complare,
       mainnet,
       arbitrum,
       holesky,
@@ -76,27 +82,28 @@ enum TargetChainKey {
   ArbitrumOne = 'arbitrum-one',
   ArbitrumNova = 'arbitrum-nova',
   Sepolia = 'sepolia',
-  ArbitrumSepolia = 'arbitrum-sepolia' ,
-  Nexus_Orbit = "nexus-orbit",
-  Holesky = "holesky"
+  ArbitrumSepolia = 'arbitrum-sepolia',
+  Nexus_Orbit = 'nexus-orbit',
+  Holesky = 'holesky',
+  baseSepolia = 'base-sepolia',
+  Complare = 'complare-chain'
 }
 
 function sanitizeTargetChainKey(targetChainKey: string | null): TargetChainKey {
-  // Default to Holesky Mainnet if nothing passed in
+  // Default to  baseSepolia if nothing passed in
   if (targetChainKey === null) {
-    return TargetChainKey.Holesky
+    return TargetChainKey.baseSepolia
   }
 
-  // Default to Holesky Mainnet if invalid
+  // Default to  baseSepolia if invalid
   if (!(Object.values(TargetChainKey) as string[]).includes(targetChainKey)) {
-    return TargetChainKey.Holesky
+    return TargetChainKey.baseSepolia
   }
 
   return targetChainKey as TargetChainKey
 }
 
 function getChainId(targetChainKey: TargetChainKey): number {
- 
   switch (targetChainKey) {
     case TargetChainKey.Ethereum:
       return ChainId.Ethereum
@@ -112,14 +119,19 @@ function getChainId(targetChainKey: TargetChainKey): number {
 
     case TargetChainKey.ArbitrumSepolia:
       return ChainId.ArbitrumSepolia
-    
+
     case TargetChainKey.Nexus_Orbit:
       return ChainId.NexusOrbit
-    
+
+    case TargetChainKey.baseSepolia:
+      return ChainId.baseSepolia
+
     case TargetChainKey.Holesky:
       return ChainId.Holesky
+    case TargetChainKey.Complare:
+      return ChainId.Complare
 
-      default :
+    default:
       return 0
   }
 }

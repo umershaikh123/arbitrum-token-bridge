@@ -4,13 +4,15 @@ import { mainnet, arbitrum } from 'wagmi/chains'
 import {
   chainToWagmiChain,
   sepolia,
+  baseSepolia,
   holesky,
   arbitrumNova,
   arbitrumSepolia,
   stylusTestnet,
   localL1Network,
   localL2Network,
-  nexusOrbit
+  nexusOrbit,
+  complare
 } from './wagmiAdditionalNetworks'
 import { ChainId } from '../networks'
 import { getCustomChainFromLocalStorageById } from '../networks'
@@ -21,7 +23,7 @@ export function getWagmiChain(chainId: number): Chain {
   const customChain = getCustomChainFromLocalStorageById(chainId)
   // excluding Stylus because its part of the SDK
   const orbitChain = orbitChains[chainId]
- 
+
   if (customChain) {
     return chainToWagmiChain(customChain)
   }
@@ -31,12 +33,17 @@ export function getWagmiChain(chainId: number): Chain {
   }
 
   switch (chainId) {
-   
     case ChainId.Holesky:
       return holesky
 
+    case ChainId.baseSepolia:
+      return baseSepolia
+
     case ChainId.NexusOrbit:
-        return  nexusOrbit
+      return nexusOrbit
+
+    case ChainId.Complare:
+      return complare
 
     case ChainId.Ethereum:
       return mainnet
@@ -50,8 +57,6 @@ export function getWagmiChain(chainId: number): Chain {
     // Testnets
     case ChainId.Sepolia:
       return sepolia
-
-
 
     case ChainId.ArbitrumSepolia:
       return arbitrumSepolia

@@ -1,6 +1,6 @@
 import { Chain } from 'wagmi'
 import * as chains from 'wagmi/chains'
-import { holeskyChain, nexusOrbitChain } from '../util/wagmi/ExtraChains'
+// import { holeskyChain, nexusOrbitChain } from '../util/wagmi/ExtraChains'
 import {
   ChainId,
   getCustomChainFromLocalStorageById,
@@ -8,7 +8,7 @@ import {
 } from '../util/networks'
 import * as customChains from '../util/wagmi/wagmiAdditionalNetworks'
 import { getOrbitChains, orbitChains } from '../util/orbitChainsList'
-import { chainToWagmiChain } from '../util/wagmi/wagmiAdditionalNetworks'
+import { chainToWagmiChain , nexusOrbit , holesky , baseSepolia , complare} from '../util/wagmi/wagmiAdditionalNetworks'
 
 const chainQueryParams = [
   'ethereum',
@@ -20,7 +20,9 @@ const chainQueryParams = [
   'custom-localhost',
   'arbitrum-localhost',
   'holesky',
-  'nexus-orbit-chain'
+  'base-sepolia',
+  'nexus-orbit-chain',
+  'complare-chain'
 ] as const
 
 export type ChainKeyQueryParam = (typeof chainQueryParams)[number]
@@ -43,8 +45,6 @@ export function isValidChainQueryParam(value: string | number): boolean {
 }
 
 export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
- 
-
   switch (chainId) {
     case ChainId.Ethereum:
       return 'ethereum'
@@ -71,6 +71,11 @@ export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
       return 'arbitrum-localhost'
     case ChainId.Holesky:
       return 'holesky'
+    case ChainId.baseSepolia:
+      return 'base-sepolia'
+
+    case ChainId.Complare:
+      return 'complare-chain'
 
     case ChainId.NexusOrbit:
       return 'nexus-orbit-chain'
@@ -104,7 +109,7 @@ export function getChainForChainKeyQueryParam(
     case 'sepolia':
       return chains.sepolia
     case 'holesky':
-      return holeskyChain
+      return  holesky
 
     case 'arbitrum-one':
       return chains.arbitrum
@@ -125,7 +130,12 @@ export function getChainForChainKeyQueryParam(
       return customChains.localL2Network
 
     case 'nexus-orbit-chain':
-      return nexusOrbitChain
+      return  nexusOrbit
+
+    case 'base-sepolia':
+      return baseSepolia
+    case 'complare-chain':
+      return complare
 
     default:
       const orbitChain = getOrbitChains().find(

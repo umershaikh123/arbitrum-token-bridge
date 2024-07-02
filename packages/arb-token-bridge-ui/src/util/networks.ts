@@ -131,6 +131,8 @@ export function removeCustomChainFromLocalStorage(chainId: number) {
 export enum ChainId {
   Holesky = 17000,
   NexusOrbit = 13331370,
+  baseSepolia = 84532,
+  Complare= 5918836757,
   // L1
   Ethereum = 1,
   // L1 Testnets
@@ -150,7 +152,7 @@ export enum ChainId {
 
 export const supportedCustomOrbitParentChains = [
   ChainId.Sepolia,
-  ChainId.Holesky,
+  ChainId.baseSepolia,
   ChainId.ArbitrumSepolia
 ]
 
@@ -183,7 +185,16 @@ export const rpcURLs: { [chainId: number]: string } = {
   }),
   [ChainId.NexusOrbit]: loadEnvironmentVariableWithFallback({
     env: process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL,
-    fallback: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || "null rpc"}`
+    fallback: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL}`
+  }),
+  [ChainId.Complare]: loadEnvironmentVariableWithFallback({
+    env: process.env.NEXT_PUBLIC_L3_RPC,
+    fallback: `${process.env.NEXT_PUBLIC_L3_EXPLORER}`
+  }),
+
+  [ChainId.baseSepolia]: loadEnvironmentVariableWithFallback({
+    env: process.env.NEXT_PUBLIC_BASE_SEPOLIA_RPC_URL,
+    fallback: `https://base-sepolia-rpc.publicnode.com`
   }),
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet.arbitrum.io/rpc'
@@ -202,9 +213,11 @@ export const explorerUrls: { [chainId: number]: string } = {
   [ChainId.ArbitrumSepolia]: 'https://sepolia.arbiscan.io',
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io',
-  [ChainId.NexusOrbit]: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "https://testnet.explorer.nexusnetwork.live"}`
+  [ChainId.NexusOrbit]: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "https://testnet.explorer.nexusnetwork.live"}`,
+    [ChainId.baseSepolia]: `${process.env.NEXT_PUBLIC_BASE_SEPOLIA_EXPLORER}`,
+    [ChainId.Complare]: `${process.env.NEXT_PUBLIC_L3_EXPLORER}`
+  
 }
-
 export const getExplorerUrl = (chainId: ChainId) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return explorerUrls[chainId] ?? explorerUrls[ChainId.Ethereum]! //defaults to etherscan, can never be null
@@ -356,7 +369,10 @@ export function isNetwork(chainId: ChainId) {
 
   const isStylusTestnet = chainId === ChainId.StylusTestnet
 
-  const isEthereumMainnetOrTestnet = isHolesky
+  const isBaseSepolia = chainId === ChainId.baseSepolia
+  const isComplare = chainId === ChainId.Complare
+
+  const isEthereumMainnetOrTestnet = isHolesky || isBaseSepolia
     // isEthereumMainnet || isSepolia    || isLocal
 
   const isArbitrum = null
@@ -370,30 +386,35 @@ export function isNetwork(chainId: ChainId) {
   const isCustomOrbitChain = customChainIds.includes(chainId)
 
   const isCoreChain = isEthereumMainnetOrTestnet || isArbitrum
-  const isOrbitChain = !isCoreChain
+  const isOrbitChain =       isNexusOrbit ||
+  isComplare  
 
-  const isTestnet =
+  const isTestnet = 
     // isLocal ||
     // isArbitrumLocal ||
     // isSepolia ||
     isHolesky ||
-    isNexusOrbit
+    isNexusOrbit ||
+    isComplare ||
+    isBaseSepolia  
     // isArbitrumSepolia ||
-    isCustomOrbitChain ||
+    
     // isStylusTestnet ||
-    isTestnetOrbitChain 
+    // isTestnetOrbitChain 
 
   const isSupported =
-    isArbitrumOne ||
-    isArbitrumNova ||
-    isEthereumMainnet ||
-    isSepolia ||
-    isArbitrumSepolia ||
-    isCustomOrbitChain ||
-    isMainnetOrbitChain ||
-    isTestnetOrbitChain ||
+    // isArbitrumOne ||
+    // isArbitrumNova ||
+    // isEthereumMainnet ||
+    // isSepolia ||
+    // isArbitrumSepolia ||
+    // isCustomOrbitChain ||
+    // isMainnetOrbitChain ||
+    // isTestnetOrbitChain ||
     isHolesky ||
-    isNexusOrbit
+    isNexusOrbit ||
+    isComplare ||
+    isBaseSepolia
 
   return {
     // L1

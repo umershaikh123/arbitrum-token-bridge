@@ -50,6 +50,16 @@ export function getBridgeUiConfigForChain(chainId: number): BridgeUiConfig {
           description: 'Ethereum testnet.'
         }
       }
+
+      case ChainId.baseSepolia:
+        return {
+          color: '#0f126c',
+          network: {
+            ...ethereumBaseConfig.network,
+            name: 'Base Sepolia',
+            description: 'Base testnet'
+          }
+        }
     case ChainId.Local:
       return {
         ...ethereumBaseConfig,
@@ -107,17 +117,19 @@ export function getBridgeUiConfigForChain(chainId: number): BridgeUiConfig {
         }
       }
 
-      case ChainId.NexusOrbit:
-        return {
-          color: '#000000',
-          network: {
-            name: 'Nexus Orbit',
-            logo: '/images/nexus/nexusLogoCompressed.svg',
-         
-            description:
-              'Nexus Network Orbit chain'
+ 
+
+        case ChainId.Complare:
+          return {
+            color: '#000000',
+            network: {
+              name: 'Complare Chain',
+              logo: '/images/ArbitrumOneLogo.svg',
+           
+              description:
+                'Complare Chain which is the child of a base chain'
+            }
           }
-        }
     default: {
       // added Orbit chains
       const orbitChain = orbitChains[chainId]
