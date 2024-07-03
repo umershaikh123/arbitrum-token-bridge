@@ -61,10 +61,10 @@ export function isSupportedChainId(
   )
 
   return [
-    holesky.id,
-    nexusOrbit.id,
     complare.id,
     baseSepolia.id,
+    // holesky.id,
+    // nexusOrbit.id,
     // mainnet.id,
     // sepolia.id,
     // arbitrum.id,

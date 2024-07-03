@@ -157,8 +157,8 @@ export const baseSepolia: Chain = {
 
 export const complare: Chain = {
   id: ChainId.Complare,
-  name: 'complare-chain',
-  network: 'complare-chain',
+  name: 'complere-chain',
+  network: 'complere-chain',
   nativeCurrency: ether,
   rpcUrls: {
     default: {

@@ -13,7 +13,7 @@ import { chainIdToInfuraUrl } from './infura'
 
 export const getChains = () => {
   const chains = Object.values(arbitrumSdkChains)
- 
+
   return chains.filter(chain => {
     // exclude devnet
     if (chain.chainID === 1338) {
@@ -132,7 +132,7 @@ export enum ChainId {
   Holesky = 17000,
   NexusOrbit = 13331370,
   baseSepolia = 84532,
-  Complare= 5918836757,
+  Complare = 451451234,
   // L1
   Ethereum = 1,
   // L1 Testnets
@@ -168,10 +168,10 @@ export const rpcURLs: { [chainId: number]: string } = {
     fallback: chainIdToInfuraUrl(ChainId.Sepolia)
   }),
   [ChainId.Holesky]: loadEnvironmentVariableWithFallback({
-    env:  `https://ethereum-holesky-rpc.publicnode.com`,
-    fallback:  `https://ethereum-holesky-rpc.publicnode.com`
+    env: `https://ethereum-holesky-rpc.publicnode.com`,
+    fallback: `https://ethereum-holesky-rpc.publicnode.com`
   }),
- 
+
   // L2
   [ChainId.ArbitrumOne]: loadEnvironmentVariableWithFallback({
     env: chainIdToInfuraUrl(ChainId.ArbitrumOne),
@@ -213,10 +213,12 @@ export const explorerUrls: { [chainId: number]: string } = {
   [ChainId.ArbitrumSepolia]: 'https://sepolia.arbiscan.io',
   // Orbit Testnets
   [ChainId.StylusTestnet]: 'https://stylus-testnet-explorer.arbitrum.io',
-  [ChainId.NexusOrbit]: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "https://testnet.explorer.nexusnetwork.live"}`,
-    [ChainId.baseSepolia]: `${process.env.NEXT_PUBLIC_BASE_SEPOLIA_EXPLORER}`,
-    [ChainId.Complare]: `${process.env.NEXT_PUBLIC_L3_EXPLORER}`
-  
+  [ChainId.NexusOrbit]: `${
+    process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL ||
+    'https://testnet.explorer.nexusnetwork.live'
+  }`,
+  [ChainId.baseSepolia]: `${process.env.NEXT_PUBLIC_BASE_SEPOLIA_EXPLORER}`,
+  [ChainId.Complare]: `${process.env.NEXT_PUBLIC_L3_EXPLORER}`
 }
 export const getExplorerUrl = (chainId: ChainId) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -225,8 +227,7 @@ export const getExplorerUrl = (chainId: ChainId) => {
 
 export const getBlockTime = (chainId: ChainId) => {
   const network = arbitrumSdkChains[chainId]
-  
-  
+
   if (!network) {
     throw new Error(`Couldn't get block time. Unexpected chain ID: ${chainId}`)
   }
@@ -235,7 +236,7 @@ export const getBlockTime = (chainId: ChainId) => {
 
 export const getConfirmPeriodBlocks = (chainId: ChainId) => {
   const network = arbitrumSdkChains[chainId]
-  if (!network || !isArbitrumChain(network)  ) {
+  if (!network || !isArbitrumChain(network)) {
     throw new Error(
       `Couldn't get confirm period blocks. Unexpected chain ID: ${chainId}`
     )
@@ -372,49 +373,21 @@ export function isNetwork(chainId: ChainId) {
   const isBaseSepolia = chainId === ChainId.baseSepolia
   const isComplare = chainId === ChainId.Complare
 
-  const isEthereumMainnetOrTestnet = isHolesky || isBaseSepolia
-    // isEthereumMainnet || isSepolia    || isLocal
+  const isEthereumMainnetOrTestnet =   isBaseSepolia
+  // isEthereumMainnet || isSepolia    || isLocal
 
   const isArbitrum = null
-    // isArbitrumOne ||
-    // isArbitrumNova ||
-    // isArbitrumLocal ||
-    // isArbitrumSepolia ||
-    // isNexusOrbit
 
   const customChainIds = customChains.map(chain => chain.chainID)
   const isCustomOrbitChain = customChainIds.includes(chainId)
 
-  const isCoreChain = isEthereumMainnetOrTestnet || isArbitrum
-  const isOrbitChain =       isNexusOrbit ||
-  isComplare  
+  const isCoreChain =   isBaseSepolia
+  const isOrbitChain =   isComplare
 
-  const isTestnet = 
-    // isLocal ||
-    // isArbitrumLocal ||
-    // isSepolia ||
-    isHolesky ||
-    isNexusOrbit ||
-    isComplare ||
-    isBaseSepolia  
-    // isArbitrumSepolia ||
-    
-    // isStylusTestnet ||
-    // isTestnetOrbitChain 
+  const isTestnet =   isComplare || isBaseSepolia
+ 
 
-  const isSupported =
-    // isArbitrumOne ||
-    // isArbitrumNova ||
-    // isEthereumMainnet ||
-    // isSepolia ||
-    // isArbitrumSepolia ||
-    // isCustomOrbitChain ||
-    // isMainnetOrbitChain ||
-    // isTestnetOrbitChain ||
-    isHolesky ||
-    isNexusOrbit ||
-    isComplare ||
-    isBaseSepolia
+  const isSupported =    isComplare || isBaseSepolia
 
   return {
     // L1

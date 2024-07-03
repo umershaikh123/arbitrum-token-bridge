@@ -86,7 +86,7 @@ enum TargetChainKey {
   Nexus_Orbit = 'nexus-orbit',
   Holesky = 'holesky',
   baseSepolia = 'base-sepolia',
-  Complare = 'complare-chain'
+  Complare = 'complere-chain'
 }
 
 function sanitizeTargetChainKey(targetChainKey: string | null): TargetChainKey {

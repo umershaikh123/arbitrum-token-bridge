@@ -152,6 +152,9 @@ export const TransactionHistoryTable = (
     oldestTxTimeAgoString
   } = props
 
+  console.log("txs history error" , error);
+  
+
   const contentAboveTable = useRef<HTMLDivElement>(null)
 
   const isTxHistoryEmpty = transactions.length === 0

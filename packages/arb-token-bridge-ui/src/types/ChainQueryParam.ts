@@ -22,7 +22,7 @@ const chainQueryParams = [
   'holesky',
   'base-sepolia',
   'nexus-orbit-chain',
-  'complare-chain'
+  'complere-chain'
 ] as const
 
 export type ChainKeyQueryParam = (typeof chainQueryParams)[number]
@@ -75,7 +75,7 @@ export function getChainQueryParamForChain(chainId: ChainId): ChainQueryParam {
       return 'base-sepolia'
 
     case ChainId.Complare:
-      return 'complare-chain'
+      return 'complere-chain'
 
     case ChainId.NexusOrbit:
       return 'nexus-orbit-chain'
@@ -134,7 +134,7 @@ export function getChainForChainKeyQueryParam(
 
     case 'base-sepolia':
       return baseSepolia
-    case 'complare-chain':
+    case 'complere-chain':
       return complare
 
     default:

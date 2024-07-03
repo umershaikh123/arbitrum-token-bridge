@@ -23,6 +23,9 @@ function getSubgraphClient(chainId: number) {
     case ChainId.ArbitrumSepolia:
       return getL2SubgraphClient(ChainId.ArbitrumSepolia)
 
+      case ChainId.NexusOrbit:
+        return getL2SubgraphClient(ChainId.NexusOrbit)
+
     default:
       throw new Error(`[getSubgraphClient] unsupported chain id: ${chainId}`)
   }

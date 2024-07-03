@@ -89,5 +89,8 @@ export async function fetchWithdrawalsFromSubgraph({
     await response.json()
   ).data
 
+  console.log("transactions" ,transactions);
+  
+
   return transactions
 }

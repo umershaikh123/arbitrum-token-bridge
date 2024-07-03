@@ -27,8 +27,10 @@ export const EmptyTransactionHistory = ({
     )
   }
   if (isError) {
+  
     return (
       <ContentWrapper>
+     
         <p>
           We seem to be having a difficult time loading your data, we&apos;re
           working hard to resolve it.
