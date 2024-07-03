@@ -54,7 +54,7 @@ export default function Index() {
 
   return (
     
-    <div id="backgroundImage" className="">
+    <div  className="">
       <ResponsiveAppBar wallet={false} marginBelow={'mb-12'} />
       <div
         className=" flex  w-full flex-col  py-2   backdrop-blur-2xl   sm:px-16"

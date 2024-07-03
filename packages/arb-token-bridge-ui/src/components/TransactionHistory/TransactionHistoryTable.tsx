@@ -30,6 +30,7 @@ import { PendingDepositWarning } from './PendingDepositWarning'
 import { TransactionsTableRow } from './TransactionsTableRow'
 import { EmptyTransactionHistory } from './EmptyTransactionHistory'
 import { Address } from '../../util/AddressUtils'
+import { log } from 'console'
 
 export const ContentWrapper = ({
   children,
@@ -152,6 +153,14 @@ export const TransactionHistoryTable = (
     oldestTxTimeAgoString
   } = props
 
+
+  console.log("address" ,address);
+  console.log("completed" ,completed);
+  console.log("failedChainPairs" ,failedChainPairs);
+  console.log(" oldestTxTimeAgoString" , oldestTxTimeAgoString);
+ 
+
+  console.log("transactions " , transactions);
   console.log("txs history error" , error);
   
 
@@ -159,7 +168,7 @@ export const TransactionHistoryTable = (
 
   const isTxHistoryEmpty = transactions.length === 0
   const isPendingTab = selectedTabIndex === 0
-
+  console.log("isTxHistoryEmpty" , isTxHistoryEmpty);
   const paused = !loading && !completed
 
   const [tableHeight, setTableHeight] = useState(0)

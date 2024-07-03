@@ -23,6 +23,9 @@ function TransactionHistorySidePanel() {
     runFetcher: true
   })
 
+  console.log("transactionHistoryProps" , transactionHistoryProps);
+  
+
   const { transactions, updatePendingTransaction } = transactionHistoryProps
 
   const pendingTransactions = useMemo(() => {
