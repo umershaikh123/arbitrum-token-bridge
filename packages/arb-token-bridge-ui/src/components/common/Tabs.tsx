@@ -2,29 +2,16 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import Typography from '@mui/material/Typography'
 import { ValidatorsData, NodeOperatorData } from './DashboardData'
 import { useState, useEffect } from 'react'
 import {
-  fetchValidatorData,
-  fetchNodeOperatorData,
-  fetchClusterData
-} from '../../util/graphQL/fetch'
-import {
-  ValidatorData,
-  ClusterData,
   NodeData,
   NodeOperator,
-  Cluster
+  Cluster,
+  TabPanelProps,
+  CenteredTabsProps
 } from '../../types'
 import { Loader } from './atoms/Loader'
-import Fade from '@mui/material/Fade';
-
-interface TabPanelProps {
-  children?: React.ReactNode
-  index: number
-  value: number
-}
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props
@@ -45,15 +32,38 @@ function CustomTabPanel(props: TabPanelProps) {
     </div>
   )
 }
-export default function CenteredTabs() {
+
+const CenteredTabs: React.FC<CenteredTabsProps> = ({ data }) => {
   const [value, setValue] = React.useState(0)
   const [heightVariable, setHeight] = useState(700)
   const [isLoading, setIsLoading] = useState(true)
-  const [nodeData, setNodeData] = useState<NodeData | null>(null)
-  const [validatorData, setValidatorData] = useState<ValidatorData | null>(null)
-  const [fadeIn, setFadeIn] = useState(false);
+  const [nodeClusterData, setNodeData] = useState<NodeData | null>(null)
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
+  }
+  const { validatorData, nodeData, clusterData } = data
+
+  async function fetchData() {
+    try {
+      if (nodeData && clusterData) {
+        const operatorWithClusterId = nodeData.nodeOperators.map(
+          (operator: NodeOperator) => {
+            const cluster = clusterData.clusters.find((cluster: Cluster) =>
+              cluster.operatorIds.includes(operator.id)
+            )
+            return { ...operator, clusterId: cluster ? cluster.id : 'N/A' }
+          }
+        )
+
+        setNodeData({ nodeOperators: operatorWithClusterId })
+        console.log('nodeClusterData', nodeClusterData)
+      }
+
+      setIsLoading(false)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
   }
 
   useEffect(() => {
@@ -61,36 +71,6 @@ export default function CenteredTabs() {
       const heightValue = window.innerHeight
       setHeight(heightValue)
     }
-
-    async function fetchData() {
-      try {
-        const validatordata = await fetchValidatorData()
-        const nodeData = await fetchNodeOperatorData()
-        const clusterData = await fetchClusterData()
-
-        if (nodeData && clusterData) {
-          const operatorWithClusterId = nodeData.nodeOperators.map(
-            (operator: NodeOperator) => {
-              const cluster = clusterData.clusters.find((cluster: Cluster) =>
-                cluster.operatorIds.includes(operator.id)
-              )
-              return { ...operator, clusterId: cluster ? cluster.id : 'N/A' }
-            }
-          )
-
-          setNodeData({ nodeOperators: operatorWithClusterId })
-        }
-        if (validatordata) {
-          setValidatorData(validatordata)
-        }
-
-        setIsLoading(false)
-        setFadeIn(true);
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-
     fetchData()
     updateHeight()
     window.addEventListener('resize', updateHeight)
@@ -98,7 +78,7 @@ export default function CenteredTabs() {
     return () => {
       window.removeEventListener('resize', updateHeight)
     }
-  }, [])
+  }, [data])
 
   if (isLoading) {
     return (
@@ -109,7 +89,6 @@ export default function CenteredTabs() {
   }
 
   return (
-    <Fade in={fadeIn} timeout={1000}> 
     <div
       className={`  mt-2 flex items-center justify-center  `}
       style={{ height: heightVariable > 800 ? 'calc(100vh - 30vh)' : 'auto' }}
@@ -132,11 +111,11 @@ export default function CenteredTabs() {
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <>
-            <NodeOperatorData data={nodeData} />
+            <NodeOperatorData data={nodeClusterData} />
           </>
         </CustomTabPanel>
       </Box>
     </div>
-    </Fade>
   )
 }
+export default CenteredTabs

@@ -176,8 +176,8 @@ export function getL2SubgraphClient(l2ChainId: number) {
       return createSubgraphClient('l2-arbitrum-sepolia')
 
     case ChainId.NexusOrbit:
-      return createApolloClient('https://testnet.graph.nexusnetwork.live/subgraphs/name/umer/layer2-token-gateway-nexus/graphql')
-
+        return createApolloClient('https://testnet.graph.nexusnetwork.live/subgraphs/name/umer/layer2-token-gateway-nexus/graphql')
+ 
     default:
       throw new Error(`[getL2SubgraphClient] unsupported chain: ${l2ChainId}`)
   }

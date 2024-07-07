@@ -16,10 +16,15 @@ function getSubgraphClient(chainId: number) {
 
     case ChainId.Sepolia:
       return getL1SubgraphClient(ChainId.ArbitrumSepolia)
+      case ChainId.Holesky:
+        return getL1SubgraphClient(ChainId.Holesky)
 
     case ChainId.ArbitrumOne:
       return getL2SubgraphClient(ChainId.ArbitrumOne)
 
+      case ChainId.NexusOrbit:
+        return getL2SubgraphClient(ChainId.NexusOrbit)
+  
     case ChainId.ArbitrumSepolia:
       return getL2SubgraphClient(ChainId.ArbitrumSepolia)
 
