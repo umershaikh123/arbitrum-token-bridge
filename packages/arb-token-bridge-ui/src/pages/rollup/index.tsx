@@ -6,7 +6,9 @@ import useSWR from 'swr'
 import { TabsProps } from '../../types'
 import { Loader } from '../../components/common/atoms/Loader'
 import StatCard from '../../components/common/StatCard'
-
+import { fetchValidatorData, fetchClusterData , fetchNodeOperatorData } from '../../util/graphQL/fetch'
+import { getNexusContractParams } from '../../util/Contract'
+import { SWRConfig } from 'swr'
 type FetcherArgs = [string, RequestInit?] // Two arguments: url (string) and optional init object
 
 const fetcher = (...args: FetcherArgs) => {
@@ -14,7 +16,7 @@ const fetcher = (...args: FetcherArgs) => {
   return fetch(url, init).then(res => res.json())
 }
 
-export default function RollupDashboard() {
+export  function RollupDashboard() {
   const { data: validatorData, error: validatorError } = useSWR(
     '/api/dashboard/validator-data',
     fetcher
@@ -94,4 +96,32 @@ export default function RollupDashboard() {
       </div>
     </Fade>
   )
+}
+export default function Page({ fallback } : {fallback:any}) {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <RollupDashboard />
+    </SWRConfig>
+  );
+}
+
+export async function getStaticProps() {
+  
+  const [validatorData, nexusParams, nodeData, clusterData] = await Promise.all([
+    fetchValidatorData(),
+    getNexusContractParams(),
+    fetchNodeOperatorData(),
+    fetchClusterData(),
+  ]);
+
+  return {
+    props: {
+      fallback: {
+        '/api/dashboard/validator-data': validatorData,
+        '/api/dashboard/nexus-params': nexusParams,
+        '/api/dashboard/node-data': nodeData,
+        '/api/dashboard/cluster-data': clusterData,
+      },
+    },
+  };
 }
