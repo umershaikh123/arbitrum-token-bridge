@@ -6,17 +6,23 @@ import useSWR from 'swr'
 import { TabsProps } from '../../types'
 import { Loader } from '../../components/common/atoms/Loader'
 import StatCard from '../../components/common/StatCard'
-import { fetchValidatorData, fetchClusterData , fetchNodeOperatorData } from '../../util/graphQL/fetch'
+import {
+  fetchValidatorData,
+  fetchClusterData,
+  fetchNodeOperatorData
+} from '../../util/graphQL/fetch'
 import { getNexusContractParams } from '../../util/Contract'
 import { SWRConfig } from 'swr'
-type FetcherArgs = [string, RequestInit?] // Two arguments: url (string) and optional init object
+import cluster from 'cluster'
 
+type FetcherArgs = [string, RequestInit?]
+// const fetcher = (url:string) => fetch(url).then(r => r.json())
 const fetcher = (...args: FetcherArgs) => {
   const [url, init = {}] = args // Destructure based on tuple type
   return fetch(url, init).then(res => res.json())
 }
 
-export  function RollupDashboard() {
+export function RollupDashboard() {
   const { data: validatorData, error: validatorError } = useSWR(
     '/api/dashboard/validator-data',
     fetcher
@@ -97,22 +103,23 @@ export  function RollupDashboard() {
     </Fade>
   )
 }
-export default function Page({ fallback } : {fallback:any}) {
+export default function Page({ fallback }: { fallback: any }) {
   return (
     <SWRConfig value={{ fallback }}>
       <RollupDashboard />
     </SWRConfig>
-  );
+  )
 }
 
 export async function getStaticProps() {
-  
-  const [validatorData, nexusParams, nodeData, clusterData] = await Promise.all([
-    fetchValidatorData(),
-    getNexusContractParams(),
-    fetchNodeOperatorData(),
-    fetchClusterData(),
-  ]);
+  const [validatorData, nexusParams, nodeData, clusterData] = await Promise.all(
+    [
+      fetchValidatorData(),
+      getNexusContractParams(),
+      fetchNodeOperatorData(),
+      fetchClusterData()
+    ]
+  )
 
   return {
     props: {
@@ -120,8 +127,8 @@ export async function getStaticProps() {
         '/api/dashboard/validator-data': validatorData,
         '/api/dashboard/nexus-params': nexusParams,
         '/api/dashboard/node-data': nodeData,
-        '/api/dashboard/cluster-data': clusterData,
-      },
-    },
-  };
+        '/api/dashboard/cluster-data': clusterData
+      }
+    }
+  }
 }

@@ -52,3 +52,11 @@ export interface StatCardProps {
   value: string
   className?: string
 }
+
+export interface chainButtonProps {
+  addChainMethod: () => Promise<void>
+  title: string
+  name: string
+  color?: string
+  css?: string
+}

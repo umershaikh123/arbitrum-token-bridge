@@ -102,7 +102,7 @@ export function sanitizeQueryParams({
     else {
       return {
         sourceChainId:ChainId.NexusOrbit ,
-        destinationChainId:    ChainId.Holesky
+        destinationChainId:ChainId.Holesky
       }
     }
 

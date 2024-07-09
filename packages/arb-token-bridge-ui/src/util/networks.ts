@@ -165,7 +165,7 @@ export const rpcURLs: { [chainId: number]: string } = {
     fallback: chainIdToInfuraUrl(ChainId.Sepolia)
   }),
   [ChainId.Holesky]: loadEnvironmentVariableWithFallback({
-    env:  `https://ethereum-holesky-rpc.publicnode.com`,
+    env:  `${process.env.NEXT_PUBLIC_HOLESKY_RPC_URL}`,
     fallback:  `https://ethereum-holesky-rpc.publicnode.com`
   }),
  

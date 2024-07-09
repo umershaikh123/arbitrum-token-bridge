@@ -142,7 +142,7 @@ function TransferPanelSummaryContainer({
   className?: string
 }) {
   return (
-    <div className="mb-4 flex flex-col text-white">
+    <div className="mb-4 flex flex-col text-white min-h-[100px] ">
       <span className="mb-3 text-xl">Summary</span>
 
       <div className={twMerge('flex flex-col space-y-2', className)}>
@@ -190,7 +190,7 @@ export function TransferPanelSummary({ token }: TransferPanelSummaryProps) {
   if (gasSummaryStatus === 'insufficientBalance') {
     return (
       <TransferPanelSummaryContainer>
-        <div className="flex flex-row justify-between text-sm lg:text-base">
+        <div className="flex flex-row justify-between text-sm lg:text-base ">
           Gas estimates will be displayed after entering a valid amount.
         </div>
       </TransferPanelSummaryContainer>

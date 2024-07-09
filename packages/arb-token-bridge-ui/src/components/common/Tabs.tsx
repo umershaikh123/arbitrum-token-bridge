@@ -2,7 +2,8 @@ import * as React from 'react'
 import Box from '@mui/material/Box'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import { ValidatorsData, NodeOperatorData } from './DashboardData'
+import { ValidatorsTable } from './ValidatorTable'
+import { NodeOperatorTable } from './NodeOperatorTable'
 import { useState, useEffect } from 'react'
 import {
   NodeData,
@@ -90,7 +91,7 @@ const CenteredTabs: React.FC<CenteredTabsProps> = ({ data }) => {
 
   return (
     <div
-      className={`  mt-2 flex items-center justify-center  `}
+      className={`  mt-2 flex justify-center  `}
       style={{ height: heightVariable > 800 ? 'calc(100vh - 30vh)' : 'auto' }}
     >
       <Box sx={{ width: '100%', bgcolor: 'transparent' }}>
@@ -106,12 +107,12 @@ const CenteredTabs: React.FC<CenteredTabsProps> = ({ data }) => {
 
         <CustomTabPanel value={value} index={0}>
           <>
-            <ValidatorsData data={validatorData} />
+            <ValidatorsTable data={validatorData} />
           </>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
           <>
-            <NodeOperatorData data={nodeClusterData} />
+            <NodeOperatorTable data={nodeClusterData} />
           </>
         </CustomTabPanel>
       </Box>

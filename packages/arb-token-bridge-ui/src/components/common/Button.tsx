@@ -3,6 +3,10 @@ import { twMerge } from 'tailwind-merge'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 
 import { Loader, LoaderProps } from './atoms/Loader'
+import MetamaskLogo from '@/icons/MetamaskLogo.svg'
+import Image from 'next/image'
+import { chainButtonProps } from '../../types'
+import { Button as MuiButton } from '@mui/material'
 
 type ButtonVariant = 'primary' | 'secondary' | 'tertiary'
 
@@ -98,3 +102,34 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 )
 
 Button.displayName = 'Button'
+
+
+// image as prop
+export const ChainButton = ({
+  addChainMethod,
+  title,
+  name,
+  color = '#1377BB',
+  css
+}: chainButtonProps) => {
+  return (
+    <div>
+      <MuiButton
+        className={`rounded-lg  border-2 text-sm  font-medium hover:border-2 ${css}`}
+        onClick={addChainMethod}
+        variant="outlined"
+        sx={{ color: color }}
+        title={`${title}`}
+      >
+        <Image
+          src={MetamaskLogo}
+          width={25}
+          height={25}
+          alt="metamask logo"
+          className="mr-2"
+        />
+        Add {name}
+      </MuiButton>
+    </div>
+  )
+}

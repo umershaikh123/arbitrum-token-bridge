@@ -80,7 +80,7 @@ exports.networks = {
             rollup: '0x1f36f44a377C0D48706F0726608724d1E884D5c7',
             sequencerInbox: '0x2813f740FF6A6c09839951855CaDfA814129B6A9',
         },
-        explorerUrl: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL || "null Explorer url"}`,
+        explorerUrl: `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL}`,
         isArbitrum: true,
         isCustom: true,
         name: 'nexus-orbit-chain',

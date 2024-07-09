@@ -7,7 +7,7 @@ export async function addNexusChain() {
             {
               chainId: '0xCB6BAA',
               rpcUrls: [
-                `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL || 'null rpc'}`
+                `${process.env.NEXT_PUBLIC_NEXUS_ORBIT_RPC_URL}`
               ],
               chainName: 'Nexus Orbit Chain',
               nativeCurrency: {
@@ -17,8 +17,8 @@ export async function addNexusChain() {
               },
               blockExplorerUrls: [
                 `${
-                  process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL ||
-                  'null Explorer url'
+                  process.env.NEXT_PUBLIC_NEXUS_ORBIT_EXPLORER_URL 
+               
                 }`
               ]
             }

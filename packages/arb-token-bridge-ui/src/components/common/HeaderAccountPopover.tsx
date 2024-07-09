@@ -112,10 +112,10 @@ export function HeaderAccountPopover({
                 />
               </div>
               <button
-                className="flex translate-y-1 flex-row items-center gap-1 text-white/70 hover:text-white"
+                className="flex translate-y-1 flex-row items-center gap-1 mt-3 text-white/70 hover:text-white"
                 onClick={() => copy(ensName ?? udInfo.name ?? address ?? '')}
               >
-                <span className="max-w-[10rem] overflow-hidden text-ellipsis text-sm">
+                <span className="max-w-[10rem] overflow-hidden text-ellipsis text-sm ">
                   {ensName ?? udInfo.name ?? accountShort}
                 </span>
                 <DocumentDuplicateIcon className="h-3 w-3" />

@@ -1,7 +1,5 @@
-'use client'
 
 import * as React from 'react'
-
 import { Box, Toolbar, IconButton, Menu, Button, MenuItem } from '@mui/material'
 import XIcon from '@mui/icons-material/X'
 import ArticleIcon from '@mui/icons-material/Article'
@@ -9,17 +7,10 @@ import discordIcon from '@/icons/Discord.svg'
 import MenuIcon from '@mui/icons-material/Menu'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useEffect, useState, useRef } from 'react'
 import logo from '/public/images/nexus/nexusLogoUncompressed.svg'
-import { usePathname } from 'next/navigation'
 import { HeaderAccountPopover } from './HeaderAccountPopover'
-import { Header } from './Header'
-import { addNexusChain, addHoleskyChain } from '../../util/metamask'
-
 import {
   AddChainButton,
-  AddHoleskyButton,
-  AddNexusButton
 } from '../common/AddChain'
 interface ResponsiveAppBarProps {
   wallet: Boolean

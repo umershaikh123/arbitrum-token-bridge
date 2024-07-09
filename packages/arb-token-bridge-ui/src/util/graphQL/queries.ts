@@ -11,7 +11,6 @@ export const GET_VALIDATOR_DATA = gql`
   }
 `
 
- 
 
 export const GET_NODE_DATA = gql`
   query Now2 {
