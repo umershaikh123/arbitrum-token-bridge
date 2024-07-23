@@ -363,8 +363,7 @@ export default function App() {
           >
             <ConnectedChainSyncer />
             <AppContextProvider>
-              {/* <AppContent /> */}
-              <Maintanence />
+              <AppContent />
             </AppContextProvider>
           </RainbowKitProvider>
         </WagmiConfig>
